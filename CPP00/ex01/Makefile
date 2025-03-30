@@ -15,14 +15,16 @@ NAME	= phoneBook
 
 SRCS	= ./main.cpp \
 		  ./Contact.cpp \
-		  ./PhoneBook.cpp
+		  ./PhoneBook.cpp \
+		  ./Utils.cpp \
+		  ./PhoneBookManager.cpp
+
 OBJS	= ${SRCS:.cpp=.o}
 
 HEADERS	= -I ./include
 
 CC = clang++
 CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code -std=c++98
-# CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code
 RM = rm -rf
 
 #------------------------------------------------------------------------------#

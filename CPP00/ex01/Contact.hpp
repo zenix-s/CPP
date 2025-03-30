@@ -16,6 +16,12 @@
 
 #include <string>
 
+enum contactType
+{
+	SHORT,
+	FULL
+};
+
 class Contact
 {
   private:
@@ -26,13 +32,15 @@ class Contact
 	std::string _phoneNumber;
 	std::string _darkestSecret;
 
+	std::string getShortContactInfo() const;
+	std::string getFullContactInfo() const;
+
   public:
 	Contact();
 	Contact(const Contact &other);
-	Contact &operator=(const Contact &other);
-	~Contact();
-
 	Contact(int index, std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret);
+	~Contact();
+	Contact &operator=(const Contact &other);
 
 	std::string getFirstName() const;
 	std::string getLastName() const;
@@ -43,8 +51,7 @@ class Contact
 	std::string formatColumn(int nbr) const;
 	std::string formatColumn(std::string str) const;
 
-	std::string getShortContactInfo() const;
-	std::string getFullContactInfo() const;
+	std::string getContactInfo(contactType type) const;
 
 	void setIndex(int index);
 };

@@ -43,7 +43,8 @@ PhoneBook &PhoneBook::operator=(const PhoneBook &other)
 
 void PhoneBook::addContact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret)
 {
-	if (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() || darkestSecret.empty())
+	if (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() ||
+	    darkestSecret.empty())
 	{
 		std::cout << "All fields are required" << std::endl;
 		return;
@@ -69,12 +70,11 @@ std::string PhoneBook::getContactInfo(int index, bool fullVersion) const
 		return "Invalid index";
 
 	if (fullVersion)
-		return _contacts[index]->getFullContactInfo();
-	return _contacts[index]->getShortContactInfo();
+		return _contacts[index]->getContactInfo(FULL);
+	return _contacts[index]->getContactInfo(SHORT);
 }
 
 int PhoneBook::getContactsCount() const
 {
 	return _contactsCount;
 }
-

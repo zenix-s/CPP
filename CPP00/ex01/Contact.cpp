@@ -10,7 +10,7 @@
 /* ************************************************************************** */
 
 #include "Contact.hpp"
-#include <sstream>
+#include "Utils.hpp"
 #include <string>
 
 Contact::~Contact()
@@ -89,10 +89,7 @@ std::string Contact::formatColumn(std::string str) const
 
 std::string Contact::formatColumn(int nbr) const
 {
-	std::stringstream ss;
-
-	ss << nbr;
-	return formatColumn(ss.str());
+	return formatColumn(Utils::to_string(nbr));
 }
 
 std::string Contact::getShortContactInfo() const
@@ -118,6 +115,13 @@ std::string Contact::getFullContactInfo() const
 	info += "Darkest secret: " + _darkestSecret + "\n";
 
 	return info;
+}
+
+std::string Contact::getContactInfo(contactType type) const
+{
+	if (type == SHORT)
+		return getShortContactInfo();
+	return getFullContactInfo();
 }
 
 void Contact::setIndex(int index)

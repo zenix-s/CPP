@@ -1,0 +1,47 @@
+
+#include "Zombie.hpp"
+#include <iostream>
+
+int main(void)
+{
+    // Zombie creation on the heap with the constructor that takes a string as an argument.
+    {
+        std::cout << "Creating a zombie on the heap with the constructor that takes a string as an argument." << std::endl;
+
+        Zombie* zombie = new Zombie("Steve");
+        zombie->announce();
+        delete zombie;
+
+        std::cout << std::endl;
+    }
+
+    // Zombie creation on the stack with the default constructor.
+    {
+        std::cout << "Creating a zombie on the stack with the default constructor." << std::endl;
+
+        Zombie zombie = Zombie();
+        zombie.announce();
+
+        std::cout << std::endl;
+    }
+
+    // Zombie creation on the heap with the newZombie function.
+    {
+        std::cout << "Creating a zombie on the heap with the newZombie function." << std::endl;
+
+        Zombie* zombie = newZombie("Steve");
+        zombie->announce();
+        delete zombie;
+
+        std::cout << std::endl;
+    }
+
+    // Zombie creation on the stack with the randomChump function.
+    {
+        std::cout << "Creating a zombie on the stack with the randomChump function." << std::endl;
+
+        randomChump("Steve");
+
+        std::cout << std::endl;
+    }
+}

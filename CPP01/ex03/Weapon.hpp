@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/02 12:24:21 by serferna          #+#    #+#             */
-/*   Updated: 2025/03/02 21:04:26 by serferna         ###   ########.fr       */
+/*   Created: 2025/03/30 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/03/30 18:01:21 by serferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBookManager.hpp"
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 
-int main(void)
+#include <string>
+
+class Weapon
 {
-    PhoneBookManager phoneBookManager;
+  private:
+    std::string _type;
 
-    phoneBookManager.run();
+  public:
+    Weapon();
+    Weapon(std::string type);
+    ~Weapon();
+    Weapon(const Weapon& other);
+    Weapon& operator=(const Weapon& other);
 
-    return 0;
-}
+    std::string const& getType() const;
+    void               setType(std::string type);
+};
+
+#endif

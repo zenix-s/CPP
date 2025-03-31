@@ -20,22 +20,20 @@
 class PhoneBook
 {
   private:
-	static const int _maxContacts = 8;
+    static const int _maxContacts = 8;
 
-	int      _contactsCount;
-	Contact *_contacts[8];
+    int      _contactsCount;
+    Contact* _contacts[8];
 
   public:
-	PhoneBook();
-	PhoneBook(const PhoneBook &other);
-	PhoneBook &operator=(const PhoneBook &other);
-	~PhoneBook();
+    PhoneBook();
+    PhoneBook(const PhoneBook& other);
+    PhoneBook& operator=(const PhoneBook& other);
+    ~PhoneBook();
 
-	void addContact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret);
-
-	int getContactsCount() const;
-
-	std::string getContactInfo(int index, bool fullVersion) const;
+    void addContact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret);
+    int         getContactsCount() const;
+    std::string getContactInfo(int index, bool fullVersion) const;
 };
 
 #endif

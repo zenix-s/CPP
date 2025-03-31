@@ -8,18 +8,18 @@
 class PhoneBookManager
 {
   public:
-	PhoneBookManager();
-	~PhoneBookManager();
-	PhoneBookManager(const PhoneBookManager &other);
-	PhoneBookManager &operator=(const PhoneBookManager &other);
+    PhoneBookManager();
+    ~PhoneBookManager();
+    PhoneBookManager(const PhoneBookManager& other);
+    PhoneBookManager& operator=(const PhoneBookManager& other);
 
-	void run();
+    void run();
 
   private:
-	std::string get_input(std::string message);
-	void        addContact(PhoneBook *phoneBook);
-	void        printContacts(PhoneBook *phoneBook);
-	void        searchContact(PhoneBook *phoneBook);
+    std::string get_input(std::string message);
+    void        addContact(PhoneBook* phoneBook);
+    void        printContacts(PhoneBook* phoneBook);
+    void        searchContact(PhoneBook* phoneBook);
 };
 
 #endif

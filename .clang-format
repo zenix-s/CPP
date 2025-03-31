@@ -11,15 +11,15 @@ BinPackArguments: true
 BinPackParameters: true
 BreakBeforeBraces: Allman
 BreakBeforeTernaryOperators: false
-ColumnLimit: 80
+ColumnLimit: 120
 IndentWidth: 4
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
-PointerAlignment: Right
+PointerAlignment: Left
 PenaltyBreakBeforeFirstCallParameter: 1
 PenaltyBreakString: 1
 PenaltyExcessCharacter: 0
-SpaceAfterCStyleCast: true
+SpaceAfterCStyleCast: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
 SpaceInEmptyParentheses: false
@@ -27,4 +27,4 @@ SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 TabWidth: 4
-UseTab: ForIndentation
+UseTab: Never

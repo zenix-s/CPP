@@ -1,22 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/02 12:24:21 by serferna          #+#    #+#             */
-/*   Updated: 2025/03/02 21:04:26 by serferna         ###   ########.fr       */
+/*   Created: 2025/03/30 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/03/30 18:01:21 by serferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBookManager.hpp"
+#include "Weapon.hpp"
 
-int main(void)
+Weapon::Weapon()
 {
-    PhoneBookManager phoneBookManager;
+    _type = "fist";
+}
 
-    phoneBookManager.run();
+Weapon::Weapon(std::string type)
+{
+    _type = type;
+}
 
-    return 0;
+Weapon::~Weapon()
+{
+}
+
+Weapon::Weapon(const Weapon& other)
+{
+    _type = other._type;
+}
+
+Weapon& Weapon::operator=(const Weapon& other)
+{
+    if (this == &other)
+        return *this;
+
+    _type = other._type;
+    return *this;
 }

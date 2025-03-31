@@ -18,42 +18,42 @@
 
 enum contactType
 {
-	SHORT,
-	FULL
+    SHORT,
+    FULL
 };
 
 class Contact
 {
   private:
-	int         _index;
-	std::string _firstName;
-	std::string _lastName;
-	std::string _nickname;
-	std::string _phoneNumber;
-	std::string _darkestSecret;
+    int         _index;
+    std::string _firstName;
+    std::string _lastName;
+    std::string _nickname;
+    std::string _phoneNumber;
+    std::string _darkestSecret;
 
-	std::string getShortContactInfo() const;
-	std::string getFullContactInfo() const;
+    std::string getShortContactInfo() const;
+    std::string getFullContactInfo() const;
 
   public:
-	Contact();
-	Contact(const Contact &other);
-	Contact(int index, std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret);
-	~Contact();
-	Contact &operator=(const Contact &other);
+    Contact();
+    Contact(const Contact& other);
+    Contact(int index, std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret);
+    ~Contact();
+    Contact& operator=(const Contact& other);
 
-	std::string getFirstName() const;
-	std::string getLastName() const;
-	std::string getNickname() const;
-	std::string getPhoneNumber() const;
-	std::string getDarkestSecret() const;
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getNickname() const;
+    std::string getPhoneNumber() const;
+    std::string getDarkestSecret() const;
 
-	std::string formatColumn(int nbr) const;
-	std::string formatColumn(std::string str) const;
+    std::string formatColumn(int nbr) const;
+    std::string formatColumn(std::string str) const;
 
-	std::string getContactInfo(contactType type) const;
+    std::string getContactInfo(contactType type) const;
 
-	void setIndex(int index);
+    void setIndex(int index);
 };
 
 #endif

@@ -11,15 +11,18 @@ BLUE =			\033[0;94m
 #------------------------------------------------------------------------------#
 #                                VARIABLES                                     #
 #------------------------------------------------------------------------------#
-NAME	= ex02
+NAME	= ex03
 
-SRCS	= ./main.cpp \
+SRCS = ./main.cpp \
+       ./Weapon.cpp \
+       ./HumanA.cpp \
+       ./HumanB.cpp \
 
 OBJS	= ${SRCS:.cpp=.o}
 
 HEADERS	= -I ./include
 
-CC = clang++
+CC = c++
 CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code -std=c++98
 RM = rm -rf
 

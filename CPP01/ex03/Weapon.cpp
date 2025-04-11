@@ -39,3 +39,13 @@ Weapon& Weapon::operator=(const Weapon& other)
     _type = other._type;
     return *this;
 }
+
+std::string const& Weapon::getType() const
+{
+    return _type;
+}
+
+void Weapon::setType(std::string type)
+{
+    _type = type;
+}

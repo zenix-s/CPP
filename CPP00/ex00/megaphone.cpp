@@ -15,28 +15,32 @@
 
 #define DEFAULT_MESSAGE "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 
-void megaphone(int word_count, char *words[])
+std::string to_upper(std::string str)
 {
-	if (word_count <= 1)
-	{
-		std::cout << DEFAULT_MESSAGE << std::endl;
-		return;
-	}
-
-	for (int word_index = 1; word_index < word_count; word_index++)
-	{
-		std::string word = words[word_index];
-
-		for (int char_index = 0; word[char_index]; char_index++)
-			std::cout << (char) toupper(word[char_index]);
-		std::cout << " ";
-	}
-
-	std::cout << std::endl;
+    for (size_t i = 0; i < str.length(); i++)
+        str[i] = std::toupper(static_cast<char>(str[i]));
+    return str;
 }
 
-int main(int argc, char *argv[])
+void megaphone(int word_count, char* words[])
 {
-	megaphone(argc, argv);
-	return 0;
+    if (word_count <= 1)
+    {
+        std::cout << DEFAULT_MESSAGE << std::endl;
+        return;
+    }
+
+    for (int word_index = 1; word_index < word_count; word_index++)
+    {
+        std::cout << to_upper(std::string(words[word_index]));
+        std::cout << " ";
+    }
+
+    std::cout << std::endl;
+}
+
+int main(int argc, char* argv[])
+{
+    megaphone(argc, argv);
+    return 0;
 }

@@ -47,13 +47,12 @@ class Contact
     std::string getNickname() const;
     std::string getPhoneNumber() const;
     std::string getDarkestSecret() const;
+    void        setIndex(int index);
 
     std::string formatColumn(int nbr) const;
     std::string formatColumn(std::string str) const;
 
     std::string getContactInfo(contactType type) const;
-
-    void setIndex(int index);
 };
 
 #endif

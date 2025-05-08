@@ -63,11 +63,23 @@ std::string PhoneBookManager::getInput(std::string message)
     std::cout << message;
     std::getline(std::cin, input);
 
+    if (std::cin.eof())
+    {
+        std::cin.clear();
+        input = "EXIT";
+    }
+
     while (input.empty())
     {
         std::cout << "Field is required" << std::endl;
         std::cout << message;
         std::getline(std::cin, input);
+
+        if (std::cin.eof())
+        {
+            std::cin.clear();
+        }
+            input = "EXIT";
     }
 
     return input;

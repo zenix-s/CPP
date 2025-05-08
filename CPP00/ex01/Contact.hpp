@@ -39,7 +39,9 @@ class Contact
     Contact();
     Contact(const Contact& other);
     Contact(int index, std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret);
+    
     ~Contact();
+    
     Contact& operator=(const Contact& other);
 
     std::string getFirstName() const;

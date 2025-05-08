@@ -91,7 +91,7 @@ std::string Contact::formatColumn(std::string str) const
 
 std::string Contact::formatColumn(int nbr) const
 {
-    return formatColumn(Utils::to_string(nbr));
+    return formatColumn(Utils::toString(nbr));
 }
 
 std::string Contact::getShortContactInfo() const

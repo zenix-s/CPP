@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBookManager.cpp                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/08 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/05/08 18:01:21 by serferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBookManager.hpp"
 
 #include "PhoneBook.hpp"
@@ -31,7 +43,7 @@ void PhoneBookManager::run()
 
     while (1)
     {
-        input = get_input("Enter command(ADD, SEARCH, EXIT): ");
+        input = getInput("Enter command(ADD, SEARCH, EXIT): ");
 
         if (input == "EXIT")
             break;
@@ -44,7 +56,7 @@ void PhoneBookManager::run()
     delete phoneBook;
 }
 
-std::string PhoneBookManager::get_input(std::string message)
+std::string PhoneBookManager::getInput(std::string message)
 {
     std::string input;
 
@@ -69,11 +81,11 @@ void PhoneBookManager::addContact(PhoneBook* phoneBook)
     std::string phoneNumber;
     std::string darkestSecret;
 
-    firstName = get_input("Enter first name: ");
-    lastName = get_input("Enter last name: ");
-    nickname = get_input("Enter nickname: ");
-    phoneNumber = get_input("Enter phone number: ");
-    darkestSecret = get_input("Enter darkest secret: ");
+    firstName = getInput("Enter first name: ");
+    lastName = getInput("Enter last name: ");
+    nickname = getInput("Enter nickname: ");
+    phoneNumber = getInput("Enter phone number: ");
+    darkestSecret = getInput("Enter darkest secret: ");
 
     phoneBook->addContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
 }
@@ -102,7 +114,7 @@ void PhoneBookManager::searchContact(PhoneBook* phoneBook)
 
     printContacts(phoneBook);
 
-    index = get_input("Enter index: ");
+    index = getInput("Enter index: ");
     i = std::atoi(index.c_str());
     if (i < 1 || i > phoneBook->getContactsCount())
     {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBookManager.hpp                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/08 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/05/08 18:01:21 by serferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHONE_BOOK_MANAGER_HPP
 
 #define PHONE_BOOK_MANAGER_HPP
@@ -16,7 +28,7 @@ class PhoneBookManager
     void run();
 
   private:
-    std::string get_input(std::string message);
+    std::string getInput(std::string message);
     void        addContact(PhoneBook* phoneBook);
     void        printContacts(PhoneBook* phoneBook);
     void        searchContact(PhoneBook* phoneBook);

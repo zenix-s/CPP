@@ -1,30 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Utils.hpp                                          :+:      :+:    :+:   */
+/*   FILENAME                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 18:01:21 by serferna          #+#    #+#             */
-/*   Updated: 2025/05/08 18:01:21 by serferna         ###   ########.fr       */
+/*   Created: CURRENT_YEAR/MONTH/DAY 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: YEAR/MONTH/DAY 18:01:21 by serferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_HPP
+#include "ScavTrap.hpp"
 
-#define UTILS_HPP
-
-#include <string>
-
-class Utils
-{
-  public:
-    Utils();
-    ~Utils();
-    Utils(const Utils& other);
-    Utils& operator=(const Utils& other);
-
-    static std::string toString(int nbr);
-};
-
-#endif
+// Private member functions

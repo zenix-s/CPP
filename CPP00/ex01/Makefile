@@ -24,7 +24,7 @@ OBJS	= ${SRCS:.cpp=.o}
 HEADERS	= -I ./include
 
 CC = clang++
-CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code -std=c++98
+CFLAGS	= -Wextra -Wall -Werror -std=c++98
 RM = rm -rf
 
 #------------------------------------------------------------------------------#

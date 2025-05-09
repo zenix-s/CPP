@@ -15,10 +15,11 @@ class Fixed
     Fixed(const int value);
     Fixed(const float value);
     ~Fixed();
-    Fixed& operator=(const Fixed& other);
 
     int  getRawBits() const;
     void setRawBits(int const raw);
+    
+    Fixed& operator=(const Fixed& other);
 
     float toFloat() const;
     int   toInt() const;

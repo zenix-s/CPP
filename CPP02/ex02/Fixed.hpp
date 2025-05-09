@@ -17,6 +17,10 @@ class Fixed
     Fixed(const float value);
     ~Fixed();
 
+    // Getters / Setters
+    int  getRawBits() const;
+    void setRawBits(int const raw);
+
     // Assignment operator
     Fixed& operator=(const Fixed& other);
 
@@ -39,10 +43,6 @@ class Fixed
     Fixed  operator++(int); // Post-increment
     Fixed& operator--();    // Pre-decrement
     Fixed  operator--(int); // Post-decrement
-
-    // Getters / Setters
-    int  getRawBits() const;
-    void setRawBits(int const raw);
 
     // Conversion methods
     float toFloat() const;

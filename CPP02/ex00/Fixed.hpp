@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/09 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/05/09 18:01:21 by serferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
@@ -11,10 +23,11 @@ class Fixed
     Fixed();
     Fixed(const Fixed& other);
     ~Fixed();
-    Fixed& operator=(const Fixed& other);
 
     int  getRawBits() const;
     void setRawBits(int const raw);
+    
+    Fixed& operator=(const Fixed& other);
 };
 
 #endif

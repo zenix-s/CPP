@@ -115,5 +115,20 @@ int main(void)
         ken.attack();
     }
 
+    {
+        // Test 11: Modifying weapon type after creation
+        Weapon glaive = Weapon("glaive");
+        HumanA aragorn("Aragorn", glaive);
+        aragorn.attack();
+        glaive.setType("elven glaive");
+        aragorn.attack();
+        HumanB legolas("Legolas");
+        legolas.setWeapon(glaive);
+        legolas.attack();
+        glaive.setType("mithril glaive");
+        legolas.attack();
+        aragorn.attack();
+    }
+
     return 0;
 }

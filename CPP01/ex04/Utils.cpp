@@ -31,14 +31,16 @@ Utils& Utils::operator=(const Utils& other)
     return (*this);
 }
 
-std::string Utils::Replace(std::string str, const std::string from, const std::string to)
+std::string Utils::Replace(std::string str, const std::string toReplace, const std::string toReplaceWith)
 {
-    size_t start_pos = 0;
-    while ((start_pos = str.find(from, start_pos)) != std::string::npos)
+    size_t startingPosition = 0;
+
+    while ((startingPosition = str.find(toReplace, startingPosition)) != std::string::npos)
     {
-        str.erase(start_pos, from.length());
-        str.insert(start_pos, to);
-        start_pos += to.length();
+        str.erase(startingPosition, toReplace.length());
+        str.insert(startingPosition, toReplaceWith);
+        startingPosition += toReplaceWith.length();
     }
+
     return str;
 }

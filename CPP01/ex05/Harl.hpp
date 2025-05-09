@@ -14,6 +14,7 @@
 #define HARL_HPP
 
 #include <string>
+
 class Harl
 {
   private:
@@ -25,8 +26,8 @@ class Harl
     static const std::string _errorLevelText;
     static const std::string _unknownLevelText;
 
-    static const funcPtr     functions[4];
-    static const std::string levels[4];
+    static const funcPtr     _functions[4];
+    static const std::string _levels[4];
 
     void debug(void);
     void info(void);

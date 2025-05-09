@@ -23,8 +23,8 @@ const std::string Harl::_warningLevelText = "I think I deserve to have some extr
                                             "years whereas you started working here since last month.";
 const std::string Harl::_errorLevelText = "This is unacceptable! I want to speak to the manager now.";
 
-const Harl::funcPtr Harl::functions[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-const std::string   Harl::levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+const Harl::funcPtr Harl::_functions[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+const std::string   Harl::_levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 Harl::Harl()
 {
@@ -75,9 +75,9 @@ void Harl::complain(std::string level)
 {
     for (int i = 0; i < 4; ++i)
     {
-        if (level == levels[i])
+        if (level == _levels[i])
         {
-            (this->*functions[i])();
+            (this->*_functions[i])();
             return;
         }
     }

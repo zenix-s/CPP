@@ -22,9 +22,9 @@ int main(void)
         Zombie* zombie = new Zombie("Steve");
         zombie->announce();
         delete zombie;
-
-        std::cout << std::endl;
     }
+
+    std::cout << std::endl;
 
     // Zombie creation on the stack with the default constructor.
     {
@@ -32,9 +32,9 @@ int main(void)
 
         Zombie zombie = Zombie();
         zombie.announce();
-
-        std::cout << std::endl;
     }
+
+    std::cout << std::endl;
 
     // Zombie creation on the heap with the newZombie function.
     {
@@ -43,16 +43,16 @@ int main(void)
         Zombie* zombie = newZombie("Steve");
         zombie->announce();
         delete zombie;
-
-        std::cout << std::endl;
     }
+
+    std::cout << std::endl;
 
     // Zombie creation on the stack with the randomChump function.
     {
         std::cout << "Creating a zombie on the stack with the randomChump function." << std::endl;
 
         randomChump("Steve");
-
-        std::cout << std::endl;
     }
+
+    std::cout << std::endl;
 }

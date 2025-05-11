@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/11 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/05/11 18:01:21 by serferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 #include <iostream>
 
 int main(void)
 {
     {
-       std::cout << "Creating ClapTrap instance with name 'ClapTrap1'" << std::endl;
+        std::cout << "Creating ClapTrap instance with name 'ClapTrap1'" << std::endl;
         ClapTrap claptrap1("ClapTrap1");
         std::cout << "ClapTrap instance created" << std::endl;
 
@@ -20,7 +32,7 @@ int main(void)
         claptrap1.beRepaired(3);
         std::cout << "Repair completed" << std::endl;
 
-        std::cout << "ClapTrap instance going out of scope" << std::endl; 
+        std::cout << "ClapTrap instance going out of scope" << std::endl;
     }
     std::cout << "------------------------------------------" << std::endl;
     {
@@ -40,6 +52,6 @@ int main(void)
         claptrap2.beRepaired(5);
         std::cout << "Repair completed" << std::endl;
 
-        std::cout << "ClapTrap instance going out of scope" << std::endl; 
+        std::cout << "ClapTrap instance going out of scope" << std::endl;
     }
 }

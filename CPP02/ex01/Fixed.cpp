@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/09 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/05/09 18:01:21 by serferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 #include <cmath>
 #include <iostream>
@@ -54,11 +66,15 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat() const
 {
+    std::cout << "toFloat member function called" << std::endl;
+
     return static_cast<float>(_value) / (1 << _fractionalBits);
 }
 
 int Fixed::toInt() const
 {
+    std::cout << "toInt member function called" << std::endl;
+
     return _value >> _fractionalBits;
 }
 

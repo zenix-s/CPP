@@ -1,7 +1,7 @@
 #include "Logger.hpp"
 #include <iostream>
 
-const bool Logger::_log = false;
+const bool Logger::_log = true;
 
 const std::string Logger::_bold = "\033[1m";
 const std::string Logger::_boldOff = "\033[22m";

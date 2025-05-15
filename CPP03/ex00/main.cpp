@@ -11,47 +11,68 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "Logger.hpp"
 #include <iostream>
+
+static void printTrapInfo(const ClapTrap& trap)
+{
+    std::cout << Logger::getBlue() << std::endl << "------------------------------------------" << std::endl;
+    std::cout << "ScavTrap info: " << std::endl;
+    trap.Print();
+    std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+}
 
 int main(void)
 {
     {
-        std::cout << "Creating ClapTrap instance with name 'ClapTrap1'" << std::endl;
+        std::cout << Logger::getGreen() << Logger::getBold() << "Test ClapTrap, check normal actions" << Logger::getBoldOff() << Logger::getReset() << std::endl;
         ClapTrap claptrap1("ClapTrap1");
-        std::cout << "ClapTrap instance created" << std::endl;
 
-        std::cout << "Attacking target 'Target1'" << std::endl;
         claptrap1.attack("Target1");
-        std::cout << "Attack completed" << std::endl;
-
-        std::cout << "Taking damage of 5 points" << std::endl;
+        printTrapInfo(claptrap1);
         claptrap1.takeDamage(5);
-        std::cout << "Damage taken" << std::endl;
-
-        std::cout << "Repairing 3 points" << std::endl;
+        printTrapInfo(claptrap1);
         claptrap1.beRepaired(3);
-        std::cout << "Repair completed" << std::endl;
-
-        std::cout << "ClapTrap instance going out of scope" << std::endl;
+        printTrapInfo(claptrap1);
     }
     std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
     {
-        std::cout << "Creating ClapTrap instance with name 'ClapTrap2'" << std::endl;
-        ClapTrap claptrap2("ClapTrap2");
-        std::cout << "ClapTrap instance created" << std::endl;
+        std::cout << Logger::getGreen() << Logger::getBold() << "Test ClapTrap, check actions when dead" << Logger::getBoldOff() << Logger::getReset() << std::endl;
 
-        std::cout << "Attacking target 'Target2'" << std::endl;
-        claptrap2.attack("Target2");
-        std::cout << "Attack completed" << std::endl;
+        ClapTrap claptrap("ClapTrap2");
+        while (claptrap.isAlive())
+            claptrap.takeDamage(10);
 
-        std::cout << "Taking damage of 10 points" << std::endl;
-        claptrap2.takeDamage(10);
-        std::cout << "Damage taken" << std::endl;
+        printTrapInfo(claptrap);
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ClapTrap tries to attack, but it is dead" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        claptrap.attack("Target2");
+        printTrapInfo(claptrap);
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ClapTrap tries to repair 5 points, but it is dead" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        claptrap.beRepaired(5);
+        printTrapInfo(claptrap);
+    }
+    std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+    {
+        std::cout << Logger::getGreen() << Logger::getBold() << "Test ClapTrap, check actions when out of energy" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+        ClapTrap claptrap("ClapTrap3");
 
-        std::cout << "Repairing 5 points" << std::endl;
-        claptrap2.beRepaired(5);
-        std::cout << "Repair completed" << std::endl;
+        while (claptrap.hasEnergy())
+            claptrap.attack("Target3");
 
-        std::cout << "ClapTrap instance going out of scope" << std::endl;
+        printTrapInfo(claptrap);
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ClapTrap tries to attack, but it is out of energy" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        claptrap.attack("Target4");
+        printTrapInfo(claptrap);
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ClapTrap tries to repair 5 points, but it is out of energy" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        claptrap.beRepaired(5);
+        printTrapInfo(claptrap);
     }
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Logger.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/15 18:01:21 by serferna          #+#    #+#             */
+/*   Updated: 2025/05/15 18:01:21 by serferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef UTILS_HPP
 #define UTILS_HPP
 #include <string>
@@ -7,15 +19,15 @@ class Logger
   private:
     static const bool _log;
 
-    static const std::string BOLD;
-    static const std::string BOLD_OFF;
-    static const std::string RED;
-    static const std::string GREEN;
-    static const std::string YELLOW;
-    static const std::string BLUE;
-    static const std::string CYAN;
-    static const std::string WHITE;
-    static const std::string RESET;
+    static const std::string _bold;
+    static const std::string _boldOff;
+    static const std::string _red;
+    static const std::string _green;
+    static const std::string _yellow;
+    static const std::string _blue;
+    static const std::string _cyan;
+    static const std::string _white;
+    static const std::string _reset;
 
   public:
     Logger();

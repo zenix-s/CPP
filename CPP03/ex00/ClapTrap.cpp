@@ -11,40 +11,50 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "Logger.hpp"
 #include <iostream>
 
-// Private member functions
+ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+    Logger::printLog("ClapTrap Constructor called for " + _name);
+}
+
+ClapTrap::ClapTrap(const ClapTrap& other)
+{
+    Logger::printLog("ClapTrap Copy constructor called for " + other._name);
+    _name = other._name;
+    _hitPoints = other._hitPoints;
+    _energyPoints = other._energyPoints;
+    _attackDamage = other._attackDamage;
+}
+
+ClapTrap::~ClapTrap()
+{
+    Logger::printLog("ClapTrap Destructor called for " + _name);
+}
+
+std::string ClapTrap::getName() const
+{
+    Logger::printLog("ClapTrap getName function called for " + _name);
+    return _name;
+}
 
 bool ClapTrap::isAlive() const
 {
+    Logger::printLog("ClapTrap isAlive function called for " + _name);
     return _hitPoints > 0;
 }
 
 bool ClapTrap::hasEnergy() const
 {
+    Logger::printLog("ClapTrap hasEnergy function called for " + _name);
     return _energyPoints > 0;
-}
-
-// Public member functions
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
-{
-    std::cout << "Constructor called for " << _name << std::endl;
-}
-
-ClapTrap::ClapTrap(const ClapTrap& other)
-{
-    std::cout << "Copy constructor called for " << _name << std::endl;
-    *this = other;
-}
-
-ClapTrap::~ClapTrap()
-{
-    std::cout << "Destructor called for " << _name << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-    std::cout << "Copy assignment operator called for " << _name << std::endl;
+    Logger::printLog("ClapTrap Copy assignment operator called for " + _name);
+
     if (this == &other)
         return *this;
     _name = other._name;
@@ -56,6 +66,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 
 void ClapTrap::attack(const std::string& target)
 {
+    Logger::printLog("ClapTrap attack function called for " + _name);
     if (!isAlive())
     {
         std::cout << "ClapTrap " << _name << " is dead and cannot attack!" << std::endl;
@@ -69,10 +80,12 @@ void ClapTrap::attack(const std::string& target)
     }
 
     std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+    _energyPoints--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+    Logger::printLog("ClapTrap takeDamage function called for " + _name);
     if (!isAlive())
     {
         std::cout << "ClapTrap " << _name << " is already dead!" << std::endl;
@@ -89,6 +102,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
+    Logger::printLog("ClapTrap beRepaired function called for " + _name);
     if (!isAlive())
     {
         std::cout << "ClapTrap " << _name << " is dead and cannot be repaired!" << std::endl;
@@ -104,4 +118,12 @@ void ClapTrap::beRepaired(unsigned int amount)
     _hitPoints += amount;
     _energyPoints--;
     std::cout << "ClapTrap " << _name << " has been repaired by " << amount << " points!" << std::endl;
+}
+
+void ClapTrap::Print() const
+{
+    std::cout << "Name: " << Logger::getYellow() << _name << Logger::getBlue() << std::endl;
+    std::cout << "Hit Points: " << Logger::getYellow() << _hitPoints << Logger::getBlue() << std::endl;
+    std::cout << "Energy Points: " << Logger::getYellow() << _energyPoints << Logger::getBlue() << std::endl;
+    std::cout << "Attack Damage: " << Logger::getYellow() << _attackDamage << Logger::getBlue() << std::endl;
 }

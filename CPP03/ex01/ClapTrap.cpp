@@ -14,55 +14,17 @@
 #include "Logger.hpp"
 #include <iostream>
 
-// Private member functions
-
-/**
- * Checks if the ClapTrap is alive.
- * @return True if hit points are greater than 0, false otherwise.
- */
 bool ClapTrap::isAlive() const
 {
     Logger::printLog("ClapTrap isAlive function called for " + _name);
     return _hitPoints > 0;
 }
 
-/**
- * Checks if the ClapTrap has energy points left.
- * @return True if energy points are greater than 0, false otherwise.
- */
 bool ClapTrap::hasEnergy() const
 {
     Logger::printLog("ClapTrap hasEnergy function called for " + _name);
     return _energyPoints > 0;
 }
-
-bool ClapTrap::consumeEnergy(int amount)
-{
-    Logger::printLog("ClapTrap consumeEnergy function called for " + _name);
-
-    if (!isAlive())
-    {
-        std::cout << "ClapTrap " << _name << " is dead and cannot consume energy!" << std::endl;
-        return false;
-    }
-    if (!hasEnergy())
-    {
-        std::cout << "ClapTrap " << _name << " has no energy left!" << std::endl;
-        return false;
-    }
-
-    _energyPoints -= amount;
-
-    if (_energyPoints <= 0)
-    {
-        _energyPoints = 0;
-        std::cout << "ClapTrap " << _name << " has consumed too much energy and is now out of energy!" << std::endl;
-    }
-
-    return true;
-}
-
-// Public member functions
 
 ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
@@ -95,24 +57,6 @@ std::string ClapTrap::getName() const
     return _name;
 }
 
-int ClapTrap::getHitPoints() const
-{
-    Logger::printLog("ClapTrap getHitPoints function called for " + _name);
-    return _hitPoints;
-}
-
-int ClapTrap::getEnergyPoints() const
-{
-    Logger::printLog("ClapTrap getEnergyPoints function called for " + _name);
-    return _energyPoints;
-}
-
-int ClapTrap::getAttackDamage() const
-{
-    Logger::printLog("ClapTrap getAttackDamage function called for " + _name);
-    return _attackDamage;
-}
-
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
     Logger::printLog("ClapTrap Copy assignment operator called for " + _name);
@@ -142,7 +86,7 @@ void ClapTrap::attack(const std::string& target)
     }
 
     std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
-    consumeEnergy(1);
+    _energyPoints--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)

@@ -15,6 +15,7 @@ NAME	= ex00
 
 SRCS = ./main.cpp \
        ./ClapTrap.cpp \
+       ./Logger.cpp \
 
 OBJS	= ${SRCS:.cpp=.o}
 

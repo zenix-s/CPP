@@ -17,10 +17,10 @@
 
 class ScavTrap : public ClapTrap
 {
-  private:
   public:
     ScavTrap(const std::string& name);
     ScavTrap(const ScavTrap& other);
+
     ~ScavTrap();
 
     void guardGate() const;

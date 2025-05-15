@@ -15,31 +15,70 @@
 
 // Private member functions
 
+/**
+ * Checks if the ClapTrap is alive.
+ * @return True if hit points are greater than 0, false otherwise.
+ */
 bool ClapTrap::isAlive() const
 {
     return _hitPoints > 0;
 }
 
+/**
+ * Checks if the ClapTrap has energy points left.
+ * @return True if energy points are greater than 0, false otherwise.
+ */
 bool ClapTrap::hasEnergy() const
 {
     return _energyPoints > 0;
 }
 
 // Public member functions
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+
+ClapTrap::ClapTrap(const std::string& name)
+    : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-    std::cout << "Constructor called for " << _name << std::endl;
+    std::cout << "ClapTrap Constructor called for " << _name << std::endl;
+}
+
+ClapTrap::ClapTrap(const std::string& name, const int hitPoints, const int energyPoints, const int attackDamage)
+    : _name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
+{
+    std::cout << "ClapTrap Constructor with parameters called for " << _name << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
     std::cout << "Copy constructor called for " << _name << std::endl;
-    *this = other;
+    _name = other._name;
+    _hitPoints = other._hitPoints;
+    _energyPoints = other._energyPoints;
+    _attackDamage = other._attackDamage;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called for " << _name << std::endl;
+    std::cout << "ClapTrap Destructor called for " << _name << std::endl;
+}
+
+std::string ClapTrap::getName() const
+{
+    return _name;
+}
+
+int ClapTrap::getHitPoints() const
+{
+    return _hitPoints;
+}
+
+int ClapTrap::getEnergyPoints() const
+{
+    return _energyPoints;
+}
+
+int ClapTrap::getAttackDamage() const
+{
+    return _attackDamage;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)

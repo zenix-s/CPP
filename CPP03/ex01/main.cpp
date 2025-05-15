@@ -10,48 +10,87 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "Utils.hpp"
 #include <iostream>
+
+void printTrapInfor(const ScavTrap& trap)
+{
+        std::cout << Utils::getBlue();
+        std::cout << std::endl << "------------------------------------------" << std::endl;
+        std::cout << "ScavTrap info: " << std::endl;
+        std::cout << "Name: " << Utils::getYellow() << trap.getName() << Utils::getBlue() << std::endl;
+        std::cout << "Hit Points: " << Utils::getYellow() << trap.getHitPoints() << Utils::getBlue() << std::endl;
+        std::cout << "Energy Points: " << Utils::getYellow() << trap.getEnergyPoints() << Utils::getBlue() << std::endl;
+        std::cout << "Attack Damage: " << Utils::getYellow() << trap.getAttackDamage() << Utils::getBlue() << std::endl;
+        std::cout << "------------------------------------------" << std::endl;
+        std::cout << Utils::getReset();
+}
 
 int main(void)
 {
     {
-        std::cout << "Creating ClapTrap instance with name 'ClapTrap1'" << std::endl;
-        ClapTrap claptrap1("ClapTrap1");
-        std::cout << "ClapTrap instance created" << std::endl;
+        std::cout << "Creating ScavTrap instance with name 'ScavTrap1'" << std::endl;
+        ScavTrap scavtrap1("ScavTrap1");
 
+        printTrapInfor(scavtrap1);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl ;
+
+        std::cout << Utils::getBlue();
+        std::cout << "ScavTrap should attack: " << Utils::getYellow() << scavtrap1.getName() << Utils::getBlue() << std::endl;
         std::cout << "Attacking target 'Target1'" << std::endl;
-        claptrap1.attack("Target1");
-        std::cout << "Attack completed" << std::endl;
+        std::cout << "------------------------------------------" << std::endl;
+        std::cout << Utils::getReset();
+        scavtrap1.attack("Target1");
+        printTrapInfor(scavtrap1);
 
-        std::cout << "Taking damage of 5 points" << std::endl;
-        claptrap1.takeDamage(5);
-        std::cout << "Damage taken" << std::endl;
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl ;
 
-        std::cout << "Repairing 3 points" << std::endl;
-        claptrap1.beRepaired(3);
-        std::cout << "Repair completed" << std::endl;
+        // std::cout << "Taking damage of 10 points" << std::endl;
+        // scavtrap1.takeDamage(10);
+        //
+        // std::cout << "Damage taken" << std::endl;
+        // std::cout << "Repairing 5 points" << std::endl;
+        // scavtrap1.beRepaired(5);
+        //
+        // std::cout << "Repair completed" << std::endl;
+        // std::cout << "Entering Gate Keeper mode" << std::endl;
+        // scavtrap1.guardGate();
 
-        std::cout << "ClapTrap instance going out of scope" << std::endl;
+
+        std::cout << Utils::getBlue();
+        std::cout << "Scav trap take damage of 10 points" << std::endl;
+        std::cout << "------------------------------------------" << std::endl;
+        std::cout << Utils::getReset();
+        scavtrap1.takeDamage(10);
+        printTrapInfor(scavtrap1);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl ;
+
+        std::cout << Utils::getBlue() << "ScavTrap take damage of 10 points" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Utils::getReset();
+
+
     }
-    std::cout << "------------------------------------------" << std::endl;
-    {
-        std::cout << "Creating ClapTrap instance with name 'ClapTrap2'" << std::endl;
-        ClapTrap claptrap2("ClapTrap2");
-        std::cout << "ClapTrap instance created" << std::endl;
-
-        std::cout << "Attacking target 'Target2'" << std::endl;
-        claptrap2.attack("Target2");
-        std::cout << "Attack completed" << std::endl;
-
-        std::cout << "Taking damage of 10 points" << std::endl;
-        claptrap2.takeDamage(10);
-        std::cout << "Damage taken" << std::endl;
-
-        std::cout << "Repairing 5 points" << std::endl;
-        claptrap2.beRepaired(5);
-        std::cout << "Repair completed" << std::endl;
-
-        std::cout << "ClapTrap instance going out of scope" << std::endl;
-    }
+    // std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+    // {
+    //     std::cout << "Creating ClapTrap instance with name 'ClapTrap2'" << std::endl;
+    //     ClapTrap claptrap2("ClapTrap2");
+    //     std::cout << "ClapTrap instance created" << std::endl;
+    //
+    //     std::cout << "Attacking target 'Target2'" << std::endl;
+    //     claptrap2.attack("Target2");
+    //     std::cout << "Attack completed" << std::endl;
+    //
+    //     std::cout << "Taking damage of 10 points" << std::endl;
+    //     claptrap2.takeDamage(10);
+    //     std::cout << "Damage taken" << std::endl;
+    //
+    //     std::cout << "Repairing 5 points" << std::endl;
+    //     claptrap2.beRepaired(5);
+    //     std::cout << "Repair completed" << std::endl;
+    //
+    //     std::cout << "ClapTrap instance going out of scope" << std::endl;
+    // }
 }

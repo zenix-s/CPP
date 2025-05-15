@@ -17,24 +17,74 @@
 class ClapTrap
 {
   private:
+
+    bool isAlive() const;
+    bool hasEnergy() const;
+
+  protected:
+
     std::string _name;
     int         _hitPoints;
     int         _energyPoints;
     int         _attackDamage;
 
-    bool isAlive() const;
-    bool hasEnergy() const;
-
   public:
-    ClapTrap(std::string name);
+
+    /**
+     *
+     * @param name Trap name
+     */
+    ClapTrap(const std::string& name);
+
+    /**
+     *
+     * @param name Trap name
+     * @param hitPoints Trap hit points
+     * @param energyPoints Trap energy points
+     * @param attackDamage Trap attack damage
+     */
+    ClapTrap(const std::string& name, int hitPoints, int energyPoints, int attackDamage);
+
+    /**
+     *
+     * @param other ClapTrap object to copy
+     */
     ClapTrap(const ClapTrap& other);
+
+    /**
+     * Destructor
+     */
     ~ClapTrap();
 
-    ClapTrap& operator=(const ClapTrap& other);
+    std::string getName() const;
+    int               getHitPoints() const;
+    int                getEnergyPoints() const;
+    int                getAttackDamage() const;
 
+    /**
+     * Attack a target
+     * @param target Name of the target to attack
+     */
     void attack(const std::string& target);
+
+    /**
+     * Take x amount of damage
+     * @param amount amount of damage to take
+     */
     void takeDamage(unsigned int amount);
+
+    /**
+     * Repair x amount of damage
+     * @param amount amount of energy to be repaired
+     */
     void beRepaired(unsigned int amount);
+
+    /**
+     * Assignment operator
+     * @param other ClapTrap object to copy
+     * @return ClapTrap object
+     */
+    ClapTrap& operator=(const ClapTrap& other);
 };
 
 #endif

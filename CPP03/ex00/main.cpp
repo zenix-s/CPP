@@ -34,7 +34,7 @@ int main(void)
 
         std::cout << "ClapTrap instance going out of scope" << std::endl;
     }
-    std::cout << "------------------------------------------" << std::endl;
+    std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
     {
         std::cout << "Creating ClapTrap instance with name 'ClapTrap2'" << std::endl;
         ClapTrap claptrap2("ClapTrap2");

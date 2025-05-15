@@ -125,3 +125,11 @@ void ClapTrap::beRepaired(unsigned int amount)
     _energyPoints--;
     std::cout << "ClapTrap " << _name << " has been repaired by " << amount << " points!" << std::endl;
 }
+
+void ClapTrap::Print() const
+{
+    std::cout << "Name: " << Logger::getYellow() << _name << Logger::getBlue() << std::endl;
+    std::cout << "Hit Points: " << Logger::getYellow() << _hitPoints << Logger::getBlue() << std::endl;
+    std::cout << "Energy Points: " << Logger::getYellow() << _energyPoints << Logger::getBlue() << std::endl;
+    std::cout << "Attack Damage: " << Logger::getYellow() << _attackDamage << Logger::getBlue() << std::endl;
+}

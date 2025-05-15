@@ -17,19 +17,22 @@
 class ClapTrap
 {
   private:
-
-    bool isAlive() const;
-    bool hasEnergy() const;
-
   protected:
-
     std::string _name;
     int         _hitPoints;
     int         _energyPoints;
     int         _attackDamage;
 
-  public:
+    bool isAlive() const;
+    bool hasEnergy() const;
 
+    /**
+     * Consume x amount of energy
+     * @return true if energy was consumed, false in case it was alredy dead or out of energy
+     */
+    bool consumeEnergy(int amount);
+
+  public:
     /**
      *
      * @param name Trap name
@@ -56,10 +59,11 @@ class ClapTrap
      */
     ~ClapTrap();
 
+    // Getters
     std::string getName() const;
-    int               getHitPoints() const;
-    int                getEnergyPoints() const;
-    int                getAttackDamage() const;
+    int         getHitPoints() const;
+    int         getEnergyPoints() const;
+    int         getAttackDamage() const;
 
     /**
      * Attack a target

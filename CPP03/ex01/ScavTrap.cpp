@@ -11,34 +11,43 @@
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "Logger.hpp"
 #include <iostream>
+#define LOG 1
 
 // Private member functions
 
-ScavTrap::ScavTrap(const std::string& name)
-    : ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name, 100, 50, 20)
 {
-    std::cout << "ScavTrap Constructor called for " << _name << std::endl;
+    Logger::printLog("ScavTrap Constructor called for " + _name);
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other): ClapTrap(other)
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
-    std::cout << "ScavTrap Copy constructor called for " << _name << std::endl;
+    Logger::printLog("ScavTrap Copy constructor called for " + other._name);
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap Destructor called for " << _name << std::endl;
+    Logger::printLog("ScavTrap Destructor called for " + _name);
 }
 
 void ScavTrap::guardGate() const
 {
+    Logger::printLog("ScavTrap Guard Gate function called for " + _name);
+
+    if (!isAlive())
+    {
+        std::cout << "ScavTrap " << _name << " is dead and cannot enter Gate Keeper mode!" << std::endl;
+        return;
+    }
+
     std::cout << "ScavTrap " << _name << " is now in Gate Keeper mode!" << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
-    std::cout << "ScavTrap Copy assignment operator called for " << _name << std::endl;
+    Logger::printLog("ScavTrap Copy assignment operator called for " + _name);
     if (this == &other)
         return *this;
     _name = other._name;

@@ -2,9 +2,11 @@
 #define UTILS_HPP
 #include <string>
 
-class Utils
+class Logger
 {
-private:
+  private:
+    static const bool _log;
+
     static const std::string BOLD;
     static const std::string BOLD_OFF;
     static const std::string RED;
@@ -15,10 +17,10 @@ private:
     static const std::string WHITE;
     static const std::string RESET;
 
-public:
-    Utils();
-    Utils(const Utils& other);
-    ~Utils();
+  public:
+    Logger();
+    Logger(const Logger& other);
+    ~Logger();
 
     static std::string getBold();
     static std::string getBoldOff();
@@ -30,8 +32,9 @@ public:
     static std::string getWhite();
     static std::string getReset();
 
-    Utils& operator=(const Utils& other);
-};
+    static void printLog(const std::string& message);
 
+    Logger& operator=(const Logger& other);
+};
 
 #endif

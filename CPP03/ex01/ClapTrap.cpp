@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "Logger.hpp"
 #include <iostream>
 
 // Private member functions
@@ -21,6 +22,7 @@
  */
 bool ClapTrap::isAlive() const
 {
+    Logger::printLog("ClapTrap isAlive function called for " + _name);
     return _hitPoints > 0;
 }
 
@@ -30,26 +32,52 @@ bool ClapTrap::isAlive() const
  */
 bool ClapTrap::hasEnergy() const
 {
+    Logger::printLog("ClapTrap hasEnergy function called for " + _name);
     return _energyPoints > 0;
+}
+
+bool ClapTrap::consumeEnergy(int amount)
+{
+    Logger::printLog("ClapTrap consumeEnergy function called for " + _name);
+
+    if (!isAlive())
+    {
+        std::cout << "ClapTrap " << _name << " is dead and cannot consume energy!" << std::endl;
+        return false;
+    }
+    if (!hasEnergy())
+    {
+        std::cout << "ClapTrap " << _name << " has no energy left!" << std::endl;
+        return false;
+    }
+
+    _energyPoints -= amount;
+
+    if (_energyPoints <= 0)
+    {
+        _energyPoints = 0;
+        std::cout << "ClapTrap " << _name << " has consumed too much energy and is now out of energy!" << std::endl;
+    }
+
+    return true;
 }
 
 // Public member functions
 
-ClapTrap::ClapTrap(const std::string& name)
-    : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-    std::cout << "ClapTrap Constructor called for " << _name << std::endl;
+    Logger::printLog("ClapTrap Constructor called for " + _name);
 }
 
 ClapTrap::ClapTrap(const std::string& name, const int hitPoints, const int energyPoints, const int attackDamage)
     : _name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
 {
-    std::cout << "ClapTrap Constructor with parameters called for " << _name << std::endl;
+    Logger::printLog("ClapTrap Constructor called for " + _name + " with parameters");
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
-    std::cout << "Copy constructor called for " << _name << std::endl;
+    Logger::printLog("ClapTrap Copy constructor called for " + other._name);
     _name = other._name;
     _hitPoints = other._hitPoints;
     _energyPoints = other._energyPoints;
@@ -58,32 +86,37 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap Destructor called for " << _name << std::endl;
+    Logger::printLog("ClapTrap Destructor called for " + _name);
 }
 
 std::string ClapTrap::getName() const
 {
+    Logger::printLog("ClapTrap getName function called for " + _name);
     return _name;
 }
 
 int ClapTrap::getHitPoints() const
 {
+    Logger::printLog("ClapTrap getHitPoints function called for " + _name);
     return _hitPoints;
 }
 
 int ClapTrap::getEnergyPoints() const
 {
+    Logger::printLog("ClapTrap getEnergyPoints function called for " + _name);
     return _energyPoints;
 }
 
 int ClapTrap::getAttackDamage() const
 {
+    Logger::printLog("ClapTrap getAttackDamage function called for " + _name);
     return _attackDamage;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-    std::cout << "Copy assignment operator called for " << _name << std::endl;
+    Logger::printLog("ClapTrap Copy assignment operator called for " + _name);
+
     if (this == &other)
         return *this;
     _name = other._name;
@@ -95,6 +128,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 
 void ClapTrap::attack(const std::string& target)
 {
+    Logger::printLog("ClapTrap attack function called for " + _name);
     if (!isAlive())
     {
         std::cout << "ClapTrap " << _name << " is dead and cannot attack!" << std::endl;
@@ -108,10 +142,12 @@ void ClapTrap::attack(const std::string& target)
     }
 
     std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+    consumeEnergy(1);
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+    Logger::printLog("ClapTrap takeDamage function called for " + _name);
     if (!isAlive())
     {
         std::cout << "ClapTrap " << _name << " is already dead!" << std::endl;
@@ -128,6 +164,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
+    Logger::printLog("ClapTrap beRepaired function called for " + _name);
     if (!isAlive())
     {
         std::cout << "ClapTrap " << _name << " is dead and cannot be repaired!" << std::endl;

@@ -11,20 +11,20 @@
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-#include "Utils.hpp"
+#include "Logger.hpp"
 #include <iostream>
 
 void printTrapInfor(const ScavTrap& trap)
 {
-        std::cout << Utils::getBlue();
-        std::cout << std::endl << "------------------------------------------" << std::endl;
-        std::cout << "ScavTrap info: " << std::endl;
-        std::cout << "Name: " << Utils::getYellow() << trap.getName() << Utils::getBlue() << std::endl;
-        std::cout << "Hit Points: " << Utils::getYellow() << trap.getHitPoints() << Utils::getBlue() << std::endl;
-        std::cout << "Energy Points: " << Utils::getYellow() << trap.getEnergyPoints() << Utils::getBlue() << std::endl;
-        std::cout << "Attack Damage: " << Utils::getYellow() << trap.getAttackDamage() << Utils::getBlue() << std::endl;
-        std::cout << "------------------------------------------" << std::endl;
-        std::cout << Utils::getReset();
+    std::cout << Logger::getBlue();
+    std::cout << std::endl << "------------------------------------------" << std::endl;
+    std::cout << "ScavTrap info: " << std::endl;
+    std::cout << "Name: " << Logger::getYellow() << trap.getName() << Logger::getBlue() << std::endl;
+    std::cout << "Hit Points: " << Logger::getYellow() << trap.getHitPoints() << Logger::getBlue() << std::endl;
+    std::cout << "Energy Points: " << Logger::getYellow() << trap.getEnergyPoints() << Logger::getBlue() << std::endl;
+    std::cout << "Attack Damage: " << Logger::getYellow() << trap.getAttackDamage() << Logger::getBlue() << std::endl;
+    std::cout << "------------------------------------------" << std::endl;
+    std::cout << Logger::getReset();
 }
 
 int main(void)
@@ -35,62 +35,90 @@ int main(void)
 
         printTrapInfor(scavtrap1);
 
-        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl ;
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
 
-        std::cout << Utils::getBlue();
-        std::cout << "ScavTrap should attack: " << Utils::getYellow() << scavtrap1.getName() << Utils::getBlue() << std::endl;
+        std::cout << Logger::getBlue();
+        std::cout << "ScavTrap should attack: " << Logger::getYellow() << scavtrap1.getName() << Logger::getBlue() << std::endl;
         std::cout << "Attacking target 'Target1'" << std::endl;
         std::cout << "------------------------------------------" << std::endl;
-        std::cout << Utils::getReset();
+        std::cout << Logger::getReset();
         scavtrap1.attack("Target1");
         printTrapInfor(scavtrap1);
 
-        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl ;
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
 
-        // std::cout << "Taking damage of 10 points" << std::endl;
-        // scavtrap1.takeDamage(10);
-        //
-        // std::cout << "Damage taken" << std::endl;
-        // std::cout << "Repairing 5 points" << std::endl;
-        // scavtrap1.beRepaired(5);
-        //
-        // std::cout << "Repair completed" << std::endl;
-        // std::cout << "Entering Gate Keeper mode" << std::endl;
-        // scavtrap1.guardGate();
-
-
-        std::cout << Utils::getBlue();
-        std::cout << "Scav trap take damage of 10 points" << std::endl;
-        std::cout << "------------------------------------------" << std::endl;
-        std::cout << Utils::getReset();
+        std::cout << Logger::getBlue() << "ScavTrap take damage of 10 points" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
         scavtrap1.takeDamage(10);
         printTrapInfor(scavtrap1);
 
-        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl ;
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
 
-        std::cout << Utils::getBlue() << "ScavTrap take damage of 10 points" << std::endl;
-        std::cout << "------------------------------------------" << std::endl << Utils::getReset();
+        std::cout << "ScavTrap repairing 5 points" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap1.beRepaired(5);
+        printTrapInfor(scavtrap1);
 
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
 
+        std::cout << "ScavTrap entering Gate Keeper mode" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap1.guardGate();
+        printTrapInfor(scavtrap1);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+
+        std::cout << Logger::getBlue() << "ScavTrap Taking damage of 100 points" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap1.takeDamage(100);
+        printTrapInfor(scavtrap1);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ScavTrap tries to repair 5 points, but it is dead" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap1.beRepaired(5);
+        printTrapInfor(scavtrap1);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+
+        std::cout << Logger::getBlue() << "ScavTrap tries to enter Gate Keeper mode, but it is dead" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap1.guardGate();
+        printTrapInfor(scavtrap1);
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
     }
-    // std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
-    // {
-    //     std::cout << "Creating ClapTrap instance with name 'ClapTrap2'" << std::endl;
-    //     ClapTrap claptrap2("ClapTrap2");
-    //     std::cout << "ClapTrap instance created" << std::endl;
-    //
-    //     std::cout << "Attacking target 'Target2'" << std::endl;
-    //     claptrap2.attack("Target2");
-    //     std::cout << "Attack completed" << std::endl;
-    //
-    //     std::cout << "Taking damage of 10 points" << std::endl;
-    //     claptrap2.takeDamage(10);
-    //     std::cout << "Damage taken" << std::endl;
-    //
-    //     std::cout << "Repairing 5 points" << std::endl;
-    //     claptrap2.beRepaired(5);
-    //     std::cout << "Repair completed" << std::endl;
-    //
-    //     std::cout << "ClapTrap instance going out of scope" << std::endl;
-    // }
+
+    std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+
+    {
+        std::cout << "Creating ScavTrap instance with name 'ScavTrap2'" << std::endl;
+        ScavTrap scavtrap2("ScavTrap2");
+
+        printTrapInfor(scavtrap2);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ScavTrap should attack: " << Logger::getYellow() << scavtrap2.getName() << Logger::getBlue() << " until it runs out of energy" << std::endl;
+
+        while (scavtrap2.getEnergyPoints() > 0)
+            scavtrap2.attack("Target2");
+
+        printTrapInfor(scavtrap2);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ScavTrap tries to attack, but it is out of energy" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap2.attack("Target2");
+        printTrapInfor(scavtrap2);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ScavTrap tries to repair 5 points, but it is out of energy" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap2.beRepaired(5);
+        printTrapInfor(scavtrap2);
+
+        std::cout << std::endl << "------------------------------------------" << std::endl << std::endl;
+        std::cout << Logger::getBlue() << "ScavTrap enters Gate Keeper mode, since it is not dead and it does not consume energy" << std::endl;
+        std::cout << "------------------------------------------" << std::endl << Logger::getReset();
+        scavtrap2.guardGate();
+    }
 }

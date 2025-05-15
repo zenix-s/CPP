@@ -11,12 +11,14 @@ BLUE =			\033[0;94m
 #------------------------------------------------------------------------------#
 #                                VARIABLES                                     #
 #------------------------------------------------------------------------------#
-NAME	= ex02
+NAME	= ex03
 
 SRCS = ./main.cpp \
        ./ClapTrap.cpp \
        ./FragTrap.cpp \
+       ./ScavTrap.cpp \
        ./Logger.cpp \
+       ./DiamondTrap.cpp \
 
 OBJS	= ${SRCS:.cpp=.o}
 

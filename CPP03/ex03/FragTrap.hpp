@@ -15,9 +15,13 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
   public:
+    static const int baseHitPoints;
+    static const int baseEnergyPoints;
+    static const int baseAttackDamage;
+
     FragTrap(const std::string& name);
     FragTrap(const FragTrap& other);
 

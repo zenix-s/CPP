@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: serferna <serferna@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAG_TRAP_HPP
-#define FRAG_TRAP_HPP
+#ifndef CLAP_TRAP_HPP
+#define CLAP_TRAP_HPP
 
-#include "ClapTrap.hpp"
+#include <string>
 
-class FragTrap : public ClapTrap
+class ClapTrap
 {
   public:
-    FragTrap(const std::string& name);
-    FragTrap(const FragTrap& other);
+    ClapTrap(const std::string& name);
+    ClapTrap(const std::string& name, int hitPoints, int energyPoints, int attackDamage);
+    ClapTrap(const ClapTrap& other);
 
-    ~FragTrap();
+    ~ClapTrap();
 
-    void highFivesGuys(void) const;
+    std::string getName() const;
+    bool        isAlive() const;
+    bool        hasEnergy() const;
 
-    FragTrap& operator=(const FragTrap& other);
+    void attack(const std::string& target);
+    void takeDamage(unsigned int amount);
+    void beRepaired(unsigned int amount);
+
+    ClapTrap& operator=(const ClapTrap& other);
+
+    void Print() const;
+
+  protected:
+    std::string _name;
+    int _hitPoints;
+    int _energyPoints;
+    int _attackDamage;
 };
 
 #endif

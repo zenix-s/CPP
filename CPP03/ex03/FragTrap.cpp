@@ -2,7 +2,11 @@
 #include "Logger.hpp"
 #include <iostream>
 
-FragTrap::FragTrap(const std::string& name) : ClapTrap(name, 100, 100, 30)
+const int FragTrap::baseAttackDamage = 30;
+const int FragTrap::baseHitPoints = 100;
+const int FragTrap::baseEnergyPoints = 100;
+
+FragTrap::FragTrap(const std::string& name) : ClapTrap(name, baseHitPoints, baseEnergyPoints, baseAttackDamage)
 {
     Logger::printLog("FragTrap Constructor called for " + _name);
 }

@@ -11,14 +11,16 @@ BLUE =			\033[0;94m
 #------------------------------------------------------------------------------#
 #                                VARIABLES                                     #
 #------------------------------------------------------------------------------#
-NAME	= ex01
+NAME	= ex03
 
 SRCS = ./main.cpp \
        ./Logger.cpp \
-       ./Animal.cpp \
-       ./Cat.cpp \
-       ./Dog.cpp \
-       ./Brain.cpp \
+       ./AMateria.cpp \
+       ./Cure.cpp \
+       ./Ice.cpp \
+       ./Character.cpp \
+       ./MateriaSource.cpp \
+
 
 OBJS	= ${SRCS:.cpp=.o}
 

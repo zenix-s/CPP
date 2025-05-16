@@ -21,6 +21,25 @@ ScavTrap::~ScavTrap()
     Logger::printLog("ScavTrap Destructor called for " + _name);
 }
 
+void ScavTrap::attack(const std::string& target)
+{
+    Logger::printLog("ScavTrap attack called for " + _name);
+    if (!isAlive())
+    {
+        std::cout << "ScavTrap " << _name << " is dead and cannot attack!" << std::endl;
+        return;
+    }
+
+    if (!hasEnergy())
+    {
+        std::cout << "ScavTrap " << _name << " has no energy left to attack!" << std::endl;
+        return;
+    }
+
+    std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+    _energyPoints--;
+}
+
 void ScavTrap::guardGate() const
 {
     Logger::printLog("ScavTrap Guard Gate function called for " + _name);

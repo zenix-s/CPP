@@ -4,19 +4,6 @@
 
 class Logger
 {
-  private:
-    static const bool _log;
-
-    static const std::string _bold;
-    static const std::string _boldOff;
-    static const std::string _red;
-    static const std::string _green;
-    static const std::string _yellow;
-    static const std::string _blue;
-    static const std::string _cyan;
-    static const std::string _white;
-    static const std::string _reset;
-
   public:
     Logger();
     Logger(const Logger& other);
@@ -35,6 +22,19 @@ class Logger
     static void printLog(const std::string& message);
 
     Logger& operator=(const Logger& other);
+
+  private:
+    static const bool _log;
+
+    static const std::string _bold;
+    static const std::string _boldOff;
+    static const std::string _red;
+    static const std::string _green;
+    static const std::string _yellow;
+    static const std::string _blue;
+    static const std::string _cyan;
+    static const std::string _white;
+    static const std::string _reset;
 };
 
 #endif

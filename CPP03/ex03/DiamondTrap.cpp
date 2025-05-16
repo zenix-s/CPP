@@ -5,7 +5,8 @@
 #include <iostream>
 #include <string>
 
-DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name), ScavTrap(name), FragTrap(name), _name(name)
+DiamondTrap::DiamondTrap(const std::string& name)
+    : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), _name(name)
 {
     Logger::printLog("DiamondTrap Constructor called for " + _name);
     _hitPoints = FragTrap::baseHitPoints;

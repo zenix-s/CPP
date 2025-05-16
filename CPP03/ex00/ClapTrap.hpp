@@ -17,6 +17,12 @@
 
 class ClapTrap
 {
+  private:
+    std::string _name;
+    int         _hitPoints;
+    int         _energyPoints;
+    int         _attackDamage;
+
   public:
     ClapTrap(const std::string& name);
     ClapTrap(const ClapTrap& other);
@@ -34,12 +40,6 @@ class ClapTrap
     ClapTrap& operator=(const ClapTrap& other);
 
     void Print() const;
-
-  private:
-    std::string _name;
-    int         _hitPoints;
-    int         _energyPoints;
-    int         _attackDamage;
 };
 
 #endif

@@ -80,11 +80,11 @@ Character& Character::operator=(Character const& other)
     _name = other._name;
     for (int i = 0; i < 4; i++)
     {
-        delete _materia[i];
-        if (other._materia[i] != NULL)
+        if (other._materia[i])
             _materia[i] = other._materia[i]->clone();
         else
             _materia[i] = NULL;
     }
+
     return *this;
 }

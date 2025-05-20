@@ -1,16 +1,17 @@
 
 #include "Dog.hpp"
+#include "Animal.hpp"
 #include "Logger.hpp"
 #include <iostream>
 #include <string>
 
-Dog::Dog()
+Dog::Dog() : Animal("100% certified good boy")
 {
-    Logger::printLog("Dog default constructor called");
+    Logger::printLog("Dog constructor called");
     _type = "Dog";
 }
 
-Dog::Dog(const Dog& other)
+Dog::Dog(const Dog& other) : Animal(other)
 {
     Logger::printLog("Dog copy constructor called");
     *this = other;
@@ -39,5 +40,6 @@ Dog& Dog::operator=(const Dog& other)
         return *this;
 
     _type = other._type;
+    Animal::_type = other.Animal::_type;
     return *this;
 }

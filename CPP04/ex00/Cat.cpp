@@ -1,17 +1,18 @@
 
 #include "Cat.hpp"
 
+#include "Animal.hpp"
 #include "Logger.hpp"
 #include <iostream>
 #include <string>
 
-Cat::Cat()
+Cat::Cat() : Animal("Feline")
 {
-    Logger::printLog("Cat default constructor called");
+    Logger::printLog("Cat constructor called");
     _type = "Cat";
 }
 
-Cat::Cat(const Cat& other)
+Cat::Cat(const Cat& other) : Animal(other)
 {
     Logger::printLog("Cat copy constructor called");
     *this = other;
@@ -40,5 +41,6 @@ Cat& Cat::operator=(const Cat& other)
         return *this;
 
     _type = other._type;
+    Animal::_type = other.Animal::_type;
     return *this;
 }

@@ -13,6 +13,7 @@ class Character : public ICharacter
   public:
     Character(std::string const& name);
     Character(Character const& other);
+
     ~Character();
 
     std::string const& getName() const;

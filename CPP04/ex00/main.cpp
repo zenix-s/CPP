@@ -8,65 +8,152 @@
 
 int main(void)
 {
-    std::cout << Logger::getBold() << Logger::getGreen() << "Default main" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printLog("Default main");
     {
-        const Animal* meta = new Animal();
-        const Animal* j = new Dog();
-        const Animal* i = new Cat();
+        const Animal* animal = new Animal();
+        const Animal* dog = new Dog();
+        const Animal* cat = new Cat();
 
-        std::cout << j->getType() << " " << std::endl;
-        std::cout << i->getType() << " " << std::endl;
+        Logger::printComment("Printing dog and cat types");
 
-        i->makeSound(); // will output the cat sound!
-        j->makeSound();
-        meta->makeSound();
+        std::cout << dog->getType() << " " << std::endl;
+        std::cout << cat->getType() << " " << std::endl;
 
-        delete meta;
-        delete j;
-        delete i;
+        Logger::printComment("Printing animal types of dog and cat");
+        std::cout << dog->Animal::getType() << " " << std::endl;
+        std::cout << cat->Animal::getType() << " " << std::endl;
+
+        Logger::printComment("Making sounds");
+        cat->makeSound(); // will output the cat sound!
+        dog->makeSound();
+        animal->makeSound();
+
+        Logger::printComment("Deleting objects");
+        delete animal;
+        delete dog;
+        delete cat;
     }
 
     std::cout << std::endl << std::endl;
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Constructors and destructors of each class must display specific messages" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-    std::cout << Logger::getBold() << Logger::getGreen() << "Testing Animal" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printComment("Constructors and destructors of each class must display specific messages");
+
+    Logger::printTitle("Testing Animal");
     {
-        const Animal* meta = new Animal();
-        delete meta;
+        const Animal* animal = new Animal();
+        delete animal;
     }
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Testing Dog" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing Dog");
     {
-        const Animal* meta = new Dog();
-        delete meta;
+        const Animal* dog = new Dog();
+        delete dog;
     }
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Testing Cat" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing Cat");
     {
-        const Animal* meta = new Cat();
-        delete meta;
+        const Animal* cat = new Cat();
+        delete cat;
     }
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Testing WrongAnimal" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing WrongAnimal");
     {
-        const WrongAnimal* meta = new WrongAnimal();
-        delete meta;
+        const WrongAnimal* wrongAnimal = new WrongAnimal();
+        delete wrongAnimal;
     }
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Testing WrongCat" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing WrongCat");
     {
-        const WrongAnimal* meta = new WrongCat();
-        delete meta;
+        const WrongAnimal* wrongCat = new WrongCat();
+        delete wrongCat;
     }
 
     std::cout << std::endl << std::endl;
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "mplementing a simple base class called Animal." << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing copy constructor");
+
+    Logger::printTitle("Testing animal");
+    {
+        const Animal* animal = new Animal();
+        const Animal* copy = new Animal(*animal);
+
+        Logger::printComment("Since type is protected, the only way to access it is through a getter");
+        std::cout << copy->getType() << std::endl;
+
+        delete animal;
+        delete copy;
+    }
+
+    Logger::printTitle("Testing dog");
+    {
+        const Dog* dog = new Dog();
+        const Dog* copy = new Dog(*dog);
+
+        Logger::printComment("Dog type should be dog");
+        std::cout << copy->getType() << std::endl;
+
+        Logger::printComment("Animal type of dog is different");
+        std::cout << copy->Animal::getType() << std::endl;
+
+        Logger::printComment("Dog should bark");
+        copy->makeSound();
+
+        delete dog;
+        delete copy;
+    }
+
+    Logger::printTitle("Testing cat");
+    {
+        const Cat* cat = new Cat();
+        const Cat* copy = new Cat(*cat);
+
+        Logger::printComment("Cat type should be cat");
+        std::cout << copy->getType() << std::endl;
+
+        Logger::printComment("Animal type of cat is different");
+        std::cout << copy->Animal::getType() << std::endl;
+
+        Logger::printComment("Cat should meow");
+        copy->makeSound();
+
+        delete cat;
+        delete copy;
+    }
+
+    Logger::printTitle("Testing wrong animal");
+    {
+        const WrongAnimal* wrongAnimal = new WrongAnimal();
+        const WrongAnimal* copy = new WrongAnimal(*wrongAnimal);
+
+        Logger::printComment("Since type is protected, the only way to access it is through a getter");
+        std::cout << copy->getType() << std::endl;
+
+        delete wrongAnimal;
+        delete copy;
+    }
+
+    Logger::printTitle("Testing wrong cat");
+    {
+        const WrongCat* wrongCat = new WrongCat();
+        const WrongCat* copy = new WrongCat(*wrongCat);
+
+        Logger::printComment("WrongCat type should be WrongCat");
+        std::cout << copy->getType() << std::endl;
+
+        Logger::printComment("WrongCat should not meow");
+        copy->makeSound();
+
+        delete wrongCat;
+        delete copy;
+    }
+
+    std::cout << std::endl << std::endl;
+
+    Logger::printTitle("Testing Animal");
     {
         Animal* animal = new Animal();
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "It has one protected attribute: std::string type" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-
+        Logger::printComment("Since type is protected, the only way to access it is through a getter");
         std::cout << animal->getType() << std::endl;
 
         delete animal;
@@ -74,46 +161,47 @@ int main(void)
 
     std::cout << std::endl << std::endl;
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "mplement a Dog class that inherits from Animal" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing Dog");
     {
         Dog* dog = new Dog();
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "These two derived classes must set their type field depending on their name" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-
+        Logger::printComment("Dog type should be dog");
         std::cout << dog->getType() << std::endl;
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "Every animal must be able to use the member function" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-        std::cout << Logger::getBold() << Logger::getGreen() << "makeSound()" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-        dog->makeSound(); // will output the dog sound!
+        Logger::printComment("Animal type of dog is different");
+        std::cout << dog->Animal::getType() << std::endl;
+
+        Logger::printComment("Dog should bark");
+        dog->makeSound();
 
         delete dog;
     }
 
     std::cout << std::endl << std::endl;
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Implement a Cat class that inherits from Animal" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing Cat");
     {
         Cat* cat = new Cat();
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "These two derived classes must set their type field depending on their name" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-
+        Logger::printComment("Cat type should be cat");
         std::cout << cat->getType() << std::endl;
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "Every animal must be able to use the member function" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-        std::cout << Logger::getBold() << Logger::getGreen() << "makeSound()" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-        cat->makeSound(); // will output the cat sound!
+        Logger::printComment("Animal type of cat is different");
+        std::cout << cat->Animal::getType() << std::endl;
+
+        Logger::printComment("Cat should meow");
+        cat->makeSound();
 
         delete cat;
     }
 
     std::cout << std::endl << std::endl;
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Implement a WrongAnimal class" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing WrongAnimal");
     {
         WrongAnimal* wrongAnimal = new WrongAnimal();
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "It has one protected attribute: std::string type" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-
+        Logger::printComment("Since type is protected, the only way to access it is through a getter");
         std::cout << wrongAnimal->getType() << std::endl;
 
         delete wrongAnimal;
@@ -121,17 +209,15 @@ int main(void)
 
     std::cout << std::endl << std::endl;
 
-    std::cout << Logger::getBold() << Logger::getGreen() << "Implement a WrongCat class that inherits from WrongAnimal" << Logger::getBoldOff() << Logger::getReset() << std::endl;
+    Logger::printTitle("Testing WrongCat");
     {
         WrongCat* wrongCat = new WrongCat();
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "These two derived classes must set their type field depending on their name" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-
+        Logger::printComment("WrongCat type should be WrongCat");
         std::cout << wrongCat->getType() << std::endl;
 
-        std::cout << Logger::getBold() << Logger::getGreen() << "Every animal must be able to use the member function" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-        std::cout << Logger::getBold() << Logger::getGreen() << "makeSound()" << Logger::getBoldOff() << Logger::getReset() << std::endl;
-        wrongCat->makeSound(); // will output the cat sound!
+        Logger::printComment("WrongCat should not meow");
+        wrongCat->makeSound();
 
         delete wrongCat;
     }

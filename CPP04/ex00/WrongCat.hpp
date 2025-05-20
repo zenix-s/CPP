@@ -18,8 +18,6 @@ class WrongCat : public WrongAnimal
 
     std::string getType() const;
 
-    void makeSound() const;
-
     WrongCat& operator=(const WrongCat& before);
 };
 

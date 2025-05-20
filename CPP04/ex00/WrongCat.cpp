@@ -1,16 +1,16 @@
 
 #include "WrongCat.hpp"
 #include "Logger.hpp"
-#include <iostream>
+#include "WrongAnimal.hpp"
 #include <string>
 
-WrongCat::WrongCat()
+WrongCat::WrongCat() : WrongAnimal()
 {
     Logger::printLog("WrongCat default constructor called");
     _type = "WrongCat";
 }
 
-WrongCat::WrongCat(const WrongCat& other)
+WrongCat::WrongCat(const WrongCat& other) : WrongAnimal(other)
 {
     Logger::printLog("WrongCat copy constructor called");
     *this = other;
@@ -24,11 +24,6 @@ WrongCat::~WrongCat()
 std::string WrongCat::getType() const
 {
     return _type;
-}
-
-void WrongCat::makeSound() const
-{
-    std::cout << "Woof, oops, I mean Meow!" << std::endl;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& other)

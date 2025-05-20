@@ -3,10 +3,14 @@
 #include <iostream>
 #include <string>
 
-Animal::Animal()
+Animal::Animal() : _type("Unknown creature")
 {
-    Logger::printLog("Animal default constructor called");
-    _type = "Unknown creature";
+    Logger::printLog("Animal constructor called");
+}
+
+Animal::Animal(const std::string& type) : _type(type)
+{
+    Logger::printLog("Animal constructor called");
 }
 
 Animal::Animal(const Animal& other)
@@ -27,7 +31,7 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-    std::cout << "Unknown sound!" << std::endl;
+    Logger::printLog("Animal makeSound called, no sound should exist");
 }
 
 Animal& Animal::operator=(const Animal& other)

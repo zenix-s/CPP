@@ -10,9 +10,9 @@ int main(void)
 {
     Logger::printLog("Default main");
     {
-        const Animal* animal = new Animal();
-        const Animal* dog = new Dog();
-        const Animal* cat = new Cat();
+        const AAnimal* animal = new AAnimal();
+        const AAnimal* dog = new Dog();
+        const AAnimal* cat = new Cat();
 
         Logger::printComment("Printing dog and cat types");
 
@@ -20,8 +20,8 @@ int main(void)
         std::cout << cat->getType() << " " << std::endl;
 
         Logger::printComment("Printing animal types of dog and cat");
-        std::cout << dog->Animal::getType() << " " << std::endl;
-        std::cout << cat->Animal::getType() << " " << std::endl;
+        std::cout << dog->AAnimal::getType() << " " << std::endl;
+        std::cout << cat->AAnimal::getType() << " " << std::endl;
 
         Logger::printComment("Making sounds");
         cat->makeSound(); // will output the cat sound!
@@ -40,19 +40,19 @@ int main(void)
 
     Logger::printTitle("Testing Animal");
     {
-        const Animal* animal = new Animal();
+        const AAnimal* animal = new AAnimal();
         delete animal;
     }
 
     Logger::printTitle("Testing Dog");
     {
-        const Animal* dog = new Dog();
+        const AAnimal* dog = new Dog();
         delete dog;
     }
 
     Logger::printTitle("Testing Cat");
     {
-        const Animal* cat = new Cat();
+        const AAnimal* cat = new Cat();
         delete cat;
     }
 
@@ -74,8 +74,8 @@ int main(void)
 
     Logger::printTitle("Testing animal");
     {
-        const Animal* animal = new Animal();
-        const Animal* copy = new Animal(*animal);
+        const AAnimal* animal = new AAnimal();
+        const AAnimal* copy = new AAnimal(*animal);
 
         Logger::printComment("Since type is protected, the only way to access it is through a getter");
         std::cout << copy->getType() << std::endl;
@@ -93,7 +93,7 @@ int main(void)
         std::cout << copy->getType() << std::endl;
 
         Logger::printComment("Animal type of dog is different");
-        std::cout << copy->Animal::getType() << std::endl;
+        std::cout << copy->AAnimal::getType() << std::endl;
 
         Logger::printComment("Dog should bark");
         copy->makeSound();
@@ -111,7 +111,7 @@ int main(void)
         std::cout << copy->getType() << std::endl;
 
         Logger::printComment("Animal type of cat is different");
-        std::cout << copy->Animal::getType() << std::endl;
+        std::cout << copy->AAnimal::getType() << std::endl;
 
         Logger::printComment("Cat should meow");
         copy->makeSound();
@@ -151,7 +151,7 @@ int main(void)
 
     Logger::printTitle("Testing Animal");
     {
-        Animal* animal = new Animal();
+        AAnimal* animal = new AAnimal();
 
         Logger::printComment("Since type is protected, the only way to access it is through a getter");
         std::cout << animal->getType() << std::endl;
@@ -169,7 +169,7 @@ int main(void)
         std::cout << dog->getType() << std::endl;
 
         Logger::printComment("Animal type of dog is different");
-        std::cout << dog->Animal::getType() << std::endl;
+        std::cout << dog->AAnimal::getType() << std::endl;
 
         Logger::printComment("Dog should bark");
         dog->makeSound();
@@ -187,7 +187,7 @@ int main(void)
         std::cout << cat->getType() << std::endl;
 
         Logger::printComment("Animal type of cat is different");
-        std::cout << cat->Animal::getType() << std::endl;
+        std::cout << cat->AAnimal::getType() << std::endl;
 
         Logger::printComment("Cat should meow");
         cat->makeSound();

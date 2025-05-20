@@ -5,7 +5,7 @@
 #include "Animal.hpp"
 #include <string>
 
-class Dog : public Animal
+class Dog : public AAnimal
 {
   private:
     std::string _type;

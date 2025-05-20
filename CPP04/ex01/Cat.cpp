@@ -1,18 +1,20 @@
 
 #include "Cat.hpp"
 
+#include "Animal.hpp"
+#include "Brain.hpp"
 #include "Logger.hpp"
 #include <iostream>
 #include <string>
 
-Cat::Cat()
+Cat::Cat() : AAnimal("Feline")
 {
-    Logger::printLog("Cat default constructor called");
+    Logger::printLog("Cat constructor called");
     _type = "Cat";
     _brain = new Brain();
 }
 
-Cat::Cat(const Cat& other)
+Cat::Cat(const Cat& other) : AAnimal(other)
 {
     Logger::printLog("Cat copy constructor called");
     *this = other;
@@ -20,9 +22,8 @@ Cat::Cat(const Cat& other)
 
 Cat::~Cat()
 {
+    delete _brain;
     Logger::printLog("Cat destructor called");
-    
-    delete _brain; 
 }
 
 std::string Cat::getType() const
@@ -35,16 +36,20 @@ void Cat::makeSound() const
     std::cout << "Meow! Meow!" << std::endl;
 }
 
-void Cat::addIdea(const std::string& idea)
+void Cat::addIdea(std::string idea)
 {
-    if (_brain)
-        _brain->addIdea(idea);
+    if (!_brain)
+        return;
+    Logger::printLog("Cat addIdea to brain called");
+    _brain->addIdea(idea);
 }
 
 void Cat::printIdeas() const
 {
-    if (_brain)
-        _brain->printIdeas();
+    if (!_brain)
+        return;
+    Logger::printLog("Cat print ideas");
+    _brain->printIdeas();
 }
 
 Cat& Cat::operator=(const Cat& other)
@@ -54,6 +59,9 @@ Cat& Cat::operator=(const Cat& other)
     if (this == &other)
         return *this;
 
+    delete _brain;
     _type = other._type;
+    _brain = other._brain;
+    AAnimal::_type = other.AAnimal::_type;
     return *this;
 }

@@ -3,6 +3,7 @@
 #include "Dog.hpp"
 #include "Logger.hpp"
 #include <iostream>
+#include <string>
 
 int main(void)
 {
@@ -17,7 +18,7 @@ int main(void)
 
     std::cout << Logger::getBold() << Logger::getGreen() << "First part of the test" << Logger::getBoldOff() << Logger::getReset() << std::endl;
     {
-        const Animal* animals[10];
+        const AAnimal* animals[10];
 
         for (int i = 0; i < 5; i++)
             animals[i] = new Dog();
@@ -47,9 +48,10 @@ int main(void)
     std::cout << Logger::getBold() << Logger::getGreen() << "Add ideas to dog" << Logger::getBoldOff() << Logger::getReset() << std::endl;
     {
         Dog* dog = new Dog();
+        std::string idea = "I want to bark";
 
         for (int i = 0; i < 100; i++)
-            dog->addIdea("I want to bark");
+            dog->addIdea(idea);
 
         dog->printIdeas();
 

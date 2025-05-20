@@ -3,22 +3,24 @@
 
 #include <string>
 
-class Animal
+class AAnimal
 {
-  private:
+  protected:
     std::string _type;
 
-  public:
-    Animal(void);
-    Animal(const Animal& other);
+    AAnimal(const std::string& type);
 
-    virtual ~Animal();
+  public:
+    AAnimal(void);
+    AAnimal(const AAnimal& other);
+
+    virtual ~AAnimal();
 
     virtual std::string getType(void) const;
 
-    virtual void makeSound(void) const = 0; // Pure virtual function
+    virtual void makeSound(void) const = 0;
 
-    Animal& operator=(const Animal& before);
+    AAnimal& operator=(const AAnimal& before);
 };
 
 #endif

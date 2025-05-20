@@ -6,13 +6,13 @@
 #include <iostream>
 #include <string>
 
-Cat::Cat() : Animal("Feline")
+Cat::Cat() : AAnimal("Feline")
 {
     Logger::printLog("Cat constructor called");
     _type = "Cat";
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Cat::Cat(const Cat& other) : AAnimal(other)
 {
     Logger::printLog("Cat copy constructor called");
     *this = other;
@@ -41,6 +41,6 @@ Cat& Cat::operator=(const Cat& other)
         return *this;
 
     _type = other._type;
-    Animal::_type = other.Animal::_type;
+    AAnimal::_type = other.AAnimal::_type;
     return *this;
 }

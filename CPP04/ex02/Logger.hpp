@@ -20,6 +20,8 @@ class Logger
     static std::string getReset();
 
     static void printLog(const std::string& message);
+    static void printComment(const std::string& message);
+    static void printTitle(const std::string& message);
 
     Logger& operator=(const Logger& other);
 

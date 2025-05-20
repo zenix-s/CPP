@@ -21,7 +21,7 @@ AMateria::~AMateria()
     Logger::printLog("AMateria destructor called");
 }
 
-std::string const& AMateria::getType() const
+const std::string& AMateria::getType() const
 {
     return _type;
 }

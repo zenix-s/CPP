@@ -21,11 +21,6 @@ WrongCat::~WrongCat()
     Logger::printLog("WrongCat destructor called");
 }
 
-std::string WrongCat::getType() const
-{
-    return _type;
-}
-
 WrongCat& WrongCat::operator=(const WrongCat& other)
 {
     Logger::printLog("WrongCat assignment operator called");

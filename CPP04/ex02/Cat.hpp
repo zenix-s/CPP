@@ -6,10 +6,9 @@
 #include "Brain.hpp"
 #include <string>
 
-class Cat : public AAnimal
+class Cat : public Animal
 {
   private:
-    std::string _type;
     Brain*      _brain;
 
   public:
@@ -17,8 +16,6 @@ class Cat : public AAnimal
     Cat(const Cat& other);
 
     ~Cat();
-
-    std::string getType() const;
 
     void makeSound() const;
     void addIdea(std::string idea);

@@ -2,33 +2,33 @@
 #include "Logger.hpp"
 #include <string>
 
-AAnimal::AAnimal() : _type("Unknown creature")
+Animal::Animal() : _type("Unknown creature")
 {
     Logger::printLog("Animal constructor called");
 }
 
-AAnimal::AAnimal(const std::string& type) : _type(type)
+Animal::Animal(const std::string& type) : _type(type)
 {
     Logger::printLog("Animal constructor called");
 }
 
-AAnimal::AAnimal(const AAnimal& other)
+Animal::Animal(const Animal& other)
 {
     Logger::printLog("Animal copy constructor called");
     *this = other;
 }
 
-AAnimal::~AAnimal()
+Animal::~Animal()
 {
     Logger::printLog("Animal destructor called");
 }
 
-std::string AAnimal::getType() const
+std::string Animal::getType() const
 {
     return _type;
 }
 
-AAnimal& AAnimal::operator=(const AAnimal& other)
+Animal& Animal::operator=(const Animal& other)
 {
     Logger::printLog("Animal assignment operator called");
 

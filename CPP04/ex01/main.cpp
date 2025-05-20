@@ -18,7 +18,7 @@ int main(void)
 
     std::cout << Logger::getBold() << Logger::getGreen() << "First part of the test" << Logger::getBoldOff() << Logger::getReset() << std::endl;
     {
-        const AAnimal* animals[10];
+        const Animal* animals[10];
 
         for (int i = 0; i < 5; i++)
             animals[i] = new Dog();

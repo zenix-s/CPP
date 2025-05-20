@@ -5,13 +5,12 @@
 #include <iostream>
 #include <string>
 
-Dog::Dog() : AAnimal("100% certified good boy")
+Dog::Dog() : Animal("Dog")
 {
     Logger::printLog("Dog constructor called");
-    _type = "Dog";
 }
 
-Dog::Dog(const Dog& other) : AAnimal(other)
+Dog::Dog(const Dog& other) : Animal(other)
 {
     Logger::printLog("Dog copy constructor called");
     *this = other;
@@ -20,11 +19,6 @@ Dog::Dog(const Dog& other) : AAnimal(other)
 Dog::~Dog()
 {
     Logger::printLog("Dog destructor called");
-}
-
-std::string Dog::getType() const
-{
-    return _type;
 }
 
 void Dog::makeSound() const
@@ -40,6 +34,5 @@ Dog& Dog::operator=(const Dog& other)
         return *this;
 
     _type = other._type;
-    AAnimal::_type = other.AAnimal::_type;
     return *this;
 }

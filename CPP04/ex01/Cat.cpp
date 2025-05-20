@@ -7,14 +7,13 @@
 #include <iostream>
 #include <string>
 
-Cat::Cat() : AAnimal("Feline")
+Cat::Cat() : Animal("Cat")
 {
     Logger::printLog("Cat constructor called");
-    _type = "Cat";
     _brain = new Brain();
 }
 
-Cat::Cat(const Cat& other) : AAnimal(other)
+Cat::Cat(const Cat& other) : Animal(other)
 {
     Logger::printLog("Cat copy constructor called");
     *this = other;
@@ -24,11 +23,6 @@ Cat::~Cat()
 {
     delete _brain;
     Logger::printLog("Cat destructor called");
-}
-
-std::string Cat::getType() const
-{
-    return _type;
 }
 
 void Cat::makeSound() const
@@ -62,6 +56,5 @@ Cat& Cat::operator=(const Cat& other)
     delete _brain;
     _type = other._type;
     _brain = other._brain;
-    AAnimal::_type = other.AAnimal::_type;
     return *this;
 }

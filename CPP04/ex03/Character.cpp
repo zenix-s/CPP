@@ -28,14 +28,14 @@ std::string const& Character::getName() const
     return _name;
 }
 
-void Character::equip(AMateria* m)
+void Character::equip(AMateria* materia)
 {
     Logger::printLog("Character equip function called");
     for (int i = 0; i < 4; i++)
     {
         if (_materia[i] == NULL)
         {
-            _materia[i] = m;
+            _materia[i] = materia;
             return;
         }
     }
@@ -51,7 +51,6 @@ void Character::unequip(int idx)
         Logger::printLog("Invalid index for unequip");
         return;
     }
-    delete _materia[idx];
     _materia[idx] = NULL;
 }
 

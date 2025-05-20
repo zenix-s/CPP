@@ -26,11 +26,10 @@ const std::string& AMateria::getType() const
     return _type;
 }
 
-// TODO: implement this function
 void AMateria::use(ICharacter& target)
 {
     Logger::printLog("AMateria use function called");
-    std::cout << "* uses AMateria on " << target.getName() << " *" << std::endl;
+    std::cout << "* uses " << _type << " on " << target.getName() << " *" << std::endl;
 }
 
 AMateria& AMateria::operator=(AMateria const& other)

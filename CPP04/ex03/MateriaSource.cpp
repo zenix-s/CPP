@@ -24,14 +24,21 @@ MateriaSource::~MateriaSource()
         delete _materia[i];
 }
 
-void MateriaSource::learnMateria(AMateria* m)
+void MateriaSource::learnMateria(AMateria* materia)
 {
     Logger::printLog("MateriaSource learnMateria function called");
+
+    if (!materia)
+    {
+        Logger::printLog("Invalid materia provided");
+        return;
+    }
+
     for (int i = 0; i < 4; i++)
     {
         if (_materia[i] == NULL)
         {
-            _materia[i] = m;
+            _materia[i] = materia;
             return;
         }
     }

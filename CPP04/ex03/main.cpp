@@ -92,5 +92,31 @@ int main(void)
         delete me;
         delete src;
     }
+    
+    std::cout << std::endl << std::endl;
+
+    {
+        Logger::printTitle("Test learnign");
+        
+        IMateriaSource* materiaSrc = new MateriaSource();
+        AMateria* materia = new Ice();
+        
+        materiaSrc->learnMateria(materia);
+        
+        std::cout << "Materia: " << materia->getType() << std::endl;
+        
+        AMateria* copyMateria = materiaSrc->createMateria(materia->getType());
+        
+        std::cout << "Materia copy: " << copyMateria->getType() << std::endl;
+        
+        delete materia;
+        
+        AMateria* copy2 = materiaSrc->createMateria("ice");
+        if (copy2)
+            std::cout << "Materia copy2: " << copy2->getType() << std::endl;
+        else
+            std::cout << "Materia copy2: NULL" << std::endl;
+    }
+    
     return 0;
 }

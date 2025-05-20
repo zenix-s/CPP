@@ -85,6 +85,13 @@ void Logger::printComment(const std::string& message)
     std::cout << _yellow << _bold << message << _boldOff << _reset << std::endl;
 }
 
+void Logger::printTitle(const std::string& message)
+{
+    if (!_log)
+        return;
+    std::cout << _green << _bold << message << _boldOff << _reset << std::endl;
+}
+
 Logger& Logger::operator=(const Logger& other)
 {
     (void)other; // Avoid unused parameter warning

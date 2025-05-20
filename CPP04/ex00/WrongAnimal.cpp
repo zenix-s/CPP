@@ -27,7 +27,7 @@ std::string WrongAnimal::getType(void) const
 
 void WrongAnimal::makeSound(void) const
 {
-    std::cout << "Unknown sound!" << std::endl;
+    std::cout << "Wrong Unknown sound!" << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)

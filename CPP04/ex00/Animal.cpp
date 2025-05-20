@@ -1,5 +1,6 @@
 #include "Animal.hpp"
 #include "Logger.hpp"
+#include <iostream>
 #include <string>
 
 Animal::Animal() : _type("Unknown creature")
@@ -30,7 +31,8 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-    Logger::printLog("Animal makeSound called, no sound should exist");
+    Logger::printLog("Animal makeSound called");
+    std::cout << "Unknown sound!" << std::endl;
 }
 
 Animal& Animal::operator=(const Animal& other)

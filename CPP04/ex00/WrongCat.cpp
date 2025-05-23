@@ -23,5 +23,6 @@ WrongCat& WrongCat::operator=(const WrongCat& other)
 {
     Logger::printLog("WrongCat assignment operator called");
 
+    (void)other; // Prevent unused variable warning)
     return *this;
 }

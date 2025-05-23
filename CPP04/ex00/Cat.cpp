@@ -24,6 +24,7 @@ Cat::~Cat()
 void Cat::copy(const Cat& other)
 {
     Logger::printLog("Cat copy function called");
+    (void)other; // Prevent unused variable warning
 }
 
 void Cat::makeSound() const

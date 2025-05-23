@@ -60,7 +60,7 @@ int main(void)
 
     std::cout << std::endl << std::endl;
 
-    Logger::printTitle("Testing deep copy");
+    Logger::printTitle("Testing deep copy of Cat");
     {
         Cat* cat = new Cat();
         cat->addIdea("I want to sleep");
@@ -86,6 +86,64 @@ int main(void)
         cat->printIdeas();
 
         delete cat;
+        delete copy;
+    }
+    
+    Logger::printTitle("Testing deep copy of Dog");
+    {
+        Dog* dog = new Dog();
+        dog->addIdea("I want to bark");
+        dog->addIdea("I want to eat");
+        dog->addIdea("I want to play");
+
+        Logger::printComment("Dog ideas");
+        dog->printIdeas();
+
+        Logger::printComment("Copying dog");
+        Dog* copy = new Dog(*dog);
+
+        Logger::printComment("Add idea to copy");
+        copy->addIdea("COPY: I want to play with a ball");
+
+        Logger::printComment("Copy ideas");
+        copy->printIdeas();
+
+        Logger::printComment("Add idea to original");
+        dog->addIdea("ORIGINAL: I want to play with a cat");
+
+        Logger::printComment("Original ideas");
+        dog->printIdeas();
+
+        delete dog;
+        delete copy;
+    }
+    
+    Logger::printTitle("Testing deep copy of Brain");
+    {
+        Brain* brain = new Brain();
+        brain->addIdea("I want to sleep");
+        brain->addIdea("I want to eat");
+        brain->addIdea("I want to play");
+
+        Logger::printComment("Brain ideas");
+        brain->printIdeas();
+
+        Logger::printComment("Copying brain");
+        Brain* copy = new Brain(*brain);
+
+        Logger::printComment("Add idea to copy");
+        copy->addIdea("COPY: I want to play with a mouse");
+
+        Logger::printComment("Copy ideas");
+        copy->printIdeas();
+
+        Logger::printComment("Add idea to original");
+        brain->addIdea("ORIGINAL: I want to play with a dog");
+
+        Logger::printComment("Original ideas");
+        brain->printIdeas();
+
+        delete brain;
         delete copy;
     }
 }

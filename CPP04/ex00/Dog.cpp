@@ -24,6 +24,7 @@ Dog::~Dog()
 void Dog::copy(const Dog& other)
 {
     Logger::printLog("Dog copy function called");
+    (void)other; // Prevent unused variable warning
 }
 
 void Dog::makeSound() const

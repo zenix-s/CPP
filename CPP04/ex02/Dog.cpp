@@ -15,13 +15,20 @@ Dog::Dog() : Animal("Dog")
 Dog::Dog(const Dog& other) : Animal(other)
 {
     Logger::printLog("Dog copy constructor called");
-    *this = other;
+    copy(other);
 }
 
 Dog::~Dog()
 {
     delete _brain;
     Logger::printLog("Dog destructor called");
+}
+
+void Dog::copy(const Dog& other)
+{
+    Logger::printLog("Dog copy function called");
+    _type = other._type;
+    _brain = other._brain ? new Brain(*other._brain) : NULL;
 }
 
 void Dog::makeSound() const
@@ -49,12 +56,11 @@ Dog& Dog::operator=(const Dog& other)
 {
     Logger::printLog("Dog assignment operator called");
 
-    if (this == &other)
-        return *this;
+    if (this != &other)
+    {
+        delete _brain;
+        copy(other);
+    }
 
-    delete _brain;
-    _brain = other._brain;
-    _type = other._type;
-    Animal::_type = other.Animal::_type;
     return *this;
 }

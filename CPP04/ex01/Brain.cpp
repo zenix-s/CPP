@@ -15,12 +15,19 @@ Brain::Brain()
 Brain::Brain(const Brain& other)
 {
     Logger::printLog("Brain copy constructor called");
-    *this = other;
+    copy(other);
 }
 
 Brain::~Brain()
 {
     Logger::printLog("Brain destructor called");
+}
+
+void Brain::copy(const Brain& other)
+{
+    Logger::printLog("Brain copy function called");
+    for (int i = 0; i < 100; i++)
+        ideas[i] = other.ideas[i];
 }
 
 void Brain::printIdeas() const
@@ -49,11 +56,8 @@ Brain& Brain::operator=(const Brain& other)
 {
     Logger::printLog("Brain assignment operator called");
 
-    if (this == &other)
-        return *this;
-
-    for (int i = 0; i < 100; i++)
-        ideas[i] = other.ideas[i];
+    if (this != &other)
+        copy(other);
 
     return *this;
 }

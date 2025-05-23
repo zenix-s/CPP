@@ -13,12 +13,17 @@ Cat::Cat() : Animal("Cat")
 Cat::Cat(const Cat& other) : Animal(other)
 {
     Logger::printLog("Cat copy constructor called");
-    *this = other;
+    copy(other);
 }
 
 Cat::~Cat()
 {
     Logger::printLog("Cat destructor called");
+}
+
+void Cat::copy(const Cat& other)
+{
+    Logger::printLog("Cat copy function called");
 }
 
 void Cat::makeSound() const
@@ -30,9 +35,8 @@ Cat& Cat::operator=(const Cat& other)
 {
     Logger::printLog("Cat assignment operator called");
 
-    if (this == &other)
-        return *this;
+    if (this != &other)
+        copy(other);
 
-    _type = other._type;
     return *this;
 }

@@ -9,10 +9,20 @@ WrongAnimal::WrongAnimal(void)
     _type = "Unknown creature";
 }
 
+WrongAnimal::WrongAnimal(const std::string& type) : _type(type)
+{
+    Logger::printLog("WrongAnimal constructor called");
+}
+
 WrongAnimal::WrongAnimal(const WrongAnimal& other)
 {
     Logger::printLog("WrongAnimal copy constructor called");
-    *this = other;
+    copy(other);
+}
+
+void WrongAnimal::copy(const WrongAnimal& other)
+{
+    _type = other._type;
 }
 
 WrongAnimal::~WrongAnimal()
@@ -34,9 +44,8 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
 {
     Logger::printLog("WrongAnimal assignment operator called");
 
-    if (this == &other)
-        return *this;
+    if (this != &other)
+        copy(other);
 
-    _type = other._type;
     return *this;
 }

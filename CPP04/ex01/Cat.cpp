@@ -4,6 +4,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 #include "Logger.hpp"
+#include <cstddef>
 #include <iostream>
 #include <string>
 
@@ -16,13 +17,20 @@ Cat::Cat() : Animal("Cat")
 Cat::Cat(const Cat& other) : Animal(other)
 {
     Logger::printLog("Cat copy constructor called");
-    *this = other;
+    copy(other);
 }
 
 Cat::~Cat()
 {
     delete _brain;
     Logger::printLog("Cat destructor called");
+}
+
+void Cat::copy(const Cat& other)
+{
+    Logger::printLog("Cat copy function called");
+    _type = other._type;
+    _brain = other._brain ? new Brain(*other._brain) : NULL;
 }
 
 void Cat::makeSound() const
@@ -50,11 +58,11 @@ Cat& Cat::operator=(const Cat& other)
 {
     Logger::printLog("Cat assignment operator called");
 
-    if (this == &other)
-        return *this;
+    if (this != &other)
+    {
+        delete _brain;
+        copy(other);
+    }
 
-    delete _brain;
-    _type = other._type;
-    _brain = other._brain;
     return *this;
 }

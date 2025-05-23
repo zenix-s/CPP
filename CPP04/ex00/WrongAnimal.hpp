@@ -8,6 +8,10 @@ class WrongAnimal
 {
   protected:
     std::string _type;
+    
+    WrongAnimal(const std::string& type);
+    
+    void copy(const WrongAnimal& other);
 
   public:
     WrongAnimal(void);

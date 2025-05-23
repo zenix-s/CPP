@@ -10,6 +10,8 @@ class Animal
 
     Animal(const std::string& type);
 
+    void copy(const Animal& other);
+
   public:
     Animal(void);
     Animal(const Animal& other);

@@ -8,6 +8,7 @@ class Animal
   protected:
     std::string _type;
     Animal(const std::string& type);
+    void copy(const Animal& other);
 
   public:
     Animal(void);
@@ -19,7 +20,7 @@ class Animal
 
     virtual void makeSound(void) const;
 
-    Animal& operator=(const Animal& before);
+    Animal& operator=(const Animal& other);
 };
 
 #endif

@@ -6,6 +6,9 @@
 
 class Cat : public Animal
 {
+  private:
+    void copy(const Cat& other);
+
   public:
     Cat();
     Cat(const Cat& other);

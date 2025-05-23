@@ -47,7 +47,7 @@ int main(void)
 
     std::cout << Logger::getBold() << Logger::getGreen() << "Add ideas to dog" << Logger::getBoldOff() << Logger::getReset() << std::endl;
     {
-        Dog* dog = new Dog();
+        Dog*        dog = new Dog();
         std::string idea = "I want to bark";
 
         for (int i = 0; i < 100; i++)
@@ -56,5 +56,36 @@ int main(void)
         dog->printIdeas();
 
         delete dog;
+    }
+
+    std::cout << std::endl << std::endl;
+
+    Logger::printTitle("Testing deep copy");
+    {
+        Cat* cat = new Cat();
+        cat->addIdea("I want to sleep");
+        cat->addIdea("I want to eat");
+        cat->addIdea("I want to play");
+
+        Logger::printComment("Cat ideas");
+        cat->printIdeas();
+
+        Logger::printComment("Copying cat");
+        Cat* copy = new Cat(*cat);
+
+        Logger::printComment("Add idea to copy");
+        copy->addIdea("COPY: I want to play with a mouse");
+
+        Logger::printComment("Copy ideas");
+        copy->printIdeas();
+
+        Logger::printComment("Add idea to original");
+        cat->addIdea("ORIGINAL: I want to play with a dog");
+
+        Logger::printComment("Original ideas");
+        cat->printIdeas();
+
+        delete cat;
+        delete copy;
     }
 }

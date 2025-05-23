@@ -8,6 +8,7 @@ class Brain
 {
   private:
     std::string ideas[100];
+    void        copy(const Brain& other);
 
   public:
     Brain();

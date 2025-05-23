@@ -9,7 +9,8 @@
 class Dog : public Animal
 {
   private:
-    Brain*      _brain;
+    Brain* _brain;
+    void   copy(const Dog& other);
 
   public:
     Dog();

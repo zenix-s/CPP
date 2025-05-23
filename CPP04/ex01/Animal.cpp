@@ -16,12 +16,18 @@ Animal::Animal(const std::string& type) : _type(type)
 Animal::Animal(const Animal& other)
 {
     Logger::printLog("Animal copy constructor called");
-    *this = other;
+    copy(other);
 }
 
 Animal::~Animal()
 {
     Logger::printLog("Animal destructor called");
+}
+
+void Animal::copy(const Animal& other)
+{
+    Logger::printLog("Animal copy function called");
+    _type = other._type;
 }
 
 std::string Animal::getType() const
@@ -39,9 +45,8 @@ Animal& Animal::operator=(const Animal& other)
 {
     Logger::printLog("Animal assignment operator called");
 
-    if (this == &other)
-        return *this;
+    if (this != &other)
+        copy(other);
 
-    _type = other._type;
     return *this;
 }

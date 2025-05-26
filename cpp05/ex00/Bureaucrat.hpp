@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <string>
+#include <iostream>
 
 class Bureaucrat
 {
@@ -21,7 +22,10 @@ class Bureaucrat
     Bureaucrat& operator=(const Bureaucrat& other);
 
     const std::string& getName() const;
-    int          getGrade() const;
+    int                getGrade() const;
+
+    void incrementGrade();
+    void decrementGrade();
 
     class GradeTooHighException : public std::exception
     {
@@ -35,5 +39,7 @@ class Bureaucrat
         virtual const char* what() const throw();
     };
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif

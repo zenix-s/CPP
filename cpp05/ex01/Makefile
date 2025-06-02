@@ -1,6 +1,10 @@
 NAME = binex01
 
-SRCS = main.cpp
+SRCS = main.cpp \
+		Logger.cpp \
+		Bureaucrat.cpp \
+		Form.cpp \
+
 
 OBJ = ${SRCS:.cpp=.o}
 

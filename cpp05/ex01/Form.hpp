@@ -1,11 +1,12 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include "Bureaucrat.hpp"
 #include <exception>
 #include <iostream>
 #include <ostream>
 #include <string>
+
+class Bureaucrat;
 
 class Form
 {
@@ -25,19 +26,19 @@ class Form
     Form& operator=(const Form& other);
 
     const std::string getName() const;
-    const int         getSignGrade() const;
-    const int         getExecutionGrade() const;
-    const bool        getIsSigned() const;
+    int               getSignGrade() const;
+    int               getExecutionGrade() const;
+    bool              getIsSigned() const;
 
-    void beSigned(Bureaucrat& bureaucrat);
+    void beSigned(const Bureaucrat& bureaucrat);
 
-    class GradeToHighException : public std::exception
+    class GradeTooHighException : public std::exception
     {
       public:
         virtual const char* what() const throw();
     };
 
-    class GradeToLowException : public std::exception
+    class GradeTooLowException : public std::exception
     {
       public:
         virtual const char* what() const throw();

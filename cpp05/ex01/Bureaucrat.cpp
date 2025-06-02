@@ -1,5 +1,8 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include "Logger.hpp"
+#include <iostream>
+#include <string>
 
 void Bureaucrat::copy(const Bureaucrat& other)
 {
@@ -81,6 +84,30 @@ void Bureaucrat::decrementGrade()
         throw Bureaucrat::GradeTooLowException();
 
     _grade = newGrade;
+}
+
+void Bureaucrat::signForm(Form& form) const
+{
+    if (form.getIsSigned())
+    {
+        Logger::printError(_name + " couldn't sign " + form.getName() + " because it is already signed");
+        return;
+    }
+
+    try
+    {
+        form.beSigned(*this);
+
+        std::cout << _name << " signed " << form.getName() << std::endl;
+    }
+    catch (const Form::GradeTooHighException& ex)
+    {
+        Logger::printError(_name + " couldn't sign " + form.getName() + " because " + ex.what());
+    }
+    catch (const Form::GradeTooLowException& ex)
+    {
+        Logger::printError(_name + " couldn't sign " + form.getName() + " because " + ex.what());
+    }
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()

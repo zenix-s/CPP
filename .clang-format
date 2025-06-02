@@ -1,5 +1,6 @@
 Language: Cpp
 
+BasedOnStyle: LLVM
 AlignConsecutiveDeclarations: true
 AlignEscapedNewlinesLeft: true
 AllowAllParametersOfDeclarationOnNextLine: false
@@ -16,9 +17,6 @@ IndentWidth: 4
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
 PointerAlignment: Left
-PenaltyBreakBeforeFirstCallParameter: 1
-PenaltyBreakString: 1
-PenaltyExcessCharacter: 0
 SpaceAfterCStyleCast: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements

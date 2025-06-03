@@ -1,9 +1,9 @@
 #include "RobotomyRequestForm.hpp"
-#include "Logger.hpp"
 #include "Bureaucrat.hpp"
-#include <iostream>
+#include "Logger.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 const int RobotomyRequestForm::SIGN_GRADE;
 const int RobotomyRequestForm::EXEC_GRADE;
@@ -14,8 +14,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
     Logger::printLog("RobotomyRequestForm constructor called");
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-    : AForm(other), _target(other._target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other), _target(other._target)
 {
     Logger::printLog("RobotomyRequestForm copy constructor called");
 }

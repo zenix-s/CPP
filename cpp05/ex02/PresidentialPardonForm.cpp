@@ -4,8 +4,11 @@
 
 #include <iostream>
 
+const int PresidentialPardonForm::SIGN_GRADE;
+const int PresidentialPardonForm::EXEC_GRADE;
+
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm("PresidentialPardonForm", 25, 5), _target(target)
+    : AForm("PresidentialPardonForm", SIGN_GRADE, EXEC_GRADE), _target(target)
 {
     Logger::printLog("PresidentialPardonForm constructor called");
 }

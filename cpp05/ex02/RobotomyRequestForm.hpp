@@ -10,6 +10,9 @@ class RobotomyRequestForm : public AForm
     std::string _target;
 
   public:
+    static const int SIGN_GRADE = 72;
+    static const int EXEC_GRADE = 45;
+
     RobotomyRequestForm(const std::string& target);
     RobotomyRequestForm(const RobotomyRequestForm& other);
     RobotomyRequestForm& operator=(const RobotomyRequestForm& other);

@@ -1,4 +1,3 @@
-#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "Logger.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -6,85 +5,118 @@
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
 
-void testShrubberyCreationForm()
-{
-    Logger::printTitle("Test: ShrubberyCreationForm Execution");
-    Bureaucrat            bob("Bob", 130);
-    ShrubberyCreationForm shrub("garden");
-
-    std::cout << shrub << std::endl;
-    bob.signForm(shrub);
-    std::cout << shrub << std::endl;
-    bob.executeForm(shrub);
-
-    Logger::printComment("Test: Execution without signing");
-    ShrubberyCreationForm shrub2("backyard");
-    bob.executeForm(shrub2);
-
-    Logger::printComment("Test: Execution with insufficient grade");
-    Bureaucrat            low("Low", 150);
-    ShrubberyCreationForm shrub3("frontyard");
-    low.signForm(shrub3);
-    low.executeForm(shrub3);
-}
-
-void testRobotomyRequestForm()
-{
-    Logger::printTitle("Test: RobotomyRequestForm Execution");
-    Bureaucrat          alice("Alice", 40);
-    RobotomyRequestForm robo("TargetX");
-
-    std::cout << robo << std::endl;
-    alice.signForm(robo);
-    std::cout << robo << std::endl;
-    for (int i = 0; i < 4; ++i)
-        alice.executeForm(robo);
-
-    Logger::printComment("Test: Execution without signing");
-    RobotomyRequestForm robo2("TargetY");
-    alice.executeForm(robo2);
-
-    Logger::printComment("Test: Execution with insufficient grade");
-    Bureaucrat          low("Low", 100);
-    RobotomyRequestForm robo3("TargetZ");
-    low.signForm(robo3);
-    low.executeForm(robo3);
-}
-
-void testPresidentialPardonForm()
-{
-    Logger::printTitle("Test: PresidentialPardonForm Execution");
-    Bureaucrat             pres("President", 1);
-    PresidentialPardonForm pardon("Ford Prefect");
-
-    std::cout << pardon << std::endl;
-    pres.signForm(pardon);
-    std::cout << pardon << std::endl;
-    pres.executeForm(pardon);
-
-    Logger::printComment("Test: Execution without signing");
-    PresidentialPardonForm pardon2("Arthur Dent");
-    pres.executeForm(pardon2);
-
-    Logger::printComment("Test: Execution with insufficient grade");
-    Bureaucrat             low("Low", 30);
-    PresidentialPardonForm pardon3("Trillian");
-    low.signForm(pardon3);
-    low.executeForm(pardon3);
-}
-
 int main()
 {
     Logger::printLineJunp();
-    testShrubberyCreationForm();
+    Logger::printTitle("ShrubberyCreationForm test");
+    {
+        ShrubberyCreationForm form("garden");
+        std::cout << form << std::endl;
+
+        Logger::printComment("Sign the form");
+        Bureaucrat bureaucrat("Santiago", 1);
+        std::cout << bureaucrat << std::endl;
+
+        form.beSigned(bureaucrat);
+
+        Logger::printComment("Form new status");
+        std::cout << form << std::endl;
+
+        Logger::printComment("Execute the form");
+        bureaucrat.executeForm(form);
+    }
 
     Logger::printLineJunp();
-    testRobotomyRequestForm();
+    Logger::printTitle("RobotomyRequestForm test");
+    {
+        RobotomyRequestForm form("Bender");
+        Bureaucrat          bureaucrat("Fry", 45);
+
+        form.beSigned(bureaucrat);
+        Logger::printComment("Executing robotomy (should be random):");
+        for (int i = 0; i < 4; ++i)
+            bureaucrat.executeForm(form);
+    }
 
     Logger::printLineJunp();
-    testPresidentialPardonForm();
+    Logger::printTitle("PresidentialPardonForm test");
+    {
+        PresidentialPardonForm form("Ford Prefect");
+        Bureaucrat             president("Zaphod", 1);
+
+        form.beSigned(president);
+        president.executeForm(form);
+    }
 
     Logger::printLineJunp();
-    Logger::printTitle("All new form tests completed.");
-    return 0;
+    Logger::printTitle("Test copy constructor and assignment operator");
+    {
+        ShrubberyCreationForm form("yard");
+        ShrubberyCreationForm constructorCopy(form);
+        ShrubberyCreationForm assignedCopy("dummy");
+        assignedCopy = form;
+
+        Logger::printComment("Original form:");
+        std::cout << form << std::endl;
+        Logger::printComment("Copy constructor:");
+        std::cout << constructorCopy << std::endl;
+        Logger::printComment("Assignment operator:");
+        std::cout << assignedCopy << std::endl;
+    }
+
+    Logger::printLineJunp();
+    Logger::printTitle("Edge Case: Not signed exception");
+    {
+        RobotomyRequestForm form("Leela");
+        Bureaucrat          b("Hermes", 1);
+        try
+        {
+            b.executeForm(form);
+        }
+        catch (const std::exception& ex)
+        {
+            Logger::printError("Expected exception:");
+            Logger::printError(ex.what());
+        }
+    }
+
+    Logger::printLineJunp();
+    Logger::printTitle("Edge Case: Grade too low to sign or execute");
+    {
+        ShrubberyCreationForm form("park");
+        Bureaucrat            low("Low", 150);
+        try
+        {
+            low.signForm(form);
+        }
+        catch (const std::exception& ex)
+        {
+            Logger::printError("Expected exception (sign):");
+            Logger::printError(ex.what());
+        }
+        Bureaucrat execLow("ExecLow", 150);
+        Bureaucrat signer("Signer", 1);
+        form.beSigned(signer);
+        try
+        {
+            execLow.executeForm(form);
+        }
+        catch (const std::exception& ex)
+        {
+            Logger::printError("Expected exception (execute):");
+            Logger::printError(ex.what());
+        }
+    }
+
+    Logger::printLineJunp();
+    Logger::printTitle("Self-assignment for Bureaucrat and Form");
+    {
+        Bureaucrat b("Selfie", 42);
+        b = b;
+        std::cout << "Self-assigned bureaucrat: " << b << std::endl;
+
+        RobotomyRequestForm f("Target");
+        f = f;
+        std::cout << "Self-assigned form: " << f << std::endl;
+    }
 }

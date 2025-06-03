@@ -36,11 +36,6 @@ PresidentialPardonForm::~PresidentialPardonForm()
     Logger::printLog("PresidentialPardonForm destructor called");
 }
 
-const std::string& PresidentialPardonForm::getTarget() const
-{
-    return _target;
-}
-
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 {
     if (!getIsSigned())

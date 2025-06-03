@@ -7,9 +7,10 @@
 class PresidentialPardonForm : public AForm
 {
   private:
-    static const int SIGN_GRADE = 25;
-    static const int EXEC_GRADE = 5;
-    std::string      _target;
+    static const std::string NAME;
+    static const int         SIGN_GRADE;
+    static const int         EXEC_GRADE;
+    std::string              _target;
 
   public:
     PresidentialPardonForm(const std::string& target);

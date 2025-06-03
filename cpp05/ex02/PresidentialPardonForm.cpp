@@ -4,11 +4,12 @@
 
 #include <iostream>
 
-const int PresidentialPardonForm::SIGN_GRADE;
-const int PresidentialPardonForm::EXEC_GRADE;
+const int         PresidentialPardonForm::SIGN_GRADE = 25;
+const int         PresidentialPardonForm::EXEC_GRADE = 5;
+const std::string PresidentialPardonForm::NAME = "PresidentialPardonForm";
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm("PresidentialPardonForm", SIGN_GRADE, EXEC_GRADE), _target(target)
+    : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
     Logger::printLog("PresidentialPardonForm constructor called");
 }

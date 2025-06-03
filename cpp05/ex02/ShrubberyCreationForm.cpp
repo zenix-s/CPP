@@ -4,11 +4,12 @@
 #include <fstream>
 #include <iostream>
 
-const int ShrubberyCreationForm::SIGN_GRADE;
-const int ShrubberyCreationForm::EXEC_GRADE;
+const std::string ShrubberyCreationForm::NAME = "ShrubberyCreationForm";
+const int         ShrubberyCreationForm::SIGN_GRADE = 145;
+const int         ShrubberyCreationForm::EXEC_GRADE = 137;
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-    : AForm("ShrubberyCreationForm", SIGN_GRADE, EXEC_GRADE), _target(target)
+    : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
     Logger::printLog("ShrubberyCreationForm constructor called");
 }

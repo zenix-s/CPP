@@ -5,11 +5,12 @@
 #include <ctime>
 #include <iostream>
 
-const int RobotomyRequestForm::SIGN_GRADE;
-const int RobotomyRequestForm::EXEC_GRADE;
+const std::string RobotomyRequestForm::NAME = "RobotomyRequestForm";
+const int         RobotomyRequestForm::SIGN_GRADE = 72;
+const int         RobotomyRequestForm::EXEC_GRADE = 45;
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-    : AForm("RobotomyRequestForm", SIGN_GRADE, EXEC_GRADE), _target(target)
+    : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
     Logger::printLog("RobotomyRequestForm constructor called");
 }

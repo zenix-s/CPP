@@ -45,7 +45,6 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const
 
     std::cout << "* Drilling noises *" << std::endl;
 
-    // Seed randomness only once per program run
     static bool seeded = false;
     if (!seeded)
     {

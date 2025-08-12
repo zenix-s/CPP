@@ -1,5 +1,4 @@
-#ifndef MUTANTSTACK_HPP
-#define MUTANTSTACK_HPP
+#pragma once
 
 #include <stack>
 
@@ -32,5 +31,3 @@ public:
 };
 
 #include "MutantStack.tpp"
-
-#endif

@@ -7,6 +7,7 @@ SRCS = main.cpp \
 		RobotomyRequestForm.cpp \
 		PresidentialPardonForm.cpp \
 		Intern.cpp \
+		FormMaker.cpp \
 
 
 OBJ = ${SRCS:.cpp=.o}

@@ -1,5 +1,4 @@
-#ifndef SPAN_HPP
-#define SPAN_HPP
+#pragma once
 
 #include <vector>
 #include <stdexcept>
@@ -42,5 +41,3 @@ public:
         virtual const char* what() const throw();
     };
 };
-
-#endif

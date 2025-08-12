@@ -3,12 +3,12 @@
 #include <fstream>
 #include <iostream>
 
-const std::string ShrubberyCreationForm::NAME = "ShrubberyCreationForm";
+const std::string ShrubberyCreationForm::FORM_NAME = "ShrubberyCreationForm";
 const int         ShrubberyCreationForm::SIGN_GRADE = 145;
 const int         ShrubberyCreationForm::EXEC_GRADE = 137;
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-    : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
+    : AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
 }
 
@@ -32,7 +32,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 const std::string ShrubberyCreationForm::getStaticName() const
 {
-    return NAME;
+    return FORM_NAME;
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const

@@ -1,5 +1,4 @@
-#ifndef PRESIDENTIALPARDONFORM_HPP
-#define PRESIDENTIALPARDONFORM_HPP
+#pragma once
 
 #include "AForm.hpp"
 #include <string>
@@ -7,7 +6,7 @@
 class PresidentialPardonForm : public AForm
 {
   private:
-    static const std::string NAME;
+    static const std::string FORM_NAME;
     static const int         SIGN_GRADE;
     static const int         EXEC_GRADE;
     std::string              _target;
@@ -20,5 +19,3 @@ class PresidentialPardonForm : public AForm
 
     void execute(const Bureaucrat& executor) const;
 };
-
-#endif

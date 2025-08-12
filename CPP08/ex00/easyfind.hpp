@@ -1,5 +1,4 @@
-#ifndef EASYFIND_HPP
-#define EASYFIND_HPP
+#pragma once
 
 #include <algorithm>
 #include <stdexcept>
@@ -21,5 +20,3 @@ typename T::const_iterator easyfind(const T& container, int value)
         throw std::runtime_error("Value not found in container");
     return it;
 }
-
-#endif

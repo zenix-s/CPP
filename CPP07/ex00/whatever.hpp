@@ -1,5 +1,4 @@
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#pragma once
 
 template <typename T>
 void swap(T& a, T& b)
@@ -21,4 +20,4 @@ const T& max(const T& a, const T& b)
     return (a > b) ? a : b;
 }
 
-#endif
+

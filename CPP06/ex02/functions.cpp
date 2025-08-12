@@ -1,5 +1,7 @@
 #include "functions.hpp"
-#include "ABC.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>

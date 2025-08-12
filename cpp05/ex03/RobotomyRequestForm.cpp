@@ -4,12 +4,12 @@
 #include <ctime>
 #include <iostream>
 
-const std::string RobotomyRequestForm::NAME = "RobotomyRequestForm";
+const std::string RobotomyRequestForm::FORM_NAME = "RobotomyRequestForm";
 const int         RobotomyRequestForm::SIGN_GRADE = 72;
 const int         RobotomyRequestForm::EXEC_GRADE = 45;
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-    : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
+    : AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
 }
 
@@ -33,7 +33,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 const std::string RobotomyRequestForm::getStaticName() const
 {
-    return NAME;
+    return FORM_NAME;
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const& executor) const

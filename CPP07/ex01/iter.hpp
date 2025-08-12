@@ -1,5 +1,4 @@
-#ifndef ITER_HPP
-#define ITER_HPP
+#pragma once
 
 #include <cstddef>
 
@@ -11,5 +10,3 @@ void iter(T* array, size_t length, F func)
         func(array[i]);
     }
 }
-
-#endif

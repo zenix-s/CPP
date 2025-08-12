@@ -5,10 +5,10 @@
 
 const int         PresidentialPardonForm::SIGN_GRADE = 25;
 const int         PresidentialPardonForm::EXEC_GRADE = 5;
-const std::string PresidentialPardonForm::NAME = "PresidentialPardonForm";
+const std::string PresidentialPardonForm::FORM_NAME = "PresidentialPardonForm";
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
+    : AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
 }
 
@@ -33,7 +33,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 const std::string PresidentialPardonForm::getStaticName() const
 {
-    return NAME;
+    return FORM_NAME;
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const

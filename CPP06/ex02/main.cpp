@@ -1,4 +1,6 @@
-#include "ABC.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 #include "functions.hpp"
 #include <iostream>
 

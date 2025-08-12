@@ -1,0 +1,21 @@
+# Executables
+btc
+RPN
+PmergeMe
+
+# Object files
+*.o
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test output files
+*_shrubbery
+
+# Input/output test files
+test.txt
+test_input.txt
+output.txt

@@ -1,5 +1,4 @@
-#ifndef DATA_HPP
-#define DATA_HPP
+#pragma once
 
 #include <string>
 
@@ -9,5 +8,3 @@ struct Data
     int value;
     bool isActive;
 };
-
-#endif

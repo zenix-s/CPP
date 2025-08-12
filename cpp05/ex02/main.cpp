@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include "Logger.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -7,39 +6,39 @@
 
 int main()
 {
-    Logger::printLineJunp();
-    Logger::printTitle("ShrubberyCreationForm test");
+    std::cout << std::endl;
+    std::cout << "=== ShrubberyCreationForm test ===" << std::endl;
     {
         ShrubberyCreationForm form("garden");
         std::cout << form << std::endl;
 
-        Logger::printComment("Sign the form");
+        std::cout << "Sign the form" << std::endl;
         Bureaucrat bureaucrat("Santiago", 1);
         std::cout << bureaucrat << std::endl;
 
         form.beSigned(bureaucrat);
 
-        Logger::printComment("Form new status");
+        std::cout << "Form new status" << std::endl;
         std::cout << form << std::endl;
 
-        Logger::printComment("Execute the form");
+        std::cout << "Execute the form" << std::endl;
         bureaucrat.executeForm(form);
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("RobotomyRequestForm test");
+    std::cout << std::endl;
+    std::cout << "=== RobotomyRequestForm test ===" << std::endl;
     {
         RobotomyRequestForm form("Bender");
         Bureaucrat          bureaucrat("Fry", 45);
 
         form.beSigned(bureaucrat);
-        Logger::printComment("Executing robotomy (should be random):");
+        std::cout << "Executing robotomy (should be random):" << std::endl;
         for (int i = 0; i < 4; ++i)
             bureaucrat.executeForm(form);
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("PresidentialPardonForm test");
+    std::cout << std::endl;
+    std::cout << "=== PresidentialPardonForm test ===" << std::endl;
     {
         PresidentialPardonForm form("Ford Prefect");
         Bureaucrat             president("Zaphod", 1);
@@ -48,24 +47,24 @@ int main()
         president.executeForm(form);
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Test copy constructor and assignment operator");
+    std::cout << std::endl;
+    std::cout << "=== Test copy constructor and assignment operator ===" << std::endl;
     {
         ShrubberyCreationForm form("yard");
         ShrubberyCreationForm constructorCopy(form);
         ShrubberyCreationForm assignedCopy("dummy");
         assignedCopy = form;
 
-        Logger::printComment("Original form:");
+        std::cout << "Original form:" << std::endl;
         std::cout << form << std::endl;
-        Logger::printComment("Copy constructor:");
+        std::cout << "Copy constructor:" << std::endl;
         std::cout << constructorCopy << std::endl;
-        Logger::printComment("Assignment operator:");
+        std::cout << "Assignment operator:" << std::endl;
         std::cout << assignedCopy << std::endl;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Edge Case: Not signed exception");
+    std::cout << std::endl;
+    std::cout << "=== Edge Case: Not signed exception ===" << std::endl;
     {
         RobotomyRequestForm form("Leela");
         Bureaucrat          b("Hermes", 1);
@@ -75,13 +74,13 @@ int main()
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Expected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Expected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Edge Case: Grade too low to sign or execute");
+    std::cout << std::endl;
+    std::cout << "=== Edge Case: Grade too low to sign or execute ===" << std::endl;
     {
         ShrubberyCreationForm form("park");
         Bureaucrat            low("Low", 150);
@@ -91,8 +90,8 @@ int main()
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Expected exception (sign):");
-            Logger::printError(ex.what());
+            std::cout << "Expected exception (sign):" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         Bureaucrat execLow("ExecLow", 150);
         Bureaucrat signer("Signer", 1);
@@ -103,13 +102,13 @@ int main()
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Expected exception (execute):");
-            Logger::printError(ex.what());
+            std::cout << "Expected exception (execute):" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Self-assignment for Bureaucrat and Form");
+    std::cout << std::endl;
+    std::cout << "=== Self-assignment for Bureaucrat and Form ===" << std::endl;
     {
         Bureaucrat b("Selfie", 42);
         b = b;

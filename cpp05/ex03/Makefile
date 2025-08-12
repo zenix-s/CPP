@@ -1,7 +1,6 @@
-NAME = binex02
+NAME = binex03
 
 SRCS = main.cpp \
-		Logger.cpp \
 		Bureaucrat.cpp \
 		AForm.cpp \
 		ShrubberyCreationForm.cpp \

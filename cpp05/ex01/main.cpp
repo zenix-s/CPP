@@ -1,28 +1,27 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include "Logger.hpp"
 #include <iostream>
 
 int main()
 {
-    Logger::printLineJunp();
-    Logger::printTitle("Form test");
+    std::cout << std::endl;
+    std::cout << "=== Form test ===" << std::endl;
     {
         Form form("Form1", 50, 50);
         std::cout << form << std::endl;
 
-        Logger::printComment("Sign the contract");
+        std::cout << "Sign the contract" << std::endl;
         Bureaucrat bureaucrat("Santiago", 1);
         std::cout << bureaucrat << std::endl;
 
         form.beSigned(bureaucrat);
 
-        Logger::printComment("Form new status");
+        std::cout << "Form new status" << std::endl;
         std::cout << form << std::endl;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Form test with exception");
+    std::cout << std::endl;
+    std::cout << "=== Form test with exception ===" << std::endl;
     {
         try
         {
@@ -31,18 +30,18 @@ int main()
         }
         catch (const Form::GradeTooHighException& ex)
         {
-            Logger::printError("Exception Form::GradeTooHighException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Form::GradeTooHighException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Form test with exception");
+    std::cout << std::endl;
+    std::cout << "=== Form test with exception ===" << std::endl;
     {
         try
         {
@@ -51,18 +50,18 @@ int main()
         }
         catch (const Form::GradeTooLowException& ex)
         {
-            Logger::printError("Exception Form::GradeTooLowException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Form::GradeTooLowException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Test copy constructor and equal operator");
+    std::cout << std::endl;
+    std::cout << "=== Test copy constructor and equal operator ===" << std::endl;
     {
         Form  form("Complex form", 10, 5);
         Form  constructorCopy(form);
@@ -70,16 +69,16 @@ int main()
 
         *equalCopy = form;
 
-        Logger::printComment("Original form:");
+        std::cout << "Original form:" << std::endl;
         std::cout << form << std::endl;
-        Logger::printComment("Copy constructor:");
+        std::cout << "Copy constructor:" << std::endl;
         std::cout << constructorCopy << std::endl;
-        Logger::printComment("Equal operator(Constant members should not change):");
+        std::cout << "Equal operator(Constant members should not change):" << std::endl;
         std::cout << *equalCopy << std::endl;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Let form be signed by a bureaucrat");
+    std::cout << std::endl;
+    std::cout << "=== Let form be signed by a bureaucrat ===" << std::endl;
     {
         Bureaucrat bureaucrat("Santiago", 1);
         Form       form("Form4", 50, 50);
@@ -93,8 +92,8 @@ int main()
         std::cout << form << std::endl;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Invalid form signing attempt");
+    std::cout << std::endl;
+    std::cout << "=== Invalid form signing attempt ===" << std::endl;
     {
         Bureaucrat bureaucrat("Santiago");
         Form       form("Form5", 50, 50);
@@ -109,33 +108,33 @@ int main()
         }
         catch (const Bureaucrat::GradeTooHighException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooHighException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooHighException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const Bureaucrat::GradeTooLowException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooLowException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooLowException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const Form::GradeTooHighException& ex)
         {
-            Logger::printError("Exception Form::GradeTooHighException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Form::GradeTooHighException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const Form::GradeTooLowException& ex)
         {
-            Logger::printError("Exception Form::GradeTooLowException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Form::GradeTooLowException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Edge Case: Bureaucrat and Form at grade 150 (lowest valid)");
+    std::cout << std::endl;
+    std::cout << "=== Edge Case: Bureaucrat and Form at grade 150 (lowest valid) ===" << std::endl;
     {
         try
         {
@@ -148,13 +147,13 @@ int main()
         }
         catch (const std::exception& e)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(e.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Edge Case: Already signed form");
+    std::cout << std::endl;
+    std::cout << "=== Edge Case: Already signed form ===" << std::endl;
     {
         Form       f2("F2", 100, 100);
         Bureaucrat b2("B2", 50);
@@ -163,8 +162,8 @@ int main()
         std::cout << "Form signed status: " << (f2.getIsSigned() ? "signed" : "not signed") << std::endl;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Edge Case: Multiple bureaucrats signing the same form");
+    std::cout << std::endl;
+    std::cout << "=== Edge Case: Multiple bureaucrats signing the same form ===" << std::endl;
     {
         Form       f3("F3", 100, 100);
         Bureaucrat b3a("B3a", 100);
@@ -174,8 +173,8 @@ int main()
         std::cout << "Form signed status: " << (f3.getIsSigned() ? "signed" : "not signed") << std::endl;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Edge Case: Self-assignment for Form and Bureaucrat");
+    std::cout << std::endl;
+    std::cout << "=== Edge Case: Self-assignment for Form and Bureaucrat ===" << std::endl;
     {
         Form f4("F4", 50, 50);
         f4 = f4; // Self-assignment
@@ -186,8 +185,8 @@ int main()
         std::cout << "Self-assigned bureaucrat: " << b4 << std::endl;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Edge Case: Increment at grade 1 and decrement at grade 150");
+    std::cout << std::endl;
+    std::cout << "=== Edge Case: Increment at grade 1 and decrement at grade 150 ===" << std::endl;
     {
         try
         {
@@ -196,8 +195,8 @@ int main()
         }
         catch (const std::exception& e)
         {
-            Logger::printError("Caught expected exception (increment at grade 1):");
-            Logger::printError(e.what());
+            std::cout << "Caught expected exception (increment at grade 1):" << std::endl;
+            std::cout << e.what() << std::endl;
         }
         try
         {
@@ -206,8 +205,8 @@ int main()
         }
         catch (const std::exception& e)
         {
-            Logger::printError("Caught expected exception (decrement at grade 150):");
-            Logger::printError(e.what());
+            std::cout << "Caught expected exception (decrement at grade 150):" << std::endl;
+            std::cout << e.what() << std::endl;
         }
     }
 }

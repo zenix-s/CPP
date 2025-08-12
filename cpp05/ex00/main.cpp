@@ -3,11 +3,10 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "Logger.hpp"
 
 int main(void)
 {
-    Logger::printTitle("Default constructor");
+    std::cout << "=== Default constructor ===" << std::endl;
     {
         Bureaucrat* steve = new Bureaucrat();
 
@@ -15,8 +14,8 @@ int main(void)
         delete steve;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Name constructor");
+    std::cout << std::endl;
+    std::cout << "=== Name constructor ===" << std::endl;
     {
         Bureaucrat* juan = new Bureaucrat("Juan");
 
@@ -25,8 +24,8 @@ int main(void)
         delete juan;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Full constructor");
+    std::cout << std::endl;
+    std::cout << "=== Full constructor ===" << std::endl;
     {
         Bureaucrat* santiago = new Bureaucrat("Santiago", 1);
 
@@ -35,8 +34,8 @@ int main(void)
         delete santiago;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Full constructor grade above 1");
+    std::cout << std::endl;
+    std::cout << "=== Full constructor grade above 1 ===" << std::endl;
     {
         try
         {
@@ -48,18 +47,18 @@ int main(void)
         }
         catch (const Bureaucrat::GradeTooHighException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooHighException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooHighException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Full constructor grade below 150");
+    std::cout << std::endl;
+    std::cout << "=== Full constructor grade below 150 ===" << std::endl;
     {
         try
         {
@@ -71,30 +70,30 @@ int main(void)
         }
         catch (const Bureaucrat::GradeTooLowException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooLowException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooLowException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Increment grade, works normal");
+    std::cout << std::endl;
+    std::cout << "=== Increment grade, works normal ===" << std::endl;
     {
         try
         {
             Bureaucrat* pablo = new Bureaucrat("Pablo", 2);
 
-            Logger::printComment("Before:");
+            std::cout << "Before:" << std::endl;
             std::cout << pablo->getName() << std::endl;
             std::cout << pablo->getGrade() << std::endl;
 
             pablo->incrementGrade();
 
-            Logger::printComment("After:");
+            std::cout << "After:" << std::endl;
             std::cout << pablo->getName() << std::endl;
             std::cout << pablo->getGrade() << std::endl;
 
@@ -102,25 +101,25 @@ int main(void)
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Decrement grade, works normal");
+    std::cout << std::endl;
+    std::cout << "=== Decrement grade, works normal ===" << std::endl;
     {
         try
         {
             Bureaucrat* pedro = new Bureaucrat("Pedro", 1);
 
-            Logger::printComment("Before:");
+            std::cout << "Before:" << std::endl;
             std::cout << pedro->getName() << std::endl;
             std::cout << pedro->getGrade() << std::endl;
 
             pedro->decrementGrade();
 
-            Logger::printComment("After:");
+            std::cout << "After:" << std::endl;
             std::cout << pedro->getName() << std::endl;
             std::cout << pedro->getGrade() << std::endl;
 
@@ -128,18 +127,18 @@ int main(void)
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Increment grade, throws exception when out of bounds");
+    std::cout << std::endl;
+    std::cout << "=== Increment grade, throws exception when out of bounds ===" << std::endl;
     {
         Bureaucrat* pedro = new Bureaucrat("Pedro", 1);
         try
         {
-            Logger::printComment("Before:");
+            std::cout << "Before:" << std::endl;
             std::cout << pedro->getName() << std::endl;
             std::cout << pedro->getGrade() << std::endl;
 
@@ -149,27 +148,27 @@ int main(void)
         }
         catch (const Bureaucrat::GradeTooHighException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooHighException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooHighException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
 
             delete pedro;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
 
             delete pedro;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Increment grade, throws exception when out of bounds");
+    std::cout << std::endl;
+    std::cout << "=== Decrement grade, throws exception when out of bounds ===" << std::endl;
     {
         Bureaucrat* pedro = new Bureaucrat("Pedro", 150);
         try
         {
-            Logger::printComment("Before:");
+            std::cout << "Before:" << std::endl;
             std::cout << pedro->getName() << std::endl;
             std::cout << pedro->getGrade() << std::endl;
 
@@ -179,64 +178,64 @@ int main(void)
         }
         catch (const Bureaucrat::GradeTooLowException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooLowException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooLowException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
             delete pedro;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
             delete pedro;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Copy constructor");
+    std::cout << std::endl;
+    std::cout << "=== Copy constructor ===" << std::endl;
     {
         Bureaucrat* juan = new Bureaucrat("Juan", 100);
         Bureaucrat* copy = new Bureaucrat(*juan);
 
-        Logger::printComment("Juan:");
+        std::cout << "Juan:" << std::endl;
         std::cout << *juan << std::endl;
 
-        Logger::printComment("Copy:");
+        std::cout << "Copy:" << std::endl;
         std::cout << *copy << std::endl;
 
         delete juan;
         delete copy;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Equal operator");
+    std::cout << std::endl;
+    std::cout << "=== Equal operator ===" << std::endl;
     {
         Bureaucrat* juan = new Bureaucrat("Juan", 100);
         Bureaucrat* copy = new Bureaucrat();
 
-        Logger::printComment("Juan:");
+        std::cout << "Juan:" << std::endl;
         std::cout << *juan << std::endl;
 
-        Logger::printComment("Copy:");
+        std::cout << "Copy:" << std::endl;
         std::cout << *copy << std::endl;
 
         *copy = *juan;
 
-        Logger::printComment("After equal operator:");
+        std::cout << "After equal operator:" << std::endl;
         std::cout << *copy << std::endl;
 
         delete juan;
         delete copy;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Destructor");
+    std::cout << std::endl;
+    std::cout << "=== Destructor ===" << std::endl;
     {
         Bureaucrat* juan = new Bureaucrat("Juan", 100);
         delete juan;
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Destructor with exception");
+    std::cout << std::endl;
+    std::cout << "=== Destructor with exception ===" << std::endl;
     {
         try
         {
@@ -245,18 +244,18 @@ int main(void)
         }
         catch (const Bureaucrat::GradeTooHighException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooHighException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooHighException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 
-    Logger::printLineJunp();
-    Logger::printTitle("Destructor with exception");
+    std::cout << std::endl;
+    std::cout << "=== Destructor with exception ===" << std::endl;
     {
         try
         {
@@ -265,13 +264,13 @@ int main(void)
         }
         catch (const Bureaucrat::GradeTooLowException& ex)
         {
-            Logger::printError("Exception Bureaucrat::GradeTooLowException has ocurred");
-            Logger::printError(ex.what());
+            std::cout << "Exception Bureaucrat::GradeTooLowException has ocurred" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
         catch (const std::exception& ex)
         {
-            Logger::printError("Unexpected exception:");
-            Logger::printError(ex.what());
+            std::cout << "Unexpected exception:" << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
 

@@ -1,6 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
-#include "Logger.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -11,17 +10,14 @@ const int         ShrubberyCreationForm::EXEC_GRADE = 137;
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
     : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
-    Logger::printLog("ShrubberyCreationForm constructor called");
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other), _target(other._target)
 {
-    Logger::printLog("ShrubberyCreationForm copy constructor called");
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-    Logger::printLog("ShrubberyCreationForm assignment operator called");
     if (this != &other)
     {
         AForm::operator=(other);
@@ -32,7 +28,6 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-    Logger::printLog("ShrubberyCreationForm destructor called");
 }
 
 const std::string ShrubberyCreationForm::getStaticName() const
@@ -50,7 +45,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
     std::ofstream ofs((_target + "_shrubbery").c_str());
     if (!ofs)
     {
-        Logger::printError("Failed to open file for shrubbery creation");
+        std::cout << "Failed to open file for shrubbery creation" << std::endl;
         return;
     }
 
@@ -64,7 +59,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
            "  _ -  | |   -_\n"
            "      // \\\\\n";
     ofs.close();
-    Logger::printLog("ShrubberyCreationForm executed: " + _target + "_shrubbery created");
+    std::cout << "ShrubberyCreationForm executed: " << _target << "_shrubbery created" << std::endl;
 }
 
 AForm* ShrubberyCreationForm::factory(const std::string& target)

@@ -1,7 +1,5 @@
 #include "RobotomyRequestForm.hpp"
-#include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include "Logger.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -13,17 +11,14 @@ const int         RobotomyRequestForm::EXEC_GRADE = 45;
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
     : AForm(NAME, SIGN_GRADE, EXEC_GRADE), _target(target)
 {
-    Logger::printLog("RobotomyRequestForm constructor called");
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other), _target(other._target)
 {
-    Logger::printLog("RobotomyRequestForm copy constructor called");
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
-    Logger::printLog("RobotomyRequestForm assignment operator called");
     if (this != &other)
     {
         AForm::operator=(other);
@@ -34,7 +29,6 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-    Logger::printLog("RobotomyRequestForm destructor called");
 }
 
 const std::string RobotomyRequestForm::getStaticName() const

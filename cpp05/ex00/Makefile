@@ -1,7 +1,6 @@
 NAME = binex00
 
 SRCS =	main.cpp \
-		Logger.cpp \
 		Bureaucrat.cpp \
 
 OBJS = ${SRCS:.cpp=.o}

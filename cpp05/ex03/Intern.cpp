@@ -1,7 +1,6 @@
 
 #include "Intern.hpp"
 #include "AForm.hpp"
-#include "Logger.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -39,25 +38,21 @@ AForm* FormMaker::createForm(const std::string& form, const std::string& target)
 // FormMaker constructors and destructors
 FormMaker::FormMaker()
 {
-    Logger::printLog("FormMaker default constructor called");
 }
 
 FormMaker::FormMaker(const FormMaker& other)
 {
-    Logger::printLog("FormMaker copy constructor called");
     (void)other; // Avoid unused parameter warning
 }
 
 FormMaker& FormMaker::operator=(const FormMaker& other)
 {
-    Logger::printLog("FormMaker assignment operator called");
     (void)other; // Avoid unused parameter warning
     return *this;
 }
 
 FormMaker::~FormMaker()
 {
-    Logger::printLog("FormMaker destructor called");
 }
 
 const char* FormMaker::NotRecognizedFormException::what() const throw()
@@ -68,38 +63,34 @@ const char* FormMaker::NotRecognizedFormException::what() const throw()
 // Intern
 Intern::Intern()
 {
-    Logger::printLog("Intern default constructor called");
 }
 
 Intern::Intern(const Intern& other)
 {
-    Logger::printLog("Intern copy constructor called");
     (void)other; // Avoid unused parameter warning
 }
 
 Intern& Intern::operator=(const Intern& other)
 {
-    Logger::printLog("Intern assignment operator called");
     (void)other; // Avoid unused parameter warning
     return *this;
 }
 
 Intern::~Intern()
 {
-    Logger::printLog("Intern destructor called");
 }
 
 AForm* Intern::makeForm(const std::string& formName, const std::string& target) const
 {
-    Logger::printLog("Intern makeForm called with formName: " + formName + " and target: " + target);
-
     try
     {
-        return FormMaker::createForm(formName, target);
+        AForm* form = FormMaker::createForm(formName, target);
+        std::cout << "Intern creates " << formName << std::endl;
+        return form;
     }
     catch (const FormMaker::NotRecognizedFormException& e)
     {
-        Logger::printError("Intern could not create form: " + std::string(e.what()));
+        std::cout << "Intern could not create form: " << std::string(e.what()) << std::endl;
         return NULL;
     }
 }

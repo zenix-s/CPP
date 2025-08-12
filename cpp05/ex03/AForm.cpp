@@ -1,18 +1,14 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include "Logger.hpp"
 #include <iostream>
 
 AForm::AForm() : _name("Simple Form"), _signGrade(150), _executionGrade(150), _isSigned(false)
 {
-    Logger::printLog("AForm Default constructor called");
 }
 
 AForm::AForm(const std::string& name, const int signGrade, const int executionGrade)
     : _name(name), _signGrade(signGrade), _executionGrade(executionGrade), _isSigned(false)
 {
-    Logger::printLog("AForm Constructor called");
-
     if (_signGrade > 150)
         throw AForm::GradeTooLowException();
     if (_signGrade < 1)
@@ -27,18 +23,14 @@ AForm::AForm(const AForm& other)
     : _name(other.getName()), _signGrade(other.getSignGrade()), _executionGrade(other.getExecutionGrade()),
       _isSigned(other.getIsSigned())
 {
-    Logger::printLog("AForm Copy Constructor called");
 }
 
 AForm::~AForm()
 {
-    Logger::printLog("AForm Destructor called");
 }
 
 AForm& AForm::operator=(const AForm& other)
 {
-    Logger::printLog("AForm equal operator called");
-
     if (this != &other)
         copy(other);
 

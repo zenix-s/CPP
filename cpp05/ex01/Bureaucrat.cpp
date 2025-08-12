@@ -1,6 +1,5 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include "Logger.hpp"
 #include <iostream>
 #include <string>
 
@@ -11,7 +10,6 @@ void Bureaucrat::copy(const Bureaucrat& other)
 
 Bureaucrat::Bureaucrat(void) : _name("steve"), _grade(150)
 {
-    Logger::printLog("Bureaucrat default constructor called");
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other.getName()), _grade(other.getGrade())
@@ -21,12 +19,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other.getName()), _grade
     if (other.getGrade() < 1)
         throw Bureaucrat::GradeTooHighException();
 
-    Logger::printLog("Bureaucrat default constructor called");
+
 }
 
 Bureaucrat::Bureaucrat(const std::string& name) : _name(name), _grade(150)
 {
-    Logger::printLog("Bureaucrat constructor called");
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, const int grade) : _name(name), _grade(grade)
@@ -36,18 +33,15 @@ Bureaucrat::Bureaucrat(const std::string& name, const int grade) : _name(name), 
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
 
-    Logger::printLog("Bureaucrat constructor called");
+
 }
 
 Bureaucrat::~Bureaucrat()
 {
-    Logger::printLog("Bureaucrat destructor called");
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
-    Logger::printLog("Bureaucrat equal operator called");
-
     if (this != &other)
         copy(other);
 
@@ -66,7 +60,6 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::incrementGrade()
 {
-    Logger::printLog("Bureaucrat increment grade called");
     const int newGrade = _grade - 1;
 
     if (newGrade < 1)
@@ -77,7 +70,6 @@ void Bureaucrat::incrementGrade()
 
 void Bureaucrat::decrementGrade()
 {
-    Logger::printLog("Bureaucrat decrement grade called");
     const int newGrade = _grade + 1;
 
     if (newGrade > 150)
@@ -90,7 +82,7 @@ void Bureaucrat::signForm(Form& form) const
 {
     if (form.getIsSigned())
     {
-        Logger::printError(_name + " couldn't sign " + form.getName() + " because it is already signed");
+        std::cout << _name << " couldn't sign " << form.getName() << " because it is already signed" << std::endl;
         return;
     }
 
@@ -102,11 +94,11 @@ void Bureaucrat::signForm(Form& form) const
     }
     catch (const Form::GradeTooHighException& ex)
     {
-        Logger::printError(_name + " couldn't sign " + form.getName() + " because " + ex.what());
+        std::cout << _name << " couldn't sign " << form.getName() << " because " << ex.what() << std::endl;
     }
     catch (const Form::GradeTooLowException& ex)
     {
-        Logger::printError(_name + " couldn't sign " + form.getName() + " because " + ex.what());
+        std::cout << _name << " couldn't sign " << form.getName() << " because " << ex.what() << std::endl;
     }
 }
 

@@ -1,11 +1,10 @@
 #include "Bureaucrat.hpp"
 #include "Intern.hpp"
-#include "Logger.hpp"
 #include <iostream>
 
 int main()
 {
-    Logger::printTitle("Intern creates a form");
+    std::cout << "=== Intern creates a form ===" << std::endl;
     {
         Intern intern;
 

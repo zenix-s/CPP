@@ -1,7 +1,6 @@
 NAME = binex01
 
 SRCS = main.cpp \
-		Logger.cpp \
 		Bureaucrat.cpp \
 		Form.cpp \
 

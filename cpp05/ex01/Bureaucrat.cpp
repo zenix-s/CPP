@@ -3,10 +3,7 @@
 #include <iostream>
 #include <string>
 
-void Bureaucrat::copy(const Bureaucrat& other)
-{
-    _grade = other.getGrade();
-}
+
 
 Bureaucrat::Bureaucrat(void) : _name("steve"), _grade(150)
 {
@@ -39,7 +36,7 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
     if (this != &other)
-        copy(other);
+        _grade = other.getGrade();
 
     return *this;
 }

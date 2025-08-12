@@ -15,7 +15,7 @@ class Form
     const int         _executionGrade;
     bool              _isSigned;
 
-    void copy(const Form& other);
+
 
   public:
     Form();

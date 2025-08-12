@@ -32,15 +32,12 @@ Form::~Form()
 Form& Form::operator=(const Form& other)
 {
     if (this != &other)
-        copy(other);
+        _isSigned = other.getIsSigned();
 
     return *this;
 }
 
-void Form::copy(const Form& other)
-{
-    _isSigned = other.getIsSigned();
-}
+
 
 const std::string Form::getName() const
 {

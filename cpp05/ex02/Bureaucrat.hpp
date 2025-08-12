@@ -12,7 +12,7 @@ class Bureaucrat
     const std::string _name;
     int               _grade;
 
-    void copy(const Bureaucrat& other);
+
 
   public:
     Bureaucrat();

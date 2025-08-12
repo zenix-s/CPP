@@ -15,7 +15,7 @@ class AForm
     const int         _executionGrade;
     bool              _isSigned;
 
-    void copy(const AForm& other);
+
 
   public:
     AForm();

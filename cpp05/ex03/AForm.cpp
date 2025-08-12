@@ -32,14 +32,9 @@ AForm::~AForm()
 AForm& AForm::operator=(const AForm& other)
 {
     if (this != &other)
-        copy(other);
+        _isSigned = other.getIsSigned();
 
     return *this;
-}
-
-void AForm::copy(const AForm& other)
-{
-    _isSigned = other.getIsSigned();
 }
 
 const std::string AForm::getName() const

@@ -8,12 +8,12 @@ Intern::Intern()
 
 Intern::Intern(const Intern& other)
 {
-    (void)other; // Avoid unused parameter warning
+    (void)other;
 }
 
 Intern& Intern::operator=(const Intern& other)
 {
-    (void)other; // Avoid unused parameter warning
+    (void)other;
     return *this;
 }
 

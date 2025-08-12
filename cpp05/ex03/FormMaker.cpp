@@ -15,12 +15,12 @@ FormMaker::FormMaker()
 
 FormMaker::FormMaker(const FormMaker& other)
 {
-    (void)other; // Avoid unused parameter warning
+    (void)other;
 }
 
 FormMaker& FormMaker::operator=(const FormMaker& other)
 {
-    (void)other; // Avoid unused parameter warning
+    (void)other;
     return *this;
 }
 

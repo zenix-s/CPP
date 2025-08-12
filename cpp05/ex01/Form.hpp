@@ -15,8 +15,6 @@ class Form
     const int         _executionGrade;
     bool              _isSigned;
 
-
-
   public:
     Form();
     Form(const Form& other);

@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 
-
-
 Bureaucrat::Bureaucrat(void) : _name("steve"), _grade(150)
 {
 }

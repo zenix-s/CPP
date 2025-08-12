@@ -1,8 +1,8 @@
 #pragma once
 
 #include "AForm.hpp"
-#include <string>
 #include <exception>
+#include <string>
 
 class FormMaker
 {

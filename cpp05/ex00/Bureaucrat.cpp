@@ -1,7 +1,5 @@
 #include "Bureaucrat.hpp"
 
-
-
 Bureaucrat::Bureaucrat(void) : _name("steve"), _grade(150)
 {
 }

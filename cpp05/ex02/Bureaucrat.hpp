@@ -12,8 +12,6 @@ class Bureaucrat
     const std::string _name;
     int               _grade;
 
-
-
   public:
     Bureaucrat();
     Bureaucrat(const std::string& name);

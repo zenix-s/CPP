@@ -15,8 +15,6 @@ class AForm
     const int         _executionGrade;
     bool              _isSigned;
 
-
-
   public:
     AForm();
     AForm(const AForm& other);

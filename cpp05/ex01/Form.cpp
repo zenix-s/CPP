@@ -37,8 +37,6 @@ Form& Form::operator=(const Form& other)
     return *this;
 }
 
-
-
 const std::string Form::getName() const
 {
     return _name;

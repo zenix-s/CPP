@@ -4,12 +4,10 @@
 #include "ShrubberyCreationForm.hpp"
 #include <string>
 
-const FormMaker::t_formType FormMaker::_formTypes[] = {
-    {"presidential pardon", &PresidentialPardonForm::factory},
-    {"robotomy request", &RobotomyRequestForm::factory},
-    {"shrubbery creation", &ShrubberyCreationForm::factory},
-    {"", NULL}
-};
+const FormMaker::t_formType FormMaker::_formTypes[] = {{"presidential pardon", &PresidentialPardonForm::factory},
+                                                       {"robotomy request", &RobotomyRequestForm::factory},
+                                                       {"shrubbery creation", &ShrubberyCreationForm::factory},
+                                                       {"", NULL}};
 
 FormMaker::FormMaker()
 {

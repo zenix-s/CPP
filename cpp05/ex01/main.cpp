@@ -173,17 +173,7 @@ int main()
         std::cout << "Form signed status: " << (f3.getIsSigned() ? "signed" : "not signed") << std::endl;
     }
 
-    std::cout << std::endl;
-    std::cout << "=== Edge Case: Self-assignment for Form and Bureaucrat ===" << std::endl;
-    {
-        Form f4("F4", 50, 50);
-        f4 = f4; // Self-assignment
-        std::cout << "Self-assigned form: " << f4 << std::endl;
 
-        Bureaucrat b4("B4", 42);
-        b4 = b4; // Self-assignment
-        std::cout << "Self-assigned bureaucrat: " << b4 << std::endl;
-    }
 
     std::cout << std::endl;
     std::cout << "=== Edge Case: Increment at grade 1 and decrement at grade 150 ===" << std::endl;

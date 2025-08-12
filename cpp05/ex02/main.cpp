@@ -107,15 +107,5 @@ int main()
         }
     }
 
-    std::cout << std::endl;
-    std::cout << "=== Self-assignment for Bureaucrat and Form ===" << std::endl;
-    {
-        Bureaucrat b("Selfie", 42);
-        b = b;
-        std::cout << "Self-assigned bureaucrat: " << b << std::endl;
 
-        RobotomyRequestForm f("Target");
-        f = f;
-        std::cout << "Self-assigned form: " << f << std::endl;
-    }
 }

@@ -18,8 +18,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other.getName()), _grade
         throw Bureaucrat::GradeTooLowException();
     if (other.getGrade() < 1)
         throw Bureaucrat::GradeTooHighException();
-
-
 }
 
 Bureaucrat::Bureaucrat(const std::string& name) : _name(name), _grade(150)
@@ -32,8 +30,6 @@ Bureaucrat::Bureaucrat(const std::string& name, const int grade) : _name(name), 
         throw Bureaucrat::GradeTooLowException();
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
-
-
 }
 
 Bureaucrat::~Bureaucrat()

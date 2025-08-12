@@ -7,16 +7,6 @@
 #include <cstddef>
 #include <string>
 
-// FormMaker
-
-// typedef struct s_formType
-// {
-//     std::string name;
-//     AForm* (*create)(const std::string& target);
-// } t_formType;
-
-// static const t_formType _formTypes[];
-
 const FormMaker::t_formType FormMaker::_formTypes[] = {{"presidential pardon", &PresidentialPardonForm::factory},
                                                        {"robotomy request", &RobotomyRequestForm::factory},
                                                        {"shrubbery creation", &ShrubberyCreationForm::factory},

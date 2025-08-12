@@ -2,8 +2,8 @@
 #define BUREAUCRAT_HPP
 
 #include <exception>
-#include <string>
 #include <iostream>
+#include <string>
 
 class Bureaucrat
 {

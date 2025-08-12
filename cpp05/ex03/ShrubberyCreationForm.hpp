@@ -21,8 +21,8 @@ class ShrubberyCreationForm : public AForm
     const std::string getStaticName() const;
 
     void execute(Bureaucrat const& executor) const;
-    
-    static AForm* factory(const std::string& target); 
+
+    static AForm* factory(const std::string& target);
 };
 
 #endif

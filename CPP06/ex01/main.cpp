@@ -31,10 +31,7 @@ int main(void)
     std::cout << "IsActive: " << (deserializedData->isActive ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    if (originalData == deserializedData)
-        std::cout << "SUCCESS: Original and deserialized pointers are equal!" << std::endl;
-    else
-        std::cout << "FAILURE: Original and deserialized pointers are different!" << std::endl;
+    std::cout << "Pointers equal: " << (originalData == deserializedData ? "Yes" : "No") << std::endl;
 
     std::cout << std::endl;
 
@@ -43,7 +40,7 @@ int main(void)
     secondData->value = 123;
     secondData->isActive = false;
 
-    std::cout << "Second test with different data:" << std::endl;
+    std::cout << "Second test:" << std::endl;
     std::cout << "Original address: " << secondData << std::endl;
 
     uintptr_t serialized2 = Serializer::serialize(secondData);

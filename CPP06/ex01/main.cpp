@@ -7,7 +7,6 @@ int main(void)
     std::cout << "Testing Serializer" << std::endl;
     std::cout << std::endl;
 
-    // Create a Data object
     Data* originalData = new Data;
     originalData->name = "Test Data";
     originalData->value = 42;
@@ -20,12 +19,10 @@ int main(void)
     std::cout << "IsActive: " << (originalData->isActive ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    // Serialize the Data pointer
     uintptr_t serialized = Serializer::serialize(originalData);
     std::cout << "Serialized value: " << serialized << std::endl;
     std::cout << std::endl;
 
-    // Deserialize back to Data pointer
     Data* deserializedData = Serializer::deserialize(serialized);
     std::cout << "Deserialized Data:" << std::endl;
     std::cout << "Address: " << deserializedData << std::endl;
@@ -34,7 +31,6 @@ int main(void)
     std::cout << "IsActive: " << (deserializedData->isActive ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    // Test if the pointers are equal
     if (originalData == deserializedData)
         std::cout << "SUCCESS: Original and deserialized pointers are equal!" << std::endl;
     else
@@ -42,7 +38,6 @@ int main(void)
 
     std::cout << std::endl;
 
-    // Additional test with different data
     Data* secondData = new Data;
     secondData->name = "Another Test";
     secondData->value = 123;
@@ -57,7 +52,6 @@ int main(void)
     std::cout << "Deserialized address: " << deserialized2 << std::endl;
     std::cout << "Pointers equal: " << (secondData == deserialized2 ? "Yes" : "No") << std::endl;
 
-    // Clean up
     delete originalData;
     delete secondData;
 

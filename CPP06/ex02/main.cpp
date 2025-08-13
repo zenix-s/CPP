@@ -9,7 +9,6 @@ int main(void)
     std::cout << "Testing Base type identification" << std::endl;
     std::cout << std::endl;
 
-    // Test with multiple generated objects
     for (int i = 0; i < 10; ++i)
     {
         Base* ptr = generate();
@@ -27,7 +26,6 @@ int main(void)
         std::cout << std::endl;
     }
 
-    // Test with specific instances
     std::cout << "Testing with specific instances:" << std::endl;
     std::cout << std::endl;
 
@@ -56,7 +54,6 @@ int main(void)
     identify(*c);
     std::cout << std::endl;
 
-    // Test with Base pointers pointing to derived objects
     Base* baseA = a;
     Base* baseB = b;
     Base* baseC = c;

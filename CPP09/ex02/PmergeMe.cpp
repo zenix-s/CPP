@@ -39,7 +39,6 @@ bool PmergeMe::isValidNumber(const std::string& str) const
             return false;
     }
     
-    // Check for overflow
     char* endPtr;
     long num = std::strtol(str.c_str(), &endPtr, 10);
     if (num > INT_MAX || num < 0)
@@ -83,7 +82,6 @@ double PmergeMe::getTimeDifference(clock_t start, clock_t end) const
     return static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 }
 
-// Vector implementation of Ford-Johnson algorithm
 void PmergeMe::insertionSort(std::vector<int>& arr, int left, int right)
 {
     for (int i = left + 1; i <= right; ++i)
@@ -127,7 +125,6 @@ void PmergeMe::mergeInsertSort(std::vector<int>& arr, int left, int right)
     if (left >= right)
         return;
     
-    // Use insertion sort for small arrays
     if (right - left < 10)
     {
         insertionSort(arr, left, right);
@@ -147,7 +144,6 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& arr)
     mergeInsertSort(arr, 0, arr.size() - 1);
 }
 
-// Deque implementation of Ford-Johnson algorithm
 void PmergeMe::insertionSort(std::deque<int>& arr, int left, int right)
 {
     for (int i = left + 1; i <= right; ++i)
@@ -191,7 +187,6 @@ void PmergeMe::mergeInsertSort(std::deque<int>& arr, int left, int right)
     if (left >= right)
         return;
     
-    // Use insertion sort for small arrays
     if (right - left < 10)
     {
         insertionSort(arr, left, right);
@@ -213,7 +208,6 @@ void PmergeMe::fordJohnsonSort(std::deque<int>& arr)
 
 void PmergeMe::processInput(int argc, char* argv[])
 {
-    // Parse and validate input
     for (int i = 1; i < argc; ++i)
     {
         std::string arg(argv[i]);
@@ -232,23 +226,18 @@ void PmergeMe::processInput(int argc, char* argv[])
     if (_vector.empty())
         throw InvalidInputException();
     
-    // Display original sequence
     printSequence(_vector, "Before: ");
     
-    // Sort using vector
     clock_t startVector = clock();
     fordJohnsonSort(_vector);
     clock_t endVector = clock();
     
-    // Sort using deque
     clock_t startDeque = clock();
     fordJohnsonSort(_deque);
     clock_t endDeque = clock();
     
-    // Display sorted sequence
     printSequence(_vector, "After: ");
     
-    // Display timing results
     double timeVector = getTimeDifference(startVector, endVector);
     double timeDeque = getTimeDifference(startDeque, endDeque);
     

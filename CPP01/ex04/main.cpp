@@ -29,7 +29,6 @@ int main(int argc, char* argv[])
     std::string       stringToSearch = argv[2];
     std::string       stringToReplace = argv[3];
 
-    // Open file
     std::ifstream file;
     file.open(filename.c_str(), std::ios::in);
     if (!file.is_open())
@@ -38,8 +37,6 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    // Create output file
-    // std::ofstream outFile(outFileName);
     std::ofstream outFile;
     outFile.open(outFileName.c_str(), std::ios::out);
     if (!outFile.is_open())
@@ -56,7 +53,6 @@ int main(int argc, char* argv[])
         outFile << line << std::endl;
     }
 
-    // Close file
     file.close();
     outFile.close();
 

@@ -17,7 +17,7 @@
 int main(void)
 {
     {
-        // Test 1: HumanA with weapon (original)
+
         Weapon club = Weapon("crude spiked club");
         HumanA bob("Bob", club);
         bob.attack();
@@ -26,7 +26,7 @@ int main(void)
     }
 
     {
-        // Test 2: HumanB with weapon (original)
+
         Weapon club = Weapon("crude spiked club");
         HumanB jim("Jim");
         jim.setWeapon(club);
@@ -36,20 +36,20 @@ int main(void)
     }
 
     {
-        // Test 3: HumanA with different weapon
+
         Weapon sword = Weapon("longsword");
         HumanA arthur("Arthur", sword);
         arthur.attack();
     }
 
     {
-        // Test 4: HumanB with no weapon set
+
         HumanB lancelot("Lancelot");
-        lancelot.attack(); // Should handle missing weapon gracefully
+        lancelot.attack();
     }
 
     {
-        // Test 5: HumanB gets weapon after being created
+
         Weapon axe = Weapon("battle axe");
         HumanB guinevere("Guinevere");
         guinevere.setWeapon(axe);
@@ -57,7 +57,7 @@ int main(void)
     }
 
     {
-        // Test 6: HumanA shared weapon change
+
         Weapon dagger = Weapon("dagger");
         HumanA robin("Robin", dagger);
         HumanA will("Will", dagger);
@@ -69,7 +69,7 @@ int main(void)
     }
 
     {
-        // Test 7: HumanB shared weapon reassignment
+
         Weapon spear = Weapon("wooden spear");
         HumanB galahad("Galahad");
         HumanB percival("Percival");
@@ -83,7 +83,7 @@ int main(void)
     }
 
     {
-        // Test 8: HumanA reuses weapon after another changes it
+
         Weapon hammer = Weapon("warhammer");
         HumanA thorin("Thorin", hammer);
         thorin.attack();
@@ -92,7 +92,7 @@ int main(void)
     }
 
     {
-        // Test 9: HumanB changes to a different weapon
+
         Weapon mace = Weapon("steel mace");
         Weapon flail = Weapon("chain flail");
         HumanB boromir("Boromir");
@@ -103,7 +103,7 @@ int main(void)
     }
 
     {
-        // Test 10: HumanA and HumanB sharing weapon
+
         Weapon katana = Weapon("katana");
         HumanA ryu("Ryu", katana);
         HumanB ken("Ken");
@@ -116,7 +116,7 @@ int main(void)
     }
 
     {
-        // Test 11: Modifying weapon type after creation
+
         Weapon glaive = Weapon("glaive");
         HumanA aragorn("Aragorn", glaive);
         aragorn.attack();

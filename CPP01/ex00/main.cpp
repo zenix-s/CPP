@@ -15,7 +15,6 @@
 
 int main(void)
 {
-    // Zombie creation on the heap with the constructor that takes a string as an argument.
     {
         std::cout << "Creating a zombie on the heap with the constructor that takes a string as an argument." << std::endl;
 
@@ -26,7 +25,6 @@ int main(void)
 
     std::cout << std::endl;
 
-    // Zombie creation on the stack with the default constructor.
     {
         std::cout << "Creating a zombie on the stack with the default constructor." << std::endl;
 
@@ -36,7 +34,6 @@ int main(void)
 
     std::cout << std::endl;
 
-    // Zombie creation on the heap with the newZombie function.
     {
         std::cout << "Creating a zombie on the heap with the newZombie function." << std::endl;
 
@@ -47,7 +44,6 @@ int main(void)
 
     std::cout << std::endl;
 
-    // Zombie creation on the stack with the randomChump function.
     {
         std::cout << "Creating a zombie on the stack with the randomChump function." << std::endl;
 

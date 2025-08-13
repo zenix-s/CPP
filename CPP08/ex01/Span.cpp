@@ -1,7 +1,6 @@
 #include "Span.hpp"
 #include <algorithm>
 
-// Orthodox Canonical Form
 Span::Span() : _maxSize(0), _numbers()
 {
 }
@@ -28,7 +27,6 @@ Span::~Span()
 {
 }
 
-// Member functions
 void Span::addNumber(int number)
 {
     if (_numbers.size() >= _maxSize)
@@ -75,7 +73,6 @@ unsigned int Span::longestSpan() const
     return static_cast<unsigned int>(*maxIt - *minIt);
 }
 
-// Utility functions
 unsigned int Span::size() const
 {
     return _numbers.size();
@@ -86,7 +83,6 @@ unsigned int Span::maxSize() const
     return _maxSize;
 }
 
-// Exception implementations
 const char* Span::FullContainerException::what() const throw()
 {
     return "Container is full, cannot add more numbers";

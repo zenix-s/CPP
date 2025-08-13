@@ -1,6 +1,5 @@
 #include "Array.hpp"
 
-// Orthodox Canonical Form
 template <typename T>
 Array<T>::Array() : _elements(NULL), _size(0)
 {
@@ -49,7 +48,6 @@ Array<T>::~Array()
     delete[] _elements;
 }
 
-// Subscript operator
 template <typename T>
 T& Array<T>::operator[](unsigned int index)
 {
@@ -66,14 +64,12 @@ const T& Array<T>::operator[](unsigned int index) const
     return _elements[index];
 }
 
-// Member function
 template <typename T>
 unsigned int Array<T>::size() const
 {
     return _size;
 }
 
-// Exception implementation
 template <typename T>
 const char* Array<T>::OutOfBoundsException::what() const throw()
 {

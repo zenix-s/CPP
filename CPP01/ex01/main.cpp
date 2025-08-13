@@ -14,7 +14,6 @@
 
 #include <iostream>
 
-// Test file for the zombieHorde function
 int main(void)
 {
     {

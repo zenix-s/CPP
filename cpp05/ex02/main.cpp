@@ -6,106 +6,120 @@
 
 int main()
 {
-    std::cout << std::endl;
     std::cout << "=== ShrubberyCreationForm test ===" << std::endl;
     {
-        ShrubberyCreationForm form("garden");
-        std::cout << form << std::endl;
-
-        std::cout << "Sign the form" << std::endl;
-        Bureaucrat bureaucrat("Santiago", 1);
-        std::cout << bureaucrat << std::endl;
-
-        form.beSigned(bureaucrat);
-
-        std::cout << "Form new status" << std::endl;
-        std::cout << form << std::endl;
-
-        std::cout << "Execute the form" << std::endl;
-        bureaucrat.executeForm(form);
+        try
+        {
+            ShrubberyCreationForm form("garden");
+            Bureaucrat bureaucrat("Santiago", 1);
+            form.beSigned(bureaucrat);
+            bureaucrat.executeForm(form);
+            std::cout << "ShrubberyCreationForm test - ok" << std::endl;
+        }
+        catch (const std::exception& ex)
+        {
+            std::cout << "ShrubberyCreationForm test - ko" << std::endl;
+        }
     }
 
-    std::cout << std::endl;
     std::cout << "=== RobotomyRequestForm test ===" << std::endl;
     {
-        RobotomyRequestForm form("Bender");
-        Bureaucrat          bureaucrat("Fry", 45);
-
-        form.beSigned(bureaucrat);
-        std::cout << "Executing robotomy (should be random):" << std::endl;
-        for (int i = 0; i < 4; ++i)
-            bureaucrat.executeForm(form);
+        try
+        {
+            RobotomyRequestForm form("Bender");
+            Bureaucrat          bureaucrat("Fry", 45);
+            form.beSigned(bureaucrat);
+            for (int i = 0; i < 4; ++i)
+                bureaucrat.executeForm(form);
+            std::cout << "RobotomyRequestForm test - ok" << std::endl;
+        }
+        catch (const std::exception& ex)
+        {
+            std::cout << "RobotomyRequestForm test - ko" << std::endl;
+        }
     }
 
-    std::cout << std::endl;
     std::cout << "=== PresidentialPardonForm test ===" << std::endl;
     {
-        PresidentialPardonForm form("Ford Prefect");
-        Bureaucrat             president("Zaphod", 1);
-
-        form.beSigned(president);
-        president.executeForm(form);
+        try
+        {
+            PresidentialPardonForm form("Ford Prefect");
+            Bureaucrat             president("Zaphod", 1);
+            form.beSigned(president);
+            president.executeForm(form);
+            std::cout << "PresidentialPardonForm test - ok" << std::endl;
+        }
+        catch (const std::exception& ex)
+        {
+            std::cout << "PresidentialPardonForm test - ko" << std::endl;
+        }
     }
 
-    std::cout << std::endl;
     std::cout << "=== Test copy constructor and assignment operator ===" << std::endl;
     {
-        ShrubberyCreationForm form("yard");
-        ShrubberyCreationForm constructorCopy(form);
-        ShrubberyCreationForm assignedCopy("dummy");
-        assignedCopy = form;
-
-        std::cout << "Original form:" << std::endl;
-        std::cout << form << std::endl;
-        std::cout << "Copy constructor:" << std::endl;
-        std::cout << constructorCopy << std::endl;
-        std::cout << "Assignment operator:" << std::endl;
-        std::cout << assignedCopy << std::endl;
+        try
+        {
+            ShrubberyCreationForm form("yard");
+            ShrubberyCreationForm constructorCopy(form);
+            ShrubberyCreationForm assignedCopy("dummy");
+            assignedCopy = form;
+            std::cout << "Test copy constructor and assignment operator - ok" << std::endl;
+        }
+        catch (const std::exception& ex)
+        {
+            std::cout << "Test copy constructor and assignment operator - ko" << std::endl;
+        }
     }
 
-    std::cout << std::endl;
-    std::cout << "=== Edge Case: Not signed exception ===" << std::endl;
+    std::cout << "=== Not signed exception ===" << std::endl;
     {
-        RobotomyRequestForm form("Leela");
-        Bureaucrat          b("Hermes", 1);
         try
         {
-            b.executeForm(form);
+            RobotomyRequestForm form("Leela");
+            Bureaucrat          b("Hermes", 1);
+            form.execute(b);
+            std::cout << "Not signed exception - ko" << std::endl;
         }
         catch (const std::exception& ex)
         {
-            std::cout << "Expected exception:" << std::endl;
-            std::cout << ex.what() << std::endl;
+            std::cout << "Not signed exception - ok" << std::endl;
         }
     }
 
-    std::cout << std::endl;
-    std::cout << "=== Edge Case: Grade too low to sign or execute ===" << std::endl;
+    std::cout << "=== Grade too low to sign or execute ===" << std::endl;
     {
-        ShrubberyCreationForm form("park");
-        Bureaucrat            low("Low", 150);
+        bool sign_test_ok = false;
+        bool exec_test_ok = false;
+
         try
         {
-            low.signForm(form);
+            ShrubberyCreationForm form("park");
+            Bureaucrat            low("Low", 150);
+            form.beSigned(low);
         }
         catch (const std::exception& ex)
         {
-            std::cout << "Expected exception (sign):" << std::endl;
-            std::cout << ex.what() << std::endl;
+            sign_test_ok = true;
         }
-        Bureaucrat execLow("ExecLow", 150);
-        Bureaucrat signer("Signer", 1);
-        form.beSigned(signer);
+
         try
         {
-            execLow.executeForm(form);
+            ShrubberyCreationForm form2("park2");
+            Bureaucrat            execLow("ExecLow", 150);
+            Bureaucrat            signer("Signer", 1);
+            form2.beSigned(signer);
+            form2.execute(execLow);
         }
         catch (const std::exception& ex)
         {
-            std::cout << "Expected exception (execute):" << std::endl;
-            std::cout << ex.what() << std::endl;
+            exec_test_ok = true;
         }
+
+        if (sign_test_ok && exec_test_ok)
+            std::cout << "Grade too low to sign or execute - ok" << std::endl;
+        else
+            std::cout << "Grade too low to sign or execute - ko" << std::endl;
     }
 
-
+    return 0;
 }

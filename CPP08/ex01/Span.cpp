@@ -43,6 +43,21 @@ void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
     }
 }
 
+void Span::addNumbers(int start, int end)
+{
+    if (start > end)
+    {
+        int temp = start;
+        start = end;
+        end = temp;
+    }
+    
+    for (int i = start; i <= end; ++i)
+    {
+        addNumber(i);
+    }
+}
+
 unsigned int Span::shortestSpan() const
 {
     if (_numbers.size() < 2)

@@ -189,6 +189,113 @@ bool test_random_dataset()
     }
 }
 
+bool test_add_range_basic()
+{
+    try
+    {
+        Span sp(10);
+        sp.addNumbers(1, 5);
+        
+        return (sp.size() == 5 && sp.shortestSpan() == 1 && sp.longestSpan() == 4);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_add_range_reversed()
+{
+    try
+    {
+        Span sp(10);
+        sp.addNumbers(10, 5);
+        
+        return (sp.size() == 6 && sp.shortestSpan() == 1 && sp.longestSpan() == 5);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_add_range_single_number()
+{
+    try
+    {
+        Span sp(5);
+        sp.addNumbers(42, 42);
+        
+        return (sp.size() == 1);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_add_range_negative()
+{
+    try
+    {
+        Span sp(10);
+        sp.addNumbers(-5, -1);
+        
+        return (sp.size() == 5 && sp.shortestSpan() == 1 && sp.longestSpan() == 4);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_add_range_overflow()
+{
+    try
+    {
+        Span sp(3);
+        sp.addNumbers(1, 5);
+        return false;
+    }
+    catch (...)
+    {
+        return true;
+    }
+}
+
+bool test_add_range_mixed_with_single()
+{
+    try
+    {
+        Span sp(10);
+        sp.addNumber(100);
+        sp.addNumbers(1, 3);
+        sp.addNumber(200);
+        
+        return (sp.size() == 5 && sp.shortestSpan() == 1 && sp.longestSpan() == 199);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_add_large_range()
+{
+    try
+    {
+        Span sp(1001);
+        sp.addNumbers(1, 1000);
+        sp.addNumber(2000);
+        
+        return (sp.size() == 1001 && sp.shortestSpan() == 1 && sp.longestSpan() == 1999);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
 int main()
 {
     std::cout << "=== Basic Functionality Tests ===" << std::endl;
@@ -206,9 +313,18 @@ int main()
     std::cout << "test 6: copy constructor - " << (test_copy_constructor() ? "OK" : "KO") << std::endl;
     std::cout << "test 7: assignment operator - " << (test_assignment_operator() ? "OK" : "KO") << std::endl;
 
+    std::cout << std::endl << "=== Range Addition Tests ===" << std::endl;
+    std::cout << "test 8: add range basic (1-5) - " << (test_add_range_basic() ? "OK" : "KO") << std::endl;
+    std::cout << "test 9: add range reversed (10-5) - " << (test_add_range_reversed() ? "OK" : "KO") << std::endl;
+    std::cout << "test 10: add range single number (42-42) - " << (test_add_range_single_number() ? "OK" : "KO") << std::endl;
+    std::cout << "test 11: add range negative (-5 to -1) - " << (test_add_range_negative() ? "OK" : "KO") << std::endl;
+    std::cout << "test 12: add range overflow exception - " << (test_add_range_overflow() ? "OK" : "KO") << std::endl;
+    std::cout << "test 13: add range mixed with single - " << (test_add_range_mixed_with_single() ? "OK" : "KO") << std::endl;
+    std::cout << "test 14: add large range (1-1000) - " << (test_add_large_range() ? "OK" : "KO") << std::endl;
+
     std::cout << std::endl << "=== Performance Tests ===" << std::endl;
-    std::cout << "test 8: large dataset (10000 numbers) - " << (test_large_dataset() ? "OK" : "KO") << std::endl;
-    std::cout << "test 9: random dataset (1000 numbers) - " << (test_random_dataset() ? "OK" : "KO") << std::endl;
+    std::cout << "test 15: large dataset (10000 numbers) - " << (test_large_dataset() ? "OK" : "KO") << std::endl;
+    std::cout << "test 16: random dataset (1000 numbers) - " << (test_random_dataset() ? "OK" : "KO") << std::endl;
 
     return 0;
 }

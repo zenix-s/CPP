@@ -1,7 +1,5 @@
 #include "PmergeMe.hpp"
 #include <iostream>
-#include <sstream>
-#include <algorithm>
 #include <cstdlib>
 #include <climits>
 #include <iomanip>

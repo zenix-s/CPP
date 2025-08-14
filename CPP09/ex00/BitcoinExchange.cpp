@@ -100,31 +100,6 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
     return true;
 }
 
-bool BitcoinExchange::isValidValue(const std::string& value) const
-{
-    if (value.empty())
-        return false;
-
-    std::string trimmedValue = trim(value);
-    char*       endPtr;
-    double      val = std::strtod(trimmedValue.c_str(), &endPtr);
-
-    // Check if the entire string was parsed
-    if (*endPtr != '\0')
-        return false;
-
-    // Check for valid range
-    if (val < 0 || val > 1000)
-        return false;
-
-    return true;
-}
-
-float BitcoinExchange::parseValue(const std::string& value) const
-{
-    return static_cast<float>(std::atof(trim(value).c_str()));
-}
-
 std::string BitcoinExchange::findClosestDate(const std::string& date) const
 {
     if (_exchangeRates.empty())

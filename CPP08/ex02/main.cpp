@@ -1,69 +1,99 @@
 #include "MutantStack.hpp"
 #include <iostream>
 #include <list>
+#include <string>
+#include <vector>
 
-int main()
+bool test_provided_example()
 {
-    std::cout << "=== Exercise 02: Mutated abomination ===" << std::endl;
-    std::cout << std::endl;
-
-    // Test the provided example
-    std::cout << "Testing provided example:" << std::endl;
+    try
     {
         MutantStack<int> mstack;
         mstack.push(5);
         mstack.push(17);
-        std::cout << mstack.top() << std::endl;
+
+        if (mstack.top() != 17)
+            return false;
+
         mstack.pop();
-        std::cout << mstack.size() << std::endl;
+
+        if (mstack.size() != 1)
+            return false;
+
         mstack.push(3);
         mstack.push(5);
         mstack.push(737);
         mstack.push(0);
-        
+
         MutantStack<int>::iterator it = mstack.begin();
         MutantStack<int>::iterator ite = mstack.end();
         ++it;
         --it;
+
+        int count = 0;
         while (it != ite)
         {
-            std::cout << *it << std::endl;
             ++it;
+            ++count;
         }
-        std::stack<int> s(mstack);
+
+        return (count == 5);
     }
-
-    std::cout << std::endl;
-
-    // Compare with std::list behavior
-    std::cout << "Comparing with std::list (should have same output):" << std::endl;
+    catch (...)
     {
-        std::list<int> mlist;
+        return false;
+    }
+}
+
+bool test_comparison_with_list()
+{
+    try
+    {
+        MutantStack<int> mstack;
+        std::list<int>   mlist;
+
+        mstack.push(5);
+        mstack.push(17);
         mlist.push_back(5);
         mlist.push_back(17);
-        std::cout << mlist.back() << std::endl;
+
+        mstack.pop();
         mlist.pop_back();
-        std::cout << mlist.size() << std::endl;
+
+        mstack.push(3);
+        mstack.push(5);
+        mstack.push(737);
+        mstack.push(0);
         mlist.push_back(3);
         mlist.push_back(5);
         mlist.push_back(737);
         mlist.push_back(0);
-        
-        std::list<int>::iterator it = mlist.begin();
-        std::list<int>::iterator ite = mlist.end();
-        ++it;
-        --it;
-        while (it != ite)
+
+        if (mstack.size() != mlist.size())
+            return false;
+
+        MutantStack<int>::iterator stack_it = mstack.begin();
+        std::list<int>::iterator   list_it = mlist.begin();
+
+        while (stack_it != mstack.end() && list_it != mlist.end())
         {
-            std::cout << *it << std::endl;
-            ++it;
+            if (*stack_it != *list_it)
+                return false;
+            ++stack_it;
+            ++list_it;
         }
+
+        return (stack_it == mstack.end() && list_it == mlist.end());
     }
+    catch (...)
+    {
+        return false;
+    }
+}
 
-    std::cout << std::endl;
-
-    // Test reverse iterators
-    std::cout << "Testing reverse iterators:" << std::endl;
+bool test_reverse_iterators()
+{
+    try
     {
         MutantStack<int> mstack;
         mstack.push(1);
@@ -72,25 +102,38 @@ int main()
         mstack.push(4);
         mstack.push(5);
 
-        std::cout << "Forward iteration: ";
+        std::vector<int> forward_order;
         for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
         {
-            std::cout << *it << " ";
+            forward_order.push_back(*it);
         }
-        std::cout << std::endl;
 
-        std::cout << "Reverse iteration: ";
+        std::vector<int> reverse_order;
         for (MutantStack<int>::reverse_iterator it = mstack.rbegin(); it != mstack.rend(); ++it)
         {
-            std::cout << *it << " ";
+            reverse_order.push_back(*it);
         }
-        std::cout << std::endl;
+
+        if (forward_order.size() != reverse_order.size())
+            return false;
+
+        for (size_t i = 0; i < forward_order.size(); ++i)
+        {
+            if (forward_order[i] != reverse_order[forward_order.size() - 1 - i])
+                return false;
+        }
+
+        return true;
     }
+    catch (...)
+    {
+        return false;
+    }
+}
 
-    std::cout << std::endl;
-
-    // Test const iterators
-    std::cout << "Testing const iterators:" << std::endl;
+bool test_const_iterators()
+{
+    try
     {
         MutantStack<int> mstack;
         mstack.push(10);
@@ -98,76 +141,210 @@ int main()
         mstack.push(30);
 
         const MutantStack<int> const_mstack(mstack);
-        
-        std::cout << "Const forward iteration: ";
+
+        int count = 0;
         for (MutantStack<int>::const_iterator it = const_mstack.begin(); it != const_mstack.end(); ++it)
         {
-            std::cout << *it << " ";
+            count++;
         }
-        std::cout << std::endl;
 
-        std::cout << "Const reverse iteration: ";
+        if (count != 3)
+            return false;
+
+        count = 0;
         for (MutantStack<int>::const_reverse_iterator it = const_mstack.rbegin(); it != const_mstack.rend(); ++it)
         {
-            std::cout << *it << " ";
+            count++;
         }
-        std::cout << std::endl;
+
+        return (count == 3);
     }
+    catch (...)
+    {
+        return false;
+    }
+}
 
-    std::cout << std::endl;
-
-    // Test copy constructor and assignment
-    std::cout << "Testing copy constructor and assignment:" << std::endl;
+bool test_copy_constructor()
+{
+    try
     {
         MutantStack<int> original;
         original.push(1);
         original.push(2);
         original.push(3);
 
-        // Test copy constructor
         MutantStack<int> copy(original);
-        std::cout << "Copy size: " << copy.size() << ", top: " << copy.top() << std::endl;
 
-        // Test assignment operator
+        if (copy.size() != original.size())
+            return false;
+
+        if (copy.top() != original.top())
+            return false;
+
+        original.push(4);
+
+        return (copy.size() == 3 && original.size() == 4);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_assignment_operator()
+{
+    try
+    {
+        MutantStack<int> original;
+        original.push(1);
+        original.push(2);
+        original.push(3);
+
         MutantStack<int> assigned;
         assigned = original;
-        std::cout << "Assigned size: " << assigned.size() << ", top: " << assigned.top() << std::endl;
 
-        // Modify original and verify copies are independent
+        if (assigned.size() != original.size())
+            return false;
+
+        if (assigned.top() != original.top())
+            return false;
+
         original.push(4);
-        std::cout << "After modifying original:" << std::endl;
-        std::cout << "Original size: " << original.size() << std::endl;
-        std::cout << "Copy size: " << copy.size() << std::endl;
-        std::cout << "Assigned size: " << assigned.size() << std::endl;
+
+        return (assigned.size() == 3 && original.size() == 4);
     }
+    catch (...)
+    {
+        return false;
+    }
+}
 
-    std::cout << std::endl;
-
-    // Test with different types
-    std::cout << "Testing with string type:" << std::endl;
+bool test_string_type()
+{
+    try
     {
         MutantStack<std::string> strStack;
         strStack.push("Hello");
         strStack.push("World");
         strStack.push("!");
 
-        std::cout << "String stack contents: ";
+        if (strStack.size() != 3)
+            return false;
+
+        if (strStack.top() != "!")
+            return false;
+
+        int count = 0;
         for (MutantStack<std::string>::iterator it = strStack.begin(); it != strStack.end(); ++it)
         {
-            std::cout << *it << " ";
+            count++;
         }
-        std::cout << std::endl;
+
+        return (count == 3);
     }
+    catch (...)
+    {
+        return false;
+    }
+}
 
-    std::cout << std::endl;
-
-    // Test empty stack iterators
-    std::cout << "Testing empty stack:" << std::endl;
+bool test_empty_stack()
+{
+    try
     {
         MutantStack<int> empty;
-        std::cout << "Empty stack size: " << empty.size() << std::endl;
-        std::cout << "begin() == end(): " << (empty.begin() == empty.end() ? "true" : "false") << std::endl;
+
+        if (empty.size() != 0)
+            return false;
+
+        if (empty.begin() != empty.end())
+            return false;
+
+        if (empty.rbegin() != empty.rend())
+            return false;
+
+        return true;
     }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_stack_conversion()
+{
+    try
+    {
+        MutantStack<int> mstack;
+        mstack.push(1);
+        mstack.push(2);
+        mstack.push(3);
+
+        std::stack<int> s(mstack);
+
+        if (s.size() != mstack.size())
+            return false;
+
+        if (s.top() != mstack.top())
+            return false;
+
+        return true;
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+bool test_iterator_operators()
+{
+    try
+    {
+        MutantStack<int> mstack;
+        mstack.push(10);
+        mstack.push(20);
+        mstack.push(30);
+
+        MutantStack<int>::iterator it = mstack.begin();
+
+        ++it;
+
+        --it;
+
+        if (it != mstack.begin())
+            return false;
+
+        if (*it != 10)
+            return false;
+
+        return true;
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+int main()
+{
+    std::cout << "=== Basic Functionality Tests ===" << std::endl;
+    std::cout << "test 0: provided example test - " << (test_provided_example() ? "OK" : "KO") << std::endl;
+    std::cout << "test 1: comparison with std::list - " << (test_comparison_with_list() ? "OK" : "KO") << std::endl;
+    std::cout << "test 2: stack conversion compatibility - " << (test_stack_conversion() ? "OK" : "KO") << std::endl;
+
+    std::cout << std::endl << "=== Iterator Tests ===" << std::endl;
+    std::cout << "test 3: reverse iterators - " << (test_reverse_iterators() ? "OK" : "KO") << std::endl;
+    std::cout << "test 4: const iterators - " << (test_const_iterators() ? "OK" : "KO") << std::endl;
+    std::cout << "test 5: iterator operators - " << (test_iterator_operators() ? "OK" : "KO") << std::endl;
+
+    std::cout << std::endl << "=== Copy/Assignment Tests ===" << std::endl;
+    std::cout << "test 6: copy constructor - " << (test_copy_constructor() ? "OK" : "KO") << std::endl;
+    std::cout << "test 7: assignment operator - " << (test_assignment_operator() ? "OK" : "KO") << std::endl;
+
+    std::cout << std::endl << "=== Type/Edge Case Tests ===" << std::endl;
+    std::cout << "test 8: string type support - " << (test_string_type() ? "OK" : "KO") << std::endl;
+    std::cout << "test 9: empty stack behavior - " << (test_empty_stack() ? "OK" : "KO") << std::endl;
 
     return 0;
 }

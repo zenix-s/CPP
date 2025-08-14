@@ -47,10 +47,10 @@ unsigned int Span::shortestSpan() const
 {
     if (_numbers.size() < 2)
         throw NoSpanException();
-    
+
     std::vector<int> sorted(_numbers);
     std::sort(sorted.begin(), sorted.end());
-    
+
     unsigned int minSpan = static_cast<unsigned int>(sorted[1] - sorted[0]);
     for (size_t i = 2; i < sorted.size(); ++i)
     {
@@ -58,7 +58,7 @@ unsigned int Span::shortestSpan() const
         if (currentSpan < minSpan)
             minSpan = currentSpan;
     }
-    
+
     return minSpan;
 }
 
@@ -66,10 +66,10 @@ unsigned int Span::longestSpan() const
 {
     if (_numbers.size() < 2)
         throw NoSpanException();
-    
+
     std::vector<int>::const_iterator minIt = std::min_element(_numbers.begin(), _numbers.end());
     std::vector<int>::const_iterator maxIt = std::max_element(_numbers.begin(), _numbers.end());
-    
+
     return static_cast<unsigned int>(*maxIt - *minIt);
 }
 

@@ -6,6 +6,8 @@ RPN::RPN()
 {
 }
 
+
+
 RPN::RPN(const RPN& other) : _stack(other._stack)
 {
 }

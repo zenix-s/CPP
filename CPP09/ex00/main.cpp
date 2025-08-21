@@ -15,16 +15,6 @@ int main(int argc, char* argv[])
         BitcoinExchange btc;
         btc.processInput(argv[1]);
     }
-    catch (const BitcoinExchange::FileOpenException& e)
-    {
-        std::cout << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-    catch (const BitcoinExchange::InvalidDatabaseException& e)
-    {
-        std::cout << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
     catch (const std::exception& e)
     {
         std::cout << "Error: " << e.what() << std::endl;

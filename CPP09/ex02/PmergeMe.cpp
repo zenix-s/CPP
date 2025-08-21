@@ -28,7 +28,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
     return *this;
 }
 
-// Vector implementation
 int PmergeMe::binarySearchVector(const std::vector<int>& arr, int value, int end)
 {
     int left = 0, right = end;
@@ -71,9 +70,9 @@ std::vector<int> PmergeMe::generateJacobsthalVector(int limit) const
 
 std::vector<int> PmergeMe::mergeInsertVector(std::vector<int>& smallVector, std::vector<int>& bigVector)
 {
-    std::vector<int>                  jacobsthalSequence = generateJacobsthalVector(smallVector.size());
+    std::vector<int>                   jacobsthalSequence = generateJacobsthalVector(smallVector.size());
     std::vector<std::pair<int, bool> > smallVectorPairs;
-    std::vector<int>                  result;
+    std::vector<int>                   result;
 
     for (size_t i = 0; i < smallVector.size(); ++i)
         smallVectorPairs.push_back(std::make_pair(smallVector[i], false));
@@ -176,7 +175,6 @@ std::vector<int> PmergeMe::sortVector(std::vector<int> originalVector)
     return sortedVector;
 }
 
-// Deque implementation
 int PmergeMe::binarySearchDeque(const std::deque<int>& arr, int value, int end)
 {
     int left = 0, right = end;
@@ -219,9 +217,9 @@ std::deque<int> PmergeMe::generateJacobsthalDeque(int limit) const
 
 std::deque<int> PmergeMe::mergeInsertDeque(std::deque<int>& smallDeque, std::deque<int>& bigDeque)
 {
-    std::deque<int>                  jacobsthalSequence = generateJacobsthalDeque(smallDeque.size());
+    std::deque<int>                   jacobsthalSequence = generateJacobsthalDeque(smallDeque.size());
     std::deque<std::pair<int, bool> > smallDequePairs;
-    std::deque<int>                  result;
+    std::deque<int>                   result;
 
     for (size_t i = 0; i < smallDeque.size(); ++i)
         smallDequePairs.push_back(std::make_pair(smallDeque[i], false));
@@ -422,5 +420,3 @@ void PmergeMe::processInput(int argc, char** argv)
     std::cout << "Time to process a range of " << _deque.size() << " elements with std::deque  : " << std::fixed
               << std::setprecision(5) << timeDeque << " us" << std::endl;
 }
-
-

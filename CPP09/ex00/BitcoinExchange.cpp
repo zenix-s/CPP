@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include <cmath>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -23,18 +24,22 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
     return *this;
 }
 
+bool BitcoinExchange::isValidDatabaseHeader(const std::string& header) const
+{
+    return header == "date,exchange_rate";
+}
+
 void BitcoinExchange::loadDatabase(const std::string& filename)
 {
     std::ifstream file(filename.c_str());
     if (!file.is_open())
-        throw FileOpenException();
+        throw std::logic_error("Could not open database file");
 
     std::string line;
-    // Skip header line
-    if (!std::getline(file, line))
+    if (!std::getline(file, line) || !isValidDatabaseHeader(line))
     {
         file.close();
-        throw InvalidDatabaseException();
+        throw std::logic_error("Invalid database format");
     }
 
     while (std::getline(file, line))
@@ -46,16 +51,88 @@ void BitcoinExchange::loadDatabase(const std::string& filename)
         std::string date = line.substr(0, commaPos);
         std::string value = line.substr(commaPos + 1);
 
-        if (!date.empty() && !value.empty())
+        if (date.empty() || value.empty())
+            continue;
+
+        if (!isValidDate(date))
+            continue;
+
+        try
         {
-            float rate = static_cast<float>(std::atof(value.c_str()));
+            float rate = validateRate(value);
             _exchangeRates[date] = rate;
+        }
+        catch (const std::logic_error&)
+        {
+            continue;
         }
     }
     file.close();
 
     if (_exchangeRates.empty())
-        throw InvalidDatabaseException();
+        throw std::logic_error("Invalid database format");
+}
+
+float BitcoinExchange::validateRate(const std::string& value) const
+{
+    if (value.empty())
+        throw std::logic_error("Error: bad input");
+
+    size_t i = 0;
+    bool   hasDigits = false;
+    bool   hasDecimalPoint = false;
+
+    while (i < value.length() && (value[i] == ' ' || value[i] == '\t'))
+        i++;
+
+    if (i >= value.length())
+        throw std::logic_error("Error: bad input");
+
+    if (value[i] == '+' || value[i] == '-')
+        i++;
+
+    while (i < value.length())
+    {
+        char c = value[i];
+
+        if (c >= '0' && c <= '9')
+            hasDigits = true;
+        else if (c == '.' && !hasDecimalPoint)
+            hasDecimalPoint = true;
+        else if (c == ' ' || c == '\t')
+        {
+            while (i < value.length() && (value[i] == ' ' || value[i] == '\t'))
+                i++;
+            break;
+        }
+        else
+            throw std::logic_error("Error: bad input");
+        i++;
+    }
+
+    if (!hasDigits)
+        throw std::logic_error("Error: bad input");
+
+    if (i < value.length())
+        throw std::logic_error("Error: bad input");
+
+    double temp = std::atof(value.c_str());
+
+    if (std::isinf(temp) || std::isnan(temp))
+        throw std::logic_error("Error: too large a number.");
+
+    float rate = static_cast<float>(temp);
+
+    if (std::isinf(rate) || std::isnan(rate))
+        throw std::logic_error("Error: too large a number.");
+
+    if (rate < 0)
+        throw std::logic_error("Error: not a positive number.");
+
+    if (rate > 1000)
+        throw std::logic_error("Error: too large a number.");
+
+    return rate;
 }
 
 bool BitcoinExchange::isValidDate(const std::string& date) const
@@ -70,7 +147,6 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
     std::string monthStr = date.substr(5, 2);
     std::string dayStr = date.substr(8, 2);
 
-    // Check if all characters are digits
     for (size_t i = 0; i < yearStr.length(); ++i)
         if (!std::isdigit(yearStr[i]))
             return false;
@@ -90,7 +166,6 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
 
     int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    // Check for leap year
     if (month == 2 && ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)))
         daysInMonth[1] = 29;
 
@@ -134,13 +209,10 @@ void BitcoinExchange::processInput(const std::string& filename)
     }
 
     std::string line;
-    // Skip header line if it exists
     if (std::getline(file, line))
     {
-        // Check if it's a header
         if (line.find("date") == std::string::npos || line.find("value") == std::string::npos)
         {
-            // Not a header, process it
             file.clear();
             file.seekg(0);
         }
@@ -175,28 +247,21 @@ void BitcoinExchange::processInput(const std::string& filename)
             continue;
         }
 
-        char*  endPtr;
-        double value = std::strtod(valueStr.c_str(), &endPtr);
-
-        if (*endPtr != '\0')
+        float value;
+        try
         {
-            std::cout << "Error: bad input => " << line << std::endl;
+            value = validateRate(valueStr);
+        }
+        catch (const std::logic_error& e)
+        {
+            std::string errorMsg = e.what();
+            if (errorMsg == "Error: bad input")
+                std::cout << "Error: bad input => " << line << std::endl;
+            else
+                std::cout << errorMsg << std::endl;
             continue;
         }
 
-        if (value < 0)
-        {
-            std::cout << "Error: not a positive number." << std::endl;
-            continue;
-        }
-
-        if (value > 1000)
-        {
-            std::cout << "Error: too large a number." << std::endl;
-            continue;
-        }
-
-        // Find the exchange rate for this date
         std::string rateDate = date;
         if (_exchangeRates.find(date) == _exchangeRates.end())
         {
@@ -215,14 +280,4 @@ void BitcoinExchange::processInput(const std::string& filename)
     }
 
     file.close();
-}
-
-const char* BitcoinExchange::FileOpenException::what() const throw()
-{
-    return "Could not open database file";
-}
-
-const char* BitcoinExchange::InvalidDatabaseException::what() const throw()
-{
-    return "Invalid database format";
 }

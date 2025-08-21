@@ -1,12 +1,12 @@
 #include "RPN.hpp"
-#include <sstream>
+#include <climits>
+#include <cmath>
 #include <cstdlib>
+#include <sstream>
 
 RPN::RPN()
 {
 }
-
-
 
 RPN::RPN(const RPN& other) : _stack(other._stack)
 {
@@ -25,16 +25,14 @@ RPN& RPN::operator=(const RPN& other)
 
 bool RPN::isOperator(const std::string& token) const
 {
-    return token.length() == 1 && 
-           (token[0] == '+' || token[0] == '-' || 
-            token[0] == '*' || token[0] == '/');
+    return token.length() == 1 && (token[0] == '+' || token[0] == '-' || token[0] == '*' || token[0] == '/');
 }
 
 bool RPN::isNumber(const std::string& token) const
 {
     if (token.empty())
         return false;
-    
+
     size_t start = 0;
     if (token[0] == '-' || token[0] == '+')
     {
@@ -42,17 +40,17 @@ bool RPN::isNumber(const std::string& token) const
             return false;
         start = 1;
     }
-    
+
     for (size_t i = start; i < token.length(); ++i)
     {
         if (!std::isdigit(token[i]))
             return false;
     }
-    
+
     return true;
 }
 
-int RPN::performOperation(int a, int b, char op) const
+double RPN::performOperation(double a, double b, char op) const
 {
     switch (op)
     {
@@ -64,10 +62,10 @@ int RPN::performOperation(int a, int b, char op) const
             return a * b;
         case '/':
             if (b == 0)
-                throw DivisionByZeroException();
+                throw std::logic_error("Error");
             return a / b;
         default:
-            throw InvalidExpressionException();
+            throw std::logic_error("Error");
     }
 }
 
@@ -75,27 +73,31 @@ void RPN::processToken(const std::string& token)
 {
     if (isNumber(token))
     {
-        int num = std::atoi(token.c_str());
+        double num = std::atof(token.c_str());
         if (num >= 10 || num < 0)
-            throw InvalidNumberException();
+            throw std::logic_error("Error");
         _stack.push(num);
     }
     else if (isOperator(token))
     {
         if (_stack.size() < 2)
-            throw EmptyStackException();
-        
-        int b = _stack.top();
+            throw std::logic_error("Error");
+
+        double b = _stack.top();
         _stack.pop();
-        int a = _stack.top();
+        double a = _stack.top();
         _stack.pop();
-        
-        int result = performOperation(a, b, token[0]);
+
+        double result = performOperation(a, b, token[0]);
+
+        if (std::isnan(result) || std::isinf(result) || result > INT_MAX || result < INT_MIN)
+            throw std::logic_error("Error");
+
         _stack.push(result);
     }
     else
     {
-        throw InvalidExpressionException();
+        throw std::logic_error("Error");
     }
 }
 
@@ -108,37 +110,17 @@ void RPN::clearStack()
 int RPN::calculate(const std::string& expression)
 {
     clearStack();
-    
+
     std::istringstream iss(expression);
-    std::string token;
-    
+    std::string        token;
+
     while (iss >> token)
-    {
         processToken(token);
-    }
-    
+
     if (_stack.size() != 1)
-        throw InvalidExpressionException();
-    
-    return _stack.top();
-}
+        throw std::logic_error("Error");
 
-const char* RPN::InvalidExpressionException::what() const throw()
-{
-    return "Error";
-}
+    double result = _stack.top();
 
-const char* RPN::DivisionByZeroException::what() const throw()
-{
-    return "Error";
-}
-
-const char* RPN::EmptyStackException::what() const throw()
-{
-    return "Error";
-}
-
-const char* RPN::InvalidNumberException::what() const throw()
-{
-    return "Error";
+    return static_cast<int>(result);
 }

@@ -110,29 +110,15 @@ float BitcoinExchange::validateRate(const std::string& value) const
         i++;
     }
 
-    if (!hasDigits)
-        throw std::logic_error("Error: bad input");
-
-    if (i < value.length())
+    if (!hasDigits || i < value.length())
         throw std::logic_error("Error: bad input");
 
     double temp = std::atof(value.c_str());
 
-    if (std::isinf(temp) || std::isnan(temp))
-        throw std::logic_error("Error: too large a number.");
+    if (std::isinf(temp) || std::isnan(temp) || temp < 0 || temp > 1000)
+        throw std::logic_error("Error: invalid number.");
 
-    float rate = static_cast<float>(temp);
-
-    if (std::isinf(rate) || std::isnan(rate))
-        throw std::logic_error("Error: too large a number.");
-
-    if (rate < 0)
-        throw std::logic_error("Error: not a positive number.");
-
-    if (rate > 1000)
-        throw std::logic_error("Error: too large a number.");
-
-    return rate;
+    return static_cast<float>(temp);
 }
 
 bool BitcoinExchange::isValidDate(const std::string& date) const
